@@ -1,9 +1,11 @@
 #include "Employee.h"
+
+#include <utility>
 #include "NoAffiliation.h"
 #include "PaymentClassification.h"
 #include "PaymentSchedule.h"
 #include "PaymentMethod.h"
-#include "Paycheck.h"
+#include "PayCheck.h"
 
 Employee::~Employee()
 {
@@ -12,25 +14,25 @@ Employee::~Employee()
   delete itsPaymentMethod;
 }
 
-Employee::Employee(int empid, string name, string address)
+Employee::Employee(int empid, std::string name, std::string address)
 : itsEmpid(empid)
-, itsName(name)
-, itsAddress(address)
-, itsAffiliation(new NoAffiliation())
+, itsName(std::move(name))
+, itsAddress(std::move(address))
 , itsClassification(0)
 , itsSchedule(0)
 , itsPaymentMethod(0)
+, itsAffiliation(new NoAffiliation())
 {
 }
 
-void Employee::SetName(string name)
+void Employee::SetName(std::string name)
 {
-  itsName = name;
+  itsName = std::move(name);
 }
 
-void Employee::SetAddress(string address)
+void Employee::SetAddress(std::string address)
 {
-  itsAddress = address;
+  itsAddress = std::move(address);
 }
 
 void Employee::SetClassification(PaymentClassification* pc)
@@ -67,13 +69,13 @@ Date Employee::GetPayPeriodStartDate(const Date& payPeriodEndDate) const
   return itsSchedule->GetPayPeriodStartDate(payPeriodEndDate);
 }
 
-void Employee::Payday(Paycheck& pc)
+void Employee::Payday(PayCheck& pc) const
 {
-  double grossPay = itsClassification->CalculatePay(pc);
-  double deductions = itsAffiliation->CalculateDeductions(pc);
-  double netPay = grossPay - deductions;
-  pc.SetGrossPay(grossPay);
-  pc.SetDeductions(deductions);
-  pc.SetNetPay(netPay);
-  itsPaymentMethod->Pay(pc);
+    const double grossPay = itsClassification->CalculatePay(pc);
+    const double deductions = itsAffiliation->CalculateDeductions(pc);
+    const double netPay = grossPay - deductions;
+    pc.SetGrossPay(grossPay);
+    pc.SetDeductions(deductions);
+    pc.SetNetPay(netPay);
+    itsPaymentMethod->Pay(pc);
 }

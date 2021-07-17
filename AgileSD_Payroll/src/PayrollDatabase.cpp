@@ -3,9 +3,7 @@
 
 PayrollDatabase GpayrollDatabase;
 
-PayrollDatabase::~PayrollDatabase()
-{
-}
+PayrollDatabase::~PayrollDatabase() = default;
 
 Employee* PayrollDatabase::GetEmployee(int empid)
 {

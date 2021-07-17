@@ -36,8 +36,8 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-#define CPPUNIT_ASSERT(x) ASSERT_TRUE(x)
-#define CPPUNIT_ASSERT_EQUAL(x, y) EXPECT_EQ(x, y) 
+//#define ASSERT_TRUE(x) ASSERT_TRUE(x)
+//#define EXPECT_EQ(x, y) EXPECT_EQ(x, y) 
 
 class PayrollTest : public ::testing::Test {
 protected:
@@ -59,18 +59,18 @@ TEST_F(PayrollTest, TestAddSalariedEmployee)
   AddSalariedEmployee t(empId, "Bob", "Home", 1000.00);
   t.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
-  CPPUNIT_ASSERT("Bob" == e->GetName());
+  ASSERT_TRUE(e);
+  ASSERT_TRUE("Bob" == e->GetName());
   PaymentClassification* pc = e->GetClassification();
-  SalariedClassification* sc = dynamic_cast<SalariedClassification*>(pc);
-  CPPUNIT_ASSERT(sc);
-  CPPUNIT_ASSERT_EQUAL(1000.00, sc->GetSalary());
+  auto sc = dynamic_cast<SalariedClassification*>(pc);
+  ASSERT_TRUE(sc);
+  EXPECT_EQ(1000.00, sc->GetSalary());
   PaymentSchedule* ps = e->GetSchedule();
-  MonthlySchedule* ms = dynamic_cast<MonthlySchedule*>(ps);
-  CPPUNIT_ASSERT(ms);
+  auto ms = dynamic_cast<MonthlySchedule*>(ps);
+  ASSERT_TRUE(ms);
   PaymentMethod* pm = e->GetMethod();
-  HoldMethod* hm = dynamic_cast<HoldMethod*>(pm);
-  CPPUNIT_ASSERT(hm);
+  auto hm = dynamic_cast<HoldMethod*>(pm);
+  ASSERT_TRUE(hm);
 }
 
 TEST_F(PayrollTest, TestAddHourlyEmployee)
@@ -79,18 +79,18 @@ TEST_F(PayrollTest, TestAddHourlyEmployee)
   AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
   t.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
-  CPPUNIT_ASSERT("Bill" == e->GetName());
+  ASSERT_TRUE(e);
+  ASSERT_TRUE("Bill" == e->GetName());
   PaymentClassification* pc = e->GetClassification();
   HourlyClassification* hc = dynamic_cast<HourlyClassification*>(pc);
-  CPPUNIT_ASSERT(hc);
-  CPPUNIT_ASSERT_EQUAL(15.25, hc->GetRate());
+  ASSERT_TRUE(hc);
+  EXPECT_EQ(15.25, hc->GetRate());
   PaymentSchedule* ps = e->GetSchedule();
   WeeklySchedule* ws = dynamic_cast<WeeklySchedule*>(ps);
-  CPPUNIT_ASSERT(ws);
+  ASSERT_TRUE(ws);
   PaymentMethod* pm = e->GetMethod();
   HoldMethod* hm = dynamic_cast<HoldMethod*>(pm);
-  CPPUNIT_ASSERT(hm);
+  ASSERT_TRUE(hm);
 }
 
 TEST_F(PayrollTest, TestAddCommissionedEmployee)
@@ -99,18 +99,18 @@ TEST_F(PayrollTest, TestAddCommissionedEmployee)
   AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
   t.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
-  CPPUNIT_ASSERT("Lance" == e->GetName());
+  ASSERT_TRUE(e);
+  ASSERT_TRUE("Lance" == e->GetName());
   PaymentClassification* pc = e->GetClassification();
-  CommissionedClassification* cc = dynamic_cast<CommissionedClassification*>(pc);
-  CPPUNIT_ASSERT(cc);
-  CPPUNIT_ASSERT(2500 == cc->GetSalary());
+  auto cc = dynamic_cast<CommissionedClassification*>(pc);
+  ASSERT_TRUE(cc);
+  ASSERT_TRUE(2500 == cc->GetSalary());
   PaymentSchedule* ps = e->GetSchedule();
-  BiweeklySchedule* bws = dynamic_cast<BiweeklySchedule*>(ps);
-  CPPUNIT_ASSERT(bws);
+  auto bws = dynamic_cast<BiweeklySchedule*>(ps);
+  ASSERT_TRUE(bws);
   PaymentMethod* pm = e->GetMethod();
-  HoldMethod* hm = dynamic_cast<HoldMethod*>(pm);
-  CPPUNIT_ASSERT(hm);
+  auto hm = dynamic_cast<HoldMethod*>(pm);
+  ASSERT_TRUE(hm);
 }
 
 TEST_F(PayrollTest, TestDeleteEmployee)
@@ -120,13 +120,13 @@ TEST_F(PayrollTest, TestDeleteEmployee)
   t.Execute();
   {
     Employee* e = GpayrollDatabase.GetEmployee(empId);
-    CPPUNIT_ASSERT(e);
+    ASSERT_TRUE(e);
   }
   DeleteEmployeeTransaction dt(empId);
   dt.Execute();
   {
     Employee* e = GpayrollDatabase.GetEmployee(empId);
-    CPPUNIT_ASSERT(e == 0);
+    ASSERT_TRUE(e == 0);
   }
 }
 
@@ -138,13 +138,13 @@ TEST_F(PayrollTest, TestTimeCardTransaction)
   TimeCardTransaction tct(Date(10,31,2001), 8.0, empId);
   tct.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentClassification* pc = e->GetClassification();
   HourlyClassification* hc = dynamic_cast<HourlyClassification*>(pc);
-  CPPUNIT_ASSERT(hc);
+  ASSERT_TRUE(hc);
   TimeCard* tc = hc->GetTimeCard(Date(10,31,2001));
-  CPPUNIT_ASSERT(tc);
-  CPPUNIT_ASSERT_EQUAL(8.0, tc->GetHours());
+  ASSERT_TRUE(tc);
+  EXPECT_EQ(8.0, tc->GetHours());
 }
 
 TEST_F(PayrollTest, TestBadTimeCardTransaction)
@@ -155,7 +155,7 @@ TEST_F(PayrollTest, TestBadTimeCardTransaction)
   TimeCardTransaction tct(Date(10,31,2001), 8.0, empId);
   try {
     tct.Execute();
-    CPPUNIT_ASSERT(false);
+    ASSERT_TRUE(false);
   }
   catch(...) {
   }
@@ -170,13 +170,13 @@ TEST_F(PayrollTest, TestSalesReceiptTransaction)
   SalesReceiptTransaction srt(saleDate, 25000, empId);
   srt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentClassification* pc = e->GetClassification();
-  CommissionedClassification* cc = dynamic_cast<CommissionedClassification*>(pc);
-  CPPUNIT_ASSERT(cc);
+  auto cc = dynamic_cast<CommissionedClassification*>(pc);
+  ASSERT_TRUE(cc);
   SalesReceipt* receipt = cc->GetReceipt(saleDate);
-  CPPUNIT_ASSERT(receipt);
-  CPPUNIT_ASSERT(25000 == receipt->GetAmount());
+  ASSERT_TRUE(receipt);
+  ASSERT_TRUE(25000 == receipt->GetAmount());
 }
 
 TEST_F(PayrollTest, TestBadSalesReceiptTransaction)
@@ -188,7 +188,7 @@ TEST_F(PayrollTest, TestBadSalesReceiptTransaction)
   SalesReceiptTransaction tct(saleDate, 25000, empId);
   try {
     tct.Execute();
-    CPPUNIT_ASSERT(false);
+    ASSERT_TRUE(false);
   }
   catch(...) {
   }
@@ -201,7 +201,7 @@ TEST_F(PayrollTest, TestAddServiceCharge)
   AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
   t.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   UnionAffiliation* af = new UnionAffiliation(memberId, 12.5);
   e->SetAffiliation(af);
   GpayrollDatabase.AddUnionMember(memberId, e);
@@ -209,8 +209,8 @@ TEST_F(PayrollTest, TestAddServiceCharge)
   ServiceChargeTransaction sct(memberId, serviceChargeDate, 12.95);
   sct.Execute();
   ServiceCharge* sc = af->GetServiceCharge(serviceChargeDate);
-  CPPUNIT_ASSERT(sc);
-  CPPUNIT_ASSERT_EQUAL(12.95, sc->GetAmount());
+  ASSERT_TRUE(sc);
+  EXPECT_EQ(12.95, sc->GetAmount());
 }
 
 TEST_F(PayrollTest, TestChangeNameTransaction)
@@ -221,8 +221,8 @@ TEST_F(PayrollTest, TestChangeNameTransaction)
   ChangeNameTransaction cnt(empId, "Bob");
   cnt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
-  CPPUNIT_ASSERT("Bob" == e->GetName());
+  ASSERT_TRUE(e);
+  ASSERT_TRUE("Bob" == e->GetName());
 }
 
 TEST_F(PayrollTest, TestChangeAddressTransaction)
@@ -233,8 +233,8 @@ TEST_F(PayrollTest, TestChangeAddressTransaction)
   ChangeAddressTransaction cnt(empId, "PO Box 7575");
   cnt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
-  CPPUNIT_ASSERT("PO Box 7575" == e->GetAddress());
+  ASSERT_TRUE(e);
+  ASSERT_TRUE("PO Box 7575" == e->GetAddress());
 }
 
 TEST_F(PayrollTest, TestChangeHourlyTransaction)
@@ -245,15 +245,15 @@ TEST_F(PayrollTest, TestChangeHourlyTransaction)
   ChangeHourlyTransaction cht(empId, 27.52);
   cht.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentClassification* pc = e->GetClassification();
-  CPPUNIT_ASSERT(pc);
-  HourlyClassification* hc = dynamic_cast<HourlyClassification*>(pc);
-  CPPUNIT_ASSERT(hc);
-  CPPUNIT_ASSERT_EQUAL(27.52, hc->GetRate());
+  ASSERT_TRUE(pc);
+  auto hc = dynamic_cast<HourlyClassification*>(pc);
+  ASSERT_TRUE(hc);
+  EXPECT_EQ(27.52, hc->GetRate());
   PaymentSchedule* ps = e->GetSchedule();
-  WeeklySchedule* ws = dynamic_cast<WeeklySchedule*>(ps);
-  CPPUNIT_ASSERT(ws);
+  auto ws = dynamic_cast<WeeklySchedule*>(ps);
+  ASSERT_TRUE(ws);
 }
 
 TEST_F(PayrollTest, TestChangeSalariedTransaction)
@@ -264,15 +264,15 @@ TEST_F(PayrollTest, TestChangeSalariedTransaction)
   ChangeSalariedTransaction cht(empId, 25000);
   cht.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentClassification* pc = e->GetClassification();
-  CPPUNIT_ASSERT(pc);
-  SalariedClassification* sc = dynamic_cast<SalariedClassification*>(pc);
-  CPPUNIT_ASSERT(sc);
-  CPPUNIT_ASSERT(25000 == sc->GetSalary());
+  ASSERT_TRUE(pc);
+  auto sc = dynamic_cast<SalariedClassification*>(pc);
+  ASSERT_TRUE(sc);
+  ASSERT_TRUE(25000 == sc->GetSalary());
   PaymentSchedule* ps = e->GetSchedule();
-  MonthlySchedule* ms = dynamic_cast<MonthlySchedule*>(ps);
-  CPPUNIT_ASSERT(ms);
+  auto ms = dynamic_cast<MonthlySchedule*>(ps);
+  ASSERT_TRUE(ms);
 }
 
 TEST_F(PayrollTest, TestChangeCommissionedTransaction)
@@ -283,16 +283,16 @@ TEST_F(PayrollTest, TestChangeCommissionedTransaction)
   ChangeCommissionedTransaction cht(empId, 25000, 4.5);
   cht.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentClassification* pc = e->GetClassification();
-  CPPUNIT_ASSERT(pc);
-  CommissionedClassification* cc = dynamic_cast<CommissionedClassification*>(pc);
-  CPPUNIT_ASSERT(cc);
-  CPPUNIT_ASSERT(25000 == cc->GetSalary());
-  CPPUNIT_ASSERT_EQUAL(4.5, cc->GetRate());
+  ASSERT_TRUE(pc);
+  auto cc = dynamic_cast<CommissionedClassification*>(pc);
+  ASSERT_TRUE(cc);
+  ASSERT_TRUE(25000 == cc->GetSalary());
+  EXPECT_EQ(4.5, cc->GetRate());
   PaymentSchedule* ps = e->GetSchedule();
-  BiweeklySchedule* bws = dynamic_cast<BiweeklySchedule*>(ps);
-  CPPUNIT_ASSERT(bws);
+  auto bws = dynamic_cast<BiweeklySchedule*>(ps);
+  ASSERT_TRUE(bws);
 }
 
 TEST_F(PayrollTest, TestChangeMailTransaction)
@@ -303,12 +303,12 @@ TEST_F(PayrollTest, TestChangeMailTransaction)
   ChangeMailTransaction cmt(empId, "4080 El Cerrito Road");
   cmt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentMethod* pm = e->GetMethod();
-  CPPUNIT_ASSERT(pm);
+  ASSERT_TRUE(pm);
   MailMethod* mm = dynamic_cast<MailMethod*>(pm);
-  CPPUNIT_ASSERT(mm);
-  CPPUNIT_ASSERT("4080 El Cerrito Road" == mm->GetAddress());
+  ASSERT_TRUE(mm);
+  ASSERT_TRUE("4080 El Cerrito Road" == mm->GetAddress());
 }
 
 TEST_F(PayrollTest, TestChangeDirectTransaction)
@@ -319,13 +319,13 @@ TEST_F(PayrollTest, TestChangeDirectTransaction)
   ChangeDirectTransaction cdt(empId, "FirstNational", "1058209");
   cdt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentMethod* pm = e->GetMethod();
-  CPPUNIT_ASSERT(pm);
+  ASSERT_TRUE(pm);
   DirectMethod* dm = dynamic_cast<DirectMethod*>(pm);
-  CPPUNIT_ASSERT(dm);
-  CPPUNIT_ASSERT("FirstNational" == dm->GetBank());
-  CPPUNIT_ASSERT("1058209" == dm->GetAccount());
+  ASSERT_TRUE(dm);
+  ASSERT_TRUE("FirstNational" == dm->GetBank());
+  ASSERT_TRUE("1058209" == dm->GetAccount());
 }
 
 TEST_F(PayrollTest, TestChangeHoldTransaction)
@@ -338,11 +338,11 @@ TEST_F(PayrollTest, TestChangeHoldTransaction)
   ChangeHoldTransaction cht(empId);
   cht.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   PaymentMethod* pm = e->GetMethod();
-  CPPUNIT_ASSERT(pm);
+  ASSERT_TRUE(pm);
   HoldMethod* hm = dynamic_cast<HoldMethod*>(pm);
-  CPPUNIT_ASSERT(hm);
+  ASSERT_TRUE(hm);
 }
 
 TEST_F(PayrollTest, TestChangeMemberTransaction)
@@ -354,15 +354,15 @@ TEST_F(PayrollTest, TestChangeMemberTransaction)
   ChangeMemberTransaction cmt(empId, memberId, 99.42);
   cmt.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   Affiliation* af = e->GetAffiliation();
-  CPPUNIT_ASSERT(af);
+  ASSERT_TRUE(af);
   UnionAffiliation* uf = dynamic_cast<UnionAffiliation*>(af);
-  CPPUNIT_ASSERT(uf);
-  CPPUNIT_ASSERT_EQUAL(99.42, uf->GetDues());
+  ASSERT_TRUE(uf);
+  EXPECT_EQ(99.42, uf->GetDues());
   Employee* member = GpayrollDatabase.GetUnionMember(memberId);
-  CPPUNIT_ASSERT(member);
-  CPPUNIT_ASSERT(e == member);
+  ASSERT_TRUE(member);
+  ASSERT_TRUE(e == member);
 }
 
 TEST_F(PayrollTest, TestChangeUnaffiliatedTransaction)
@@ -376,13 +376,13 @@ TEST_F(PayrollTest, TestChangeUnaffiliatedTransaction)
   ChangeUnaffiliatedTransaction cut(empId);
   cut.Execute();
   Employee* e = GpayrollDatabase.GetEmployee(empId);
-  CPPUNIT_ASSERT(e);
+  ASSERT_TRUE(e);
   Affiliation* af = e->GetAffiliation();
-  CPPUNIT_ASSERT(af);
+  ASSERT_TRUE(af);
   NoAffiliation* nf = dynamic_cast<NoAffiliation*>(af);
-  CPPUNIT_ASSERT(nf);
+  ASSERT_TRUE(nf);
   Employee* member = GpayrollDatabase.GetUnionMember(memberId);
-  CPPUNIT_ASSERT(member == 0);
+  ASSERT_TRUE(member == 0);
 }
 
 TEST_F(PayrollTest, TestPaySingleSalariedEmployee)
@@ -401,13 +401,13 @@ void PayrollTest::ValidatePaycheck(PaydayTransaction& pt,
 				   const Date& payDate,
 				   double pay)
 {
-  Paycheck* pc = pt.GetPaycheck(empid);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(pay, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(0.0, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL(pay, pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empid);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(pay, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(0.0, pc->GetDeductions());
+  EXPECT_EQ(pay, pc->GetNetPay());
 }
 
 TEST_F(PayrollTest, TestPaySingleSalariedEmployeeOnWrongDate)
@@ -418,8 +418,8 @@ TEST_F(PayrollTest, TestPaySingleSalariedEmployeeOnWrongDate)
   Date payDate(11,29,2001);
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc == 0);
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc == 0);
 }
 
 TEST_F(PayrollTest, TestPayMultipleSalariedEmployees)
@@ -433,7 +433,7 @@ TEST_F(PayrollTest, TestPayMultipleSalariedEmployees)
   Date payDate(11,30,2001);
   PaydayTransaction pt(payDate);
   pt.Execute();
-  CPPUNIT_ASSERT(3L == pt.GetPaycheckCount());
+  ASSERT_TRUE(3L == pt.GetPaycheckCount());
   ValidatePaycheck(pt, 1, payDate, 1000.00);
   ValidatePaycheck(pt, 2, payDate, 2000.00);
   ValidatePaycheck(pt, 3, payDate, 3000.00);
@@ -490,8 +490,8 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOnWrongDate)
   PaydayTransaction pt(payDate);
   pt.Execute();
 
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc == 0);
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc == 0);
 }
 
 TEST_F(PayrollTest, TestPaySingleHourlyEmployeeTwoTimeCards)
@@ -579,8 +579,8 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeWrongDate)
   PaydayTransaction pt(payDate);
   pt.Execute();
 
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc == 0);
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc == 0);
 }
 
 TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeSpanMultiplePayPeriods)
@@ -614,13 +614,13 @@ TEST_F(PayrollTest, TestSalariedUnionMemberDues)
   int fridays = 5; // Fridays in Nov, 2001.
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(1000.00, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(fridays*9.42, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL(1000.0 - (fridays * 9.42), pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(1000.00, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(fridays*9.42, pc->GetDeductions());
+  EXPECT_EQ(1000.0 - (fridays * 9.42), pc->GetNetPay());
 }
 
 TEST_F(PayrollTest, TestHourlyUnionMemberDues)
@@ -636,13 +636,13 @@ TEST_F(PayrollTest, TestHourlyUnionMemberDues)
   tct.Execute();
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(8*15.24, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(9.42, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL((8*15.24)-9.42, pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(8*15.24, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(9.42, pc->GetDeductions());
+  EXPECT_EQ((8*15.24)-9.42, pc->GetNetPay());
 }
 
 TEST_F(PayrollTest, TestCommissionedUnionMemberDues)
@@ -656,13 +656,13 @@ TEST_F(PayrollTest, TestCommissionedUnionMemberDues)
   Date payDate(11,9,2001);
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(2500.00, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(2*9.42, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL(2500.0 - (2 * 9.42), pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(2500.00, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(2*9.42, pc->GetDeductions());
+  EXPECT_EQ(2500.0 - (2 * 9.42), pc->GetNetPay());
 }
 
 TEST_F(PayrollTest, TestHourlyUnionMemberServiceCharge)
@@ -680,13 +680,13 @@ TEST_F(PayrollTest, TestHourlyUnionMemberServiceCharge)
   tct.Execute();
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(8*15.24, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(9.42 + 19.42, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(8*15.24, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(9.42 + 19.42, pc->GetDeductions());
+  EXPECT_EQ((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
 }
 
 TEST_F(PayrollTest, TestServiceChargesSpanningMultiplePayPeriods)
@@ -710,11 +710,11 @@ TEST_F(PayrollTest, TestServiceChargesSpanningMultiplePayPeriods)
   tct.Execute();
   PaydayTransaction pt(payDate);
   pt.Execute();
-  Paycheck* pc = pt.GetPaycheck(empId);
-  CPPUNIT_ASSERT(pc);
-  CPPUNIT_ASSERT(pc->GetPayPeriodEndDate() == payDate);
-  CPPUNIT_ASSERT_EQUAL(8*15.24, pc->GetGrossPay());
-  CPPUNIT_ASSERT("Hold" == pc->GetField("Disposition"));
-  CPPUNIT_ASSERT_EQUAL(9.42 + 19.42, pc->GetDeductions());
-  CPPUNIT_ASSERT_EQUAL((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
+  PayCheck* pc = pt.GetPaycheck(empId);
+  ASSERT_TRUE(pc);
+  ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
+  EXPECT_EQ(8*15.24, pc->GetGrossPay());
+  ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
+  EXPECT_EQ(9.42 + 19.42, pc->GetDeductions());
+  EXPECT_EQ((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
 }

@@ -7,9 +7,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-TimeCardTransaction::~TimeCardTransaction()
-{
-}
+TimeCardTransaction::~TimeCardTransaction() = default;
 
 TimeCardTransaction::TimeCardTransaction(const Date& date, double hours, int empid)
   : itsDate(date)

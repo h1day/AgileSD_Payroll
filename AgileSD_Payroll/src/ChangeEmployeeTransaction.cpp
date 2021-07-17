@@ -4,9 +4,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-ChangeEmployeeTransaction::~ChangeEmployeeTransaction()
-{
-}
+ChangeEmployeeTransaction::~ChangeEmployeeTransaction() = default;
 
 ChangeEmployeeTransaction::ChangeEmployeeTransaction(int empid)
   : itsEmpId(empid)

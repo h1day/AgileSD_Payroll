@@ -3,6 +3,8 @@
 #include "Date.h"
 #include "PayCheck.h"
 
+UnionAffiliation::~UnionAffiliation() = default;
+
 UnionAffiliation::UnionAffiliation(int memberId, double dues)
 : itsMemberId(memberId)
 , itsDues(dues)
@@ -34,7 +36,7 @@ namespace
   }
 }
 
-double UnionAffiliation::CalculateDeductions(Paycheck& pc) const
+double UnionAffiliation::CalculateDeductions(PayCheck& pc) const
 {
   double totalServiceCharge = 0;
 

@@ -2,9 +2,7 @@
 #include "PayrollDatabase.h"
 
 extern PayrollDatabase GpayrollDatabase;
-DeleteEmployeeTransaction::~DeleteEmployeeTransaction()
-{
-}
+DeleteEmployeeTransaction::~DeleteEmployeeTransaction() = default;
 
 DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empid)
   : itsEmpid(empid)

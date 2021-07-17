@@ -1,8 +1,6 @@
 #include "ChangeNameTransaction.h"
 
-ChangeNameTransaction::~ChangeNameTransaction()
-{
-}
+ChangeNameTransaction::~ChangeNameTransaction() = default;
 
 ChangeNameTransaction::ChangeNameTransaction(int empid, string name)
   : ChangeEmployeeTransaction(empid)

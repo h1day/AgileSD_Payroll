@@ -1,12 +1,10 @@
 #include "HoldMethod.h"
 
-#include "Paycheck.h"
+#include "PayCheck.h"
 
-HoldMethod::~HoldMethod()
-{
-}
+HoldMethod::~HoldMethod() = default;
 
-void HoldMethod::Pay(Paycheck& pc)
+void HoldMethod::Pay(PayCheck& pc)
 {
   pc.SetField("Disposition", "Hold");
 }

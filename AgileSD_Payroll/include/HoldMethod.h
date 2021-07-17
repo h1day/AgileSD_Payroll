@@ -8,6 +8,6 @@ class HoldMethod : public PaymentMethod
  public:
   virtual ~HoldMethod();
 
-  virtual void Pay(Paycheck&);
+  virtual void Pay(PayCheck&);
 };
 #endif

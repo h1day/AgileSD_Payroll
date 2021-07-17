@@ -5,13 +5,12 @@
 
 #include <map>
 #include <string>
-using namespace std;
 
-class Paycheck
+class PayCheck
 {
  public:
-  virtual ~Paycheck();
-  Paycheck(const Date& payPeriodStart, const Date& payPeriodEnd);
+  virtual ~PayCheck();
+  PayCheck(const Date& payPeriodStart, const Date& payPeriodEnd);
 
   void SetGrossPay(double grossPay);
   void SetDeductions(double deductions);
@@ -23,15 +22,15 @@ class Paycheck
 
   Date GetPayPeriodEndDate() const {return itsPayPeriodEndDate;}
   Date GetPayPeriodStartDate() const {return itsPayPeriodStartDate;}
-  void SetField(string name, string value);
-  string GetField(string name);
+  void SetField(std::string name, std::string value);
+  std::string GetField(std::string name);
 
  private:
   Date itsPayPeriodStartDate;
   Date itsPayPeriodEndDate;
-  double itsGrossPay;
-  double itsNetPay;
-  double itsDeductions;
-  map<string, string> itsFields;
+  double itsGrossPay{0};
+  double itsNetPay{0};
+  double itsDeductions{0};
+  std::map<std::string, std::string> itsFields;
 };
 #endif

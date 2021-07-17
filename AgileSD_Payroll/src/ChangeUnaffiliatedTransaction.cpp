@@ -5,9 +5,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-ChangeUnaffiliatedTransaction::~ChangeUnaffiliatedTransaction()
-{
-}
+ChangeUnaffiliatedTransaction::~ChangeUnaffiliatedTransaction() = default;
 
 ChangeUnaffiliatedTransaction::ChangeUnaffiliatedTransaction(int empId)
 : ChangeAffiliationTransaction(empId)

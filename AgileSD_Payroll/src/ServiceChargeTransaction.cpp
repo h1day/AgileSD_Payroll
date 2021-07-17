@@ -6,9 +6,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-ServiceChargeTransaction::~ServiceChargeTransaction()
-{
-}
+ServiceChargeTransaction::~ServiceChargeTransaction() = default;
 
 ServiceChargeTransaction::ServiceChargeTransaction(int memberId, const Date& date, double charge)
 :itsMemberId(memberId)

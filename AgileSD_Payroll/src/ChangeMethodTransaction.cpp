@@ -1,8 +1,6 @@
 #include "ChangeMethodTransaction.h"
 
-ChangeMethodTransaction::~ChangeMethodTransaction()
-{
-}
+ChangeMethodTransaction::~ChangeMethodTransaction() = default;
 
 ChangeMethodTransaction::ChangeMethodTransaction(int empid)
 : ChangeEmployeeTransaction(empid)

@@ -1,13 +1,13 @@
 #ifndef PAYMENTMETHOD_H
 #define PAYMENTMETHOD_H
 
-class Paycheck;
+class PayCheck;
 
 class PaymentMethod
 {
  public:
   virtual ~PaymentMethod();
 
-  virtual void Pay(Paycheck&) = 0;
+  virtual void Pay(PayCheck&) = 0;
 };
 #endif

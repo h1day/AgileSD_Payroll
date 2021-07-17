@@ -8,7 +8,7 @@ class NoAffiliation : public Affiliation
  public:
   virtual ~NoAffiliation();
   NoAffiliation();
-  virtual double CalculateDeductions(Paycheck&) const;
+  virtual double CalculateDeductions(PayCheck&) const;
 };
 
 #endif

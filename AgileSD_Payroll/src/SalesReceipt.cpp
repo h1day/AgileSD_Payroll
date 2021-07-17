@@ -1,8 +1,6 @@
 #include "SalesReceipt.h"
 
-SalesReceipt::~SalesReceipt()
-{
-}
+SalesReceipt::~SalesReceipt() = default;
 
 SalesReceipt::SalesReceipt(const Date& saleDate, double amount)
 : itsSaleDate(saleDate)

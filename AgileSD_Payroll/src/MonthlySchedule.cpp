@@ -1,17 +1,15 @@
 #include "MonthlySchedule.h"
 #include "Date.h"
 
-MonthlySchedule::~MonthlySchedule()
-{
-}
+MonthlySchedule::~MonthlySchedule() = default;
 
 namespace
 {
   bool IsLastDayOfMonth(const Date& date)
   {
-    int m1 = date.GetMonth();
-    int m2 = (date+1).GetMonth();
-    return (m1 != m2);
+      const int m1 = date.GetMonth();
+      const int m2 = (date+1).GetMonth();
+      return (m1 != m2);
   }
 }
 
@@ -22,8 +20,8 @@ bool MonthlySchedule::IsPayDate(const Date& payDate) const
 
 Date MonthlySchedule::GetPayPeriodStartDate(const Date& payPeriodEndDate) const
 {
-  int lastDayOfMonth = payPeriodEndDate.GetDay();
-  Date firstDayOfMonth = payPeriodEndDate - (lastDayOfMonth - 1);
-  return firstDayOfMonth;
+    const int lastDayOfMonth = payPeriodEndDate.GetDay();
+    Date firstDayOfMonth = payPeriodEndDate - (lastDayOfMonth - 1);
+    return firstDayOfMonth;
 }
 

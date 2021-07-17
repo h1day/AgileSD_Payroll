@@ -1,8 +1,6 @@
 #include "ChangeAffiliationTransaction.h"
 
-ChangeAffiliationTransaction::~ChangeAffiliationTransaction()
-{
-}
+ChangeAffiliationTransaction::~ChangeAffiliationTransaction() = default;
 
 ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empid)
 : ChangeEmployeeTransaction(empid)

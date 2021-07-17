@@ -3,19 +3,18 @@
 
 #include "PaymentMethod.h"
 #include <string>
-using namespace std;
 
 class MailMethod : public PaymentMethod
 {
  public:
   virtual ~MailMethod();
-  MailMethod(string address);
-  string GetAddress() const {return itsAddress;}
+  explicit MailMethod(std::string address);
+  std::string GetAddress() const {return itsAddress;}
 
-  virtual void Pay(Paycheck&);
+  virtual void Pay(PayCheck&);
 
  private:
-  string itsAddress;
+    std::string itsAddress;
 };
 
 #endif

@@ -2,9 +2,7 @@
 #include "BiweeklySchedule.h"
 #include "CommissionedClassification.h"
 
-ChangeCommissionedTransaction::~ChangeCommissionedTransaction()
-{
-}
+ChangeCommissionedTransaction::~ChangeCommissionedTransaction() = default;
 
 ChangeCommissionedTransaction::ChangeCommissionedTransaction(int empid, double salary, double rate)
 : ChangeClassificationTransaction(empid)

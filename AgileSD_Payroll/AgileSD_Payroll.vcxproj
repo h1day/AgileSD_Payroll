@@ -113,7 +113,7 @@
     <ClCompile Include="src\MailMethod.cpp" />
     <ClCompile Include="src\MonthlySchedule.cpp" />
     <ClCompile Include="src\NoAffiliation.cpp" />
-    <ClCompile Include="src\Paycheck.cpp" />
+    <ClCompile Include="src\PayCheck.cpp" />
     <ClCompile Include="src\PaydayTransaction.cpp" />
     <ClCompile Include="src\PaymentClassification.cpp" />
     <ClCompile Include="src\PaymentMethod.cpp" />

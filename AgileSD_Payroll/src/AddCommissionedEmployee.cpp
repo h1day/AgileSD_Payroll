@@ -2,9 +2,7 @@
 #include "CommissionedClassification.h"
 #include "BiweeklySchedule.h"
 
-AddCommissionedEmployee::~AddCommissionedEmployee()
-{
-}
+AddCommissionedEmployee::~AddCommissionedEmployee() = default;
 
 AddCommissionedEmployee::AddCommissionedEmployee(int empid, string name, string address, double salary, double commissionRate)
   : AddEmployeeTransaction(empid, name, address)

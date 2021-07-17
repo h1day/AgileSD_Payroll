@@ -11,17 +11,17 @@ class ServiceCharge;
 class UnionAffiliation : public Affiliation
 {
  public:
-  virtual ~UnionAffiliation() = default;
-  UnionAffiliation(int memberId, double dues);
-  void AddServiceCharge(const Date& date, double amount);
-  ServiceCharge* GetServiceCharge(const Date& date);
-  double GetDues() const {return itsDues;}
-  int GetMemberId() const {return itsMemberId;}
-  virtual double CalculateDeductions(Paycheck&) const;
+    ~UnionAffiliation() override;
+    UnionAffiliation(int memberId, double dues);
+    void AddServiceCharge(const Date& date, double amount);
+    ServiceCharge* GetServiceCharge(const Date& date);
+    double GetDues() const {return itsDues;}
+    int GetMemberId() const {return itsMemberId;}
+    double CalculateDeductions(PayCheck&) const override;
 
  private:
-  int itsMemberId;
-  double itsDues;
-  std::map<Date, ServiceCharge*> itsServiceCharges;
+    int itsMemberId;
+    double itsDues;
+    std::map<Date, ServiceCharge*> itsServiceCharges;
 };
 #endif

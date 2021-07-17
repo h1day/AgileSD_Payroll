@@ -1,14 +1,10 @@
 #include "NoAffiliation.h"
 
-NoAffiliation::~NoAffiliation()
-{
-}
+NoAffiliation::~NoAffiliation() = default;
 
-NoAffiliation::NoAffiliation()
-{
-}
+NoAffiliation::NoAffiliation() = default;
 
-double NoAffiliation::CalculateDeductions(Paycheck&) const
+double NoAffiliation::CalculateDeductions(PayCheck&) const
 {
   return 0;
 }

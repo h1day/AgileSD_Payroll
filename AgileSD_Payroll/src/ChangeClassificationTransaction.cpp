@@ -1,8 +1,6 @@
 #include "ChangeClassificationTransaction.h"
 
-ChangeClassificationTransaction::~ChangeClassificationTransaction()
-{
-}
+ChangeClassificationTransaction::~ChangeClassificationTransaction() = default;
 
 ChangeClassificationTransaction::ChangeClassificationTransaction(int empid)
   : ChangeEmployeeTransaction(empid)

@@ -1,9 +1,7 @@
 #include "ChangeMailTransaction.h"
 #include "MailMethod.h"
 
-ChangeMailTransaction::~ChangeMailTransaction()
-{
-}
+ChangeMailTransaction::~ChangeMailTransaction() = default;
 
 ChangeMailTransaction::ChangeMailTransaction(int empid, string address)
 : ChangeMethodTransaction(empid)

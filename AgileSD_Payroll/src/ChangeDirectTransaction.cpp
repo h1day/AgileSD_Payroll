@@ -1,9 +1,7 @@
 #include "ChangeDirectTransaction.h"
 #include "DirectMethod.h"
 
-ChangeDirectTransaction::~ChangeDirectTransaction()
-{
-}
+ChangeDirectTransaction::~ChangeDirectTransaction() = default;
 
 ChangeDirectTransaction::ChangeDirectTransaction(int empid, string bank, string account)
   : ChangeMethodTransaction(empid)

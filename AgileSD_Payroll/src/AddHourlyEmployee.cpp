@@ -2,9 +2,7 @@
 #include "HourlyClassification.h"
 #include "WeeklySchedule.h"
 
-AddHourlyEmployee::~AddHourlyEmployee()
-{
-}
+AddHourlyEmployee::~AddHourlyEmployee() = default;
 
 AddHourlyEmployee::AddHourlyEmployee(int empid, string name, string address, double hourlyRate)
   : AddEmployeeTransaction(empid, name, address)

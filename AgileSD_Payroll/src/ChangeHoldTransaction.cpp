@@ -1,9 +1,7 @@
 #include "ChangeHoldTransaction.h"
 #include "HoldMethod.h"
 
-ChangeHoldTransaction::~ChangeHoldTransaction()
-{
-}
+ChangeHoldTransaction::~ChangeHoldTransaction() = default;
 
 ChangeHoldTransaction::ChangeHoldTransaction(int empid)
 : ChangeMethodTransaction(empid)

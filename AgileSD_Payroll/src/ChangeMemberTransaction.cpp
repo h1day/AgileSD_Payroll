@@ -4,9 +4,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-ChangeMemberTransaction::~ChangeMemberTransaction()
-{
-}
+ChangeMemberTransaction::~ChangeMemberTransaction() = default;
 
 ChangeMemberTransaction::ChangeMemberTransaction(int empid, int memberid, double dues)
 : ChangeAffiliationTransaction(empid)

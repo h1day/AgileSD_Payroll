@@ -1,17 +1,15 @@
 #include "MailMethod.h"
 
-#include "Paycheck.h"
+#include "PayCheck.h"
 
-MailMethod::~MailMethod()
-{
-}
+MailMethod::~MailMethod() = default;
 
-MailMethod::MailMethod(string address)
+MailMethod::MailMethod(std::string address)
 : itsAddress(address)
 {
 }
 
-void MailMethod::Pay(Paycheck& pc)
+void MailMethod::Pay(PayCheck& pc)
 {
   pc.SetField("Disposition", "Mail");
 }

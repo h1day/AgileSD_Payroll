@@ -53,8 +53,8 @@ class Date
   }
     
  private:
-  time_t      itsTime;
-  tm          itsTimeStruct;
+  time_t      itsTime = {};
+  tm          itsTimeStruct = {};
     
   static long secondsPerDay;
 };

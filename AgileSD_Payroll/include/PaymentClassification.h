@@ -1,16 +1,14 @@
 #ifndef PAYMENTCLASSIFICATION_H
 #define PAYMENTCLASSIFICATION_H
 
-class Paycheck;
-#include "Date.h"
+class PayCheck;
 
 class PaymentClassification
 {
  public:
   virtual ~PaymentClassification();
 
-  virtual double CalculatePay(Paycheck&) const = 0;
- protected:
+  virtual double CalculatePay(PayCheck&) const = 0;
 
 };
 #endif

@@ -9,9 +9,7 @@ class PaymentClassification;
 
 extern PayrollDatabase GpayrollDatabase;
 
-AddEmployeeTransaction::~AddEmployeeTransaction()
-{
-}
+AddEmployeeTransaction::~AddEmployeeTransaction() = default;
 
 AddEmployeeTransaction::AddEmployeeTransaction(int empid, string name, string address)
   : itsEmpid(empid)

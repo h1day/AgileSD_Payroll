@@ -1,8 +1,6 @@
 #include "ChangeAddressTransaction.h"
 
-ChangeAddressTransaction::~ChangeAddressTransaction()
-{
-}
+ChangeAddressTransaction::~ChangeAddressTransaction() = default;
 
 ChangeAddressTransaction::ChangeAddressTransaction(int empid, string address)
   : ChangeEmployeeTransaction(empid)

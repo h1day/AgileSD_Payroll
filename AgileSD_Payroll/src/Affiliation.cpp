@@ -1,9 +1,4 @@
 #include "Affiliation.h"
 
-Affiliation::~Affiliation()
-{
-}
-
-Affiliation::Affiliation()
-{
-}
+Affiliation::~Affiliation() = default;
+Affiliation::Affiliation() = default;

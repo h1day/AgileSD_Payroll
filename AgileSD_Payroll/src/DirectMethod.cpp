@@ -1,17 +1,17 @@
 #include "DirectMethod.h"
-#include "Paycheck.h"
 
-DirectMethod::~DirectMethod()
+#include <utility>
+#include "PayCheck.h"
+
+DirectMethod::~DirectMethod() = default;
+
+DirectMethod::DirectMethod(std::string bank, std::string account)
+: itsBank(std::move(bank))
+, itsAccount(std::move(account))
 {
 }
 
-DirectMethod::DirectMethod(string bank, string account)
-: itsBank(bank)
-, itsAccount(account)
-{
-}
-
-void DirectMethod::Pay(Paycheck& pc)
+void DirectMethod::Pay(PayCheck& pc)
 {
   pc.SetField("Disposition", "Direct");
 }

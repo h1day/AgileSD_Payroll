@@ -4,7 +4,7 @@ long Date::secondsPerDay = 60L * 60L * 24L;
 
 Date::Date()
 {
-  time_t now = time(NULL);
+  time_t now = time(nullptr);
   //itsTimeStruct = *(localtime(&now));
   const errno_t err = localtime_s(&itsTimeStruct, &now);
   if (err) {
@@ -18,7 +18,7 @@ Date::Date()
 
 Date::Date(int month, int day, int year)
 {
-  memset(reinterpret_cast<char*>(&itsTimeStruct), 0, sizeof(itsTimeStruct));
+  memset(&itsTimeStruct, 0, sizeof(itsTimeStruct));
   itsTimeStruct.tm_mon = month-1;
   itsTimeStruct.tm_mday = day;
   itsTimeStruct.tm_year = year-1900;
@@ -37,7 +37,7 @@ Date::Date(const Date& theDate)
   *this = theDate;	
 }
 
-Date::~Date() {}
+Date::~Date() = default;
 
 Date& Date::operator= (const Date& theDate)
 {
@@ -101,7 +101,7 @@ std::istream& operator>> (std::istream& i, Date& theDate)
   int month, day, year;
   char slash;
   i >> month >> slash >> day >> slash >> year;
-  Date tmp(month, day, year);
+  const Date tmp(month, day, year);
   theDate = tmp;
   return i;
 }

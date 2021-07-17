@@ -6,13 +6,13 @@
 class SalariedClassification : public PaymentClassification
 {
  public:
-  virtual ~SalariedClassification();
-  SalariedClassification(double salary);
-  double GetSalary() const;
+    ~SalariedClassification() override;
+    explicit SalariedClassification(double salary);
+    double GetSalary() const;
 
-  virtual double CalculatePay(Paycheck&) const;
+    double CalculatePay(PayCheck&) const override;
 
  private:
-  double itsSalary;
+    double itsSalary;
 };
 #endif

@@ -2,9 +2,7 @@
 #include "WeeklySchedule.h"
 #include "HourlyClassification.h"
 
-ChangeHourlyTransaction::~ChangeHourlyTransaction()
-{
-}
+ChangeHourlyTransaction::~ChangeHourlyTransaction() = default;
 
 ChangeHourlyTransaction::ChangeHourlyTransaction(int empid, double hourlyRate)
   : ChangeClassificationTransaction(empid)

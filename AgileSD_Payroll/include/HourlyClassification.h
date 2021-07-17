@@ -18,7 +18,7 @@ class HourlyClassification : public PaymentClassification
   void AddTimeCard(TimeCard* tc);
   TimeCard* GetTimeCard(const Date& date);
 
-  virtual double CalculatePay(Paycheck&) const;
+  virtual double CalculatePay(PayCheck&) const;
 
  private:
   double CalculatePayForTimeCard(TimeCard*) const;

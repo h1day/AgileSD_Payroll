@@ -18,7 +18,7 @@ class CommissionedClassification : public PaymentClassification
   SalesReceipt* GetReceipt(const Date& saleDate);
   void AddReceipt(SalesReceipt*);
 
-  virtual double CalculatePay(Paycheck&) const;
+  virtual double CalculatePay(PayCheck&) const;
 
  private:
   double itsSalary;

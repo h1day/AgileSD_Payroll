@@ -2,9 +2,7 @@
 #include "TimeCard.h"
 #include "PayCheck.h"
 
-HourlyClassification::~HourlyClassification()
-{
-}
+HourlyClassification::~HourlyClassification() = default;
 
 HourlyClassification::HourlyClassification(double hourlyRate)
   :itsRate(hourlyRate)
@@ -21,12 +19,11 @@ TimeCard* HourlyClassification::GetTimeCard(const Date& date)
   return itsTimeCards[date];
 }
 
-double HourlyClassification::CalculatePay(Paycheck& pc) const
+double HourlyClassification::CalculatePay(PayCheck& pc) const
 {
   double totalPay = 0;
   Date payPeriodEndDate = pc.GetPayPeriodEndDate();
-  map<Date, TimeCard*>::const_iterator i;
-  for (i=itsTimeCards.begin(); i != itsTimeCards.end(); i++) {
+  for (auto i = itsTimeCards.begin(); i != itsTimeCards.end(); ++i) {
     TimeCard * tc = (*i).second;
     if (Date::IsBetween(tc->GetDate(), pc.GetPayPeriodStartDate(), pc.GetPayPeriodEndDate()))
       totalPay += CalculatePayForTimeCard(tc);
@@ -36,8 +33,8 @@ double HourlyClassification::CalculatePay(Paycheck& pc) const
 
 double HourlyClassification::CalculatePayForTimeCard(TimeCard* tc) const
 {
-    double hours = tc->GetHours();
-    double overtime = max(0.0, hours - 8.0);
-    double straightTime = hours - overtime;
+    const double hours = tc->GetHours();
+    const double overtime = std::max(0.0, hours - 8.0);
+    const double straightTime = hours - overtime;
     return straightTime * itsRate + overtime * itsRate * 1.5;
 }

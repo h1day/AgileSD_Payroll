@@ -2,9 +2,7 @@
 #include "SalariedClassification.h"
 #include "MonthlySchedule.h"
 
-AddSalariedEmployee::~AddSalariedEmployee()
-{
-}
+AddSalariedEmployee::~AddSalariedEmployee() = default;
 
 AddSalariedEmployee::AddSalariedEmployee(int empid, string name, string address, double salary)
   : AddEmployeeTransaction(empid, name, address)

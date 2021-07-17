@@ -6,7 +6,7 @@
 
 #include <map>
 
-class Paycheck;
+class PayCheck;
 
 class PaydayTransaction : public Transaction
 {
@@ -14,12 +14,12 @@ class PaydayTransaction : public Transaction
   virtual ~PaydayTransaction();
   PaydayTransaction(Date payDate);
   virtual void Execute();
-  Paycheck* GetPaycheck(int empId);
+  PayCheck* GetPaycheck(int empId);
   int GetPaycheckCount() const;
 
  private:
   Date itsPayDate;
-  std::map<int, Paycheck*> itsPaychecks;
+  std::map<int, PayCheck*> itsPaychecks;
 };
 
 #endif

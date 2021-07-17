@@ -1,37 +1,38 @@
-#include "Paycheck.h"
+#include "PayCheck.h"
 
-Paycheck::~Paycheck()
-{
-}
+PayCheck::~PayCheck() = default;
 
-Paycheck::Paycheck(const Date& payPeriodStartDate,
-		   const Date& payPeriodEndDate)
+PayCheck::PayCheck(const Date& payPeriodStartDate,
+                   const Date& payPeriodEndDate)
 : itsPayPeriodStartDate(payPeriodStartDate)
 , itsPayPeriodEndDate(payPeriodEndDate)
 {
+	itsGrossPay =  0;
+	itsNetPay = 0;
+	itsDeductions = 0;
 }
 
-void Paycheck::SetGrossPay(double grossPay)
+void PayCheck::SetGrossPay(double grossPay)
 {
   itsGrossPay = grossPay;
 }
 
-void Paycheck::SetNetPay(double netPay)
+void PayCheck::SetNetPay(double netPay)
 {
   itsNetPay = netPay;
 }
 
-void Paycheck::SetDeductions(double deductions)
+void PayCheck::SetDeductions(double deductions)
 {
   itsDeductions = deductions;
 }
 
-void Paycheck::SetField(string name, string value)
+void PayCheck::SetField(std::string name, std::string value)
 {
   itsFields[name] = value;
 }
 
-string Paycheck::GetField(string name)
+std::string PayCheck::GetField(std::string name)
 {
   return itsFields[name];
 }

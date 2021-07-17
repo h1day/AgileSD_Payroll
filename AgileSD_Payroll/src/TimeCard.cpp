@@ -1,8 +1,6 @@
 #include "TimeCard.h"
 
-TimeCard::~TimeCard()
-{
-}
+TimeCard::~TimeCard() = default;
 
 TimeCard::TimeCard(const Date& date, double hours)
 : itsDate(date)

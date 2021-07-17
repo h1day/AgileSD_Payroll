@@ -1,6 +1,6 @@
 #include "PaydayTransaction.h"
 #include "PayrollDatabase.h"
-#include "Paycheck.h"
+#include "PayCheck.h"
 #include "Date.h"
 #include "Employee.h"
 
@@ -8,9 +8,7 @@
 
 extern PayrollDatabase GpayrollDatabase;
 
-PaydayTransaction::~PaydayTransaction()
-{
-}
+PaydayTransaction::~PaydayTransaction() = default;
 
 PaydayTransaction::PaydayTransaction(Date payDate)
   :itsPayDate(payDate)
@@ -27,7 +25,7 @@ void PaydayTransaction::Execute()
     int empId = *i;
     if (Employee* e = GpayrollDatabase.GetEmployee(empId)) {
       if (e->IsPayDate(itsPayDate)) {
-	Paycheck* pc = new Paycheck(e->GetPayPeriodStartDate(itsPayDate),
+	PayCheck* pc = new PayCheck(e->GetPayPeriodStartDate(itsPayDate),
 				    itsPayDate);
 	itsPaychecks[empId] = pc;
 	e->Payday(*pc);
@@ -36,7 +34,7 @@ void PaydayTransaction::Execute()
   }
 }
 
-Paycheck* PaydayTransaction::GetPaycheck(int empId)
+PayCheck* PaydayTransaction::GetPaycheck(int empId)
 {
   return itsPaychecks[empId];
 }

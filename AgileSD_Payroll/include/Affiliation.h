@@ -1,7 +1,7 @@
 #ifndef AFFILIATION_H
 #define AFFILIATION_H
 
-class Paycheck;
+class PayCheck;
 
 class Affiliation
 {
@@ -9,7 +9,7 @@ class Affiliation
   virtual ~Affiliation();
   Affiliation();
 
-  virtual double CalculateDeductions(Paycheck&) const = 0;
+  virtual double CalculateDeductions(PayCheck&) const = 0;
 };
 
 #endif

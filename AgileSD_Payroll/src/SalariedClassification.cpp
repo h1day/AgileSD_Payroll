@@ -1,8 +1,6 @@
 #include "SalariedClassification.h"
 
-SalariedClassification::~SalariedClassification()
-{
-}
+SalariedClassification::~SalariedClassification() = default;
 
 SalariedClassification::SalariedClassification(double salary)
   :itsSalary(salary)
@@ -14,7 +12,7 @@ double SalariedClassification::GetSalary() const
   return itsSalary;
 }
 
-double SalariedClassification::CalculatePay(Paycheck&) const
+double SalariedClassification::CalculatePay(PayCheck&) const
 {
   return itsSalary;
 }

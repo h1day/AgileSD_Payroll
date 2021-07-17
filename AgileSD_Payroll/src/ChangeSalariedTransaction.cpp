@@ -2,9 +2,7 @@
 #include "MonthlySchedule.h"
 #include "SalariedClassification.h"
 
-ChangeSalariedTransaction::~ChangeSalariedTransaction()
-{
-}
+ChangeSalariedTransaction::~ChangeSalariedTransaction() = default;
 
 ChangeSalariedTransaction::ChangeSalariedTransaction(int empid, double salary)
 : ChangeClassificationTransaction(empid)

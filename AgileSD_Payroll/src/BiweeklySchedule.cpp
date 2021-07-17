@@ -1,9 +1,7 @@
 #include "BiweeklySchedule.h"
 #include "Date.h"
 
-BiweeklySchedule::~BiweeklySchedule()
-{
-}
+BiweeklySchedule::~BiweeklySchedule() = default;
 
 bool BiweeklySchedule::IsPayDate(const Date& theDate) const
 {

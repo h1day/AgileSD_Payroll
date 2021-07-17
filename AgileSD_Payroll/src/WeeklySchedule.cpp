@@ -1,9 +1,7 @@
 #include "WeeklySchedule.h"
 #include "Date.h"
 
-WeeklySchedule::~WeeklySchedule()
-{
-}
+WeeklySchedule::~WeeklySchedule() = default;
 
 bool WeeklySchedule::IsPayDate(const Date& theDate) const
 {

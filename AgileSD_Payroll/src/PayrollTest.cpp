@@ -157,8 +157,7 @@ TEST_F(PayrollTest, TestBadTimeCardTransaction)
     tct.Execute();
     CPPUNIT_ASSERT(false);
   }
-  catch(const char* s) {
-    //cerr << "Caught: " << s << endl;
+  catch(...) {
   }
 }
 
@@ -191,8 +190,7 @@ TEST_F(PayrollTest, TestBadSalesReceiptTransaction)
     tct.Execute();
     CPPUNIT_ASSERT(false);
   }
-  catch(const char* s) {
-    //cerr << "Caught: " << s << endl;
+  catch(...) {
   }
 }
 

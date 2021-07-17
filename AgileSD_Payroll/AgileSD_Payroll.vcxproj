@@ -130,7 +130,6 @@
     <ClCompile Include="src\Transaction.cpp" />
     <ClCompile Include="src\UnionAffiliation.cpp" />
     <ClCompile Include="src\WeeklySchedule.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

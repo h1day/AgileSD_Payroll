@@ -11,7 +11,7 @@ class ServiceCharge;
 class UnionAffiliation : public Affiliation
 {
  public:
-  virtual ~UnionAffiliation();
+  virtual ~UnionAffiliation() = default;
   UnionAffiliation(int memberId, double dues);
   void AddServiceCharge(const Date& date, double amount);
   ServiceCharge* GetServiceCharge(const Date& date);
@@ -22,6 +22,6 @@ class UnionAffiliation : public Affiliation
  private:
   int itsMemberId;
   double itsDues;
-  map<Date, ServiceCharge*> itsServiceCharges;
+  std::map<Date, ServiceCharge*> itsServiceCharges;
 };
 #endif

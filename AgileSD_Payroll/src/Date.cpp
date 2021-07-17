@@ -5,7 +5,11 @@ long Date::secondsPerDay = 60L * 60L * 24L;
 Date::Date()
 {
   time_t now = time(NULL);
-  itsTimeStruct = *(localtime(&now));
+  //itsTimeStruct = *(localtime(&now));
+  const errno_t err = localtime_s(&itsTimeStruct, &now);
+  if (err) {
+      throw;
+  }
   itsTimeStruct.tm_sec = 0;
   itsTimeStruct.tm_min = 0;
   itsTimeStruct.tm_hour = 12;
@@ -22,7 +26,10 @@ Date::Date(int month, int day, int year)
   itsTimeStruct.tm_min = 0;
   itsTimeStruct.tm_hour = 12;
   itsTime = mktime(&itsTimeStruct);
-  itsTimeStruct = *(localtime(&itsTime));
+  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+  if(err) {
+      throw;
+  }
 }
 
 Date::Date(const Date& theDate)
@@ -35,7 +42,10 @@ Date::~Date() {}
 Date& Date::operator= (const Date& theDate)
 {
   itsTime = theDate.itsTime;
-  itsTimeStruct = *(localtime(&itsTime));
+  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+  if (err) {
+      throw;
+  }
   return *this;
 }
 
@@ -45,40 +55,40 @@ int Date::GetYear() const  {return itsTimeStruct.tm_year+1900;}
 
 Date::DayOfWeek Date::GetDayOfWeek() const
 {
-  return (DayOfWeek)(itsTimeStruct.tm_wday);
+  return static_cast<DayOfWeek>(itsTimeStruct.tm_wday);
 }
 
-string Date::GetDayOfWeekName() const
+std::string Date::GetDayOfWeekName() const
 {
-  string retval;
+  std::string retval;
   switch(GetDayOfWeek())
     {
-    case sunday:
+    case DayOfWeek::sunday:
       retval = "Sunday";
       break;
-    case monday:
+    case DayOfWeek::monday:
       retval = "Monday";
       break;
-    case tuesday:
+    case DayOfWeek::tuesday:
       retval = "Tuesday";
       break;
-    case wednesday:
+    case DayOfWeek::wednesday:
       retval = "Wednesday";
       break;
-    case thursday:
+    case DayOfWeek::thursday:
       retval = "Thursday";
       break;
-    case friday:
+    case DayOfWeek::friday:
       retval = "Friday";
       break;
-    case saturday:
+    case DayOfWeek::saturday:
       retval = "Saturday";
       break;
     }
   return retval;
 }
 
-ostream& operator<< (ostream& o, const Date& theDate)
+std::ostream& operator<< (std::ostream& o, const Date& theDate)
 {
   o << theDate.GetMonth() << '/'
     << theDate.GetDay() << '/'
@@ -86,7 +96,7 @@ ostream& operator<< (ostream& o, const Date& theDate)
   return o;
 }
 
-istream& operator>> (istream& i, Date& theDate)
+std::istream& operator>> (std::istream& i, Date& theDate)
 {
   int month, day, year;
   char slash;
@@ -147,20 +157,26 @@ Date Date::operator- (int days) const
 
 int Date::operator- (const Date& theDate) const
 {
-  return (itsTime - theDate.itsTime) / secondsPerDay;
+  return static_cast<int>((itsTime - theDate.itsTime) / static_cast<time_t>(secondsPerDay));
 }
 
 Date& Date::operator+= (int days)
 {
-  itsTime += days * secondsPerDay;
-  itsTimeStruct = *(localtime(&itsTime));
+  itsTime += static_cast<time_t>(days) * secondsPerDay;
+  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+  if (err) {
+      throw;
+  }
   return *this;
 }
 
 Date& Date::operator-= (int days)
 {
-  itsTime -= days * secondsPerDay;
-  itsTimeStruct = *(localtime(&itsTime));
+  itsTime -= static_cast<time_t>(days) * secondsPerDay;
+  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+  if (err) {
+      throw;
+  }
   return *this;
 }
 

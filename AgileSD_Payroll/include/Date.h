@@ -4,19 +4,12 @@
 #ifndef COMPONENTS_DATE_H
 #define COMPONENTS_DATE_H
 
-#include <time.h> 	/* unix and borland compatible. */
 #include <string>
-#include <iostream>
-
-using namespace std;
-
-//class ostream;
-//class istream;
 
 class Date
 {
  public:
-  enum DayOfWeek {sunday=0, monday, tuesday, wednesday,
+  enum class DayOfWeek {sunday=0, monday, tuesday, wednesday,
 		  thursday, friday, saturday};
   // Canonical Form
   Date();
@@ -30,11 +23,11 @@ class Date
   int GetDay() const;
   int GetYear() const;
   DayOfWeek GetDayOfWeek() const;
-  string GetDayOfWeekName() const;
+  std::string GetDayOfWeekName() const;
     
   // Input & Output
-  friend ostream& operator<< (ostream&, const Date&);
-  friend istream& operator>> (istream&, Date&);
+  friend std::ostream& operator<< (std::ostream&, const Date&);
+  friend std::istream& operator>> (std::istream&, Date&);
     
   // Arithmetic and comparison operators
   int         operator== (const Date&) const;

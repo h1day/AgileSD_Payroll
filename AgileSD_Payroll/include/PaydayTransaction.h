@@ -19,7 +19,7 @@ class PaydayTransaction : public Transaction
 
  private:
   Date itsPayDate;
-  map<int, Paycheck*> itsPaychecks;
+  std::map<int, Paycheck*> itsPaychecks;
 };
 
 #endif

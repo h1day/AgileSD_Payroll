@@ -22,10 +22,8 @@ class HourlyClassification : public PaymentClassification
 
  private:
   double CalculatePayForTimeCard(TimeCard*) const;
-
- private:
   double itsRate;
-  map<Date, TimeCard*> itsTimeCards;
+  std::map<Date, TimeCard*> itsTimeCards;
 
 };
 

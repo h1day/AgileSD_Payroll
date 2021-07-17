@@ -23,6 +23,6 @@ class CommissionedClassification : public PaymentClassification
  private:
   double itsSalary;
   double itsCommissionRate;
-  map<Date, SalesReceipt*> itsReceipts;
+  std::map<Date, SalesReceipt*> itsReceipts;
 };
 #endif

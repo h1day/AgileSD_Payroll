@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{c83740c2-5bbe-4003-912a-00b13203294e}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <ItemGroup>
+    <ClInclude Include="include\AddCommissionedEmployee.h" />
+    <ClInclude Include="include\AddEmployeeTransaction.h" />
+    <ClInclude Include="include\AddHourlyEmployee.h" />
+    <ClInclude Include="include\AddSalariedEmployee.h" />
+    <ClInclude Include="include\Affiliation.h" />
+    <ClInclude Include="include\BiweeklySchedule.h" />
+    <ClInclude Include="include\ChangeAddressTransaction.h" />
+    <ClInclude Include="include\ChangeAffiliationTransaction.h" />
+    <ClInclude Include="include\ChangeClassificationTransaction.h" />
+    <ClInclude Include="include\ChangeCommissionedTransaction.h" />
+    <ClInclude Include="include\ChangeDirectTransaction.h" />
+    <ClInclude Include="include\ChangeEmployeeTransaction.h" />
+    <ClInclude Include="include\ChangeHoldTransaction.h" />
+    <ClInclude Include="include\ChangeHourlyTransaction.h" />
+    <ClInclude Include="include\ChangeMailTransaction.h" />
+    <ClInclude Include="include\ChangeMemberTransaction.h" />
+    <ClInclude Include="include\ChangeMethodTransaction.h" />
+    <ClInclude Include="include\ChangeNameTransaction.h" />
+    <ClInclude Include="include\ChangeSalariedTransaction.h" />
+    <ClInclude Include="include\ChangeUnaffiliatedTransaction.h" />
+    <ClInclude Include="include\CommissionedClassification.h" />
+    <ClInclude Include="include\Date.h" />
+    <ClInclude Include="include\DeleteEmployeeTransaction.h" />
+    <ClInclude Include="include\DirectMethod.h" />
+    <ClInclude Include="include\Employee.h" />
+    <ClInclude Include="include\HoldMethod.h" />
+    <ClInclude Include="include\HourlyClassification.h" />
+    <ClInclude Include="include\MailMethod.h" />
+    <ClInclude Include="include\MonthlySchedule.h" />
+    <ClInclude Include="include\NoAffiliation.h" />
+    <ClInclude Include="include\PayCheck.h" />
+    <ClInclude Include="include\PaydayTransaction.h" />
+    <ClInclude Include="include\PaymentClassification.h" />
+    <ClInclude Include="include\PaymentMethod.h" />
+    <ClInclude Include="include\PaymentSchedule.h" />
+    <ClInclude Include="include\PayrollDatabase.h" />
+    <ClInclude Include="include\SalariedClassification.h" />
+    <ClInclude Include="include\SalesReceipt.h" />
+    <ClInclude Include="include\SalesReceiptTransaction.h" />
+    <ClInclude Include="include\ServiceCharge.h" />
+    <ClInclude Include="include\ServiceChargeTransaction.h" />
+    <ClInclude Include="include\TimeCard.h" />
+    <ClInclude Include="include\TimeCardTransaction.h" />
+    <ClInclude Include="include\Transaction.h" />
+    <ClInclude Include="include\UnionAffiliation.h" />
+    <ClInclude Include="include\WeeklySchedule.h" />
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="src\AddCommissionedEmployee.cpp" />
+    <ClCompile Include="src\AddEmployeeTransaction.cpp" />
+    <ClCompile Include="src\AddHourlyEmployee.cpp" />
+    <ClCompile Include="src\AddSalariedEmployee.cpp" />
+    <ClCompile Include="src\Affiliation.cpp" />
+    <ClCompile Include="src\BiweeklySchedule.cpp" />
+    <ClCompile Include="src\ChangeAddressTransaction.cpp" />
+    <ClCompile Include="src\ChangeAffiliationTransaction.cpp" />
+    <ClCompile Include="src\ChangeClassificationTransaction.cpp" />
+    <ClCompile Include="src\ChangeCommissionedTransaction.cpp" />
+    <ClCompile Include="src\ChangeDirectTransaction.cpp" />
+    <ClCompile Include="src\ChangeEmployeeTransaction.cpp" />
+    <ClCompile Include="src\ChangeHoldTransaction.cpp" />
+    <ClCompile Include="src\ChangeHourlyTransaction.cpp" />
+    <ClCompile Include="src\ChangeMailTransaction.cpp" />
+    <ClCompile Include="src\ChangeMemberTransaction.cpp" />
+    <ClCompile Include="src\ChangeMethodTransaction.cpp" />
+    <ClCompile Include="src\ChangeNameTransaction.cpp" />
+    <ClCompile Include="src\ChangeSalariedTransaction.cpp" />
+    <ClCompile Include="src\ChangeUnaffiliatedTransaction.cpp" />
+    <ClCompile Include="src\CommissionedClassification.cpp" />
+    <ClCompile Include="src\Date.cpp" />
+    <ClCompile Include="src\DeleteEmployeeTransaction.cpp" />
+    <ClCompile Include="src\DirectMethod.cpp" />
+    <ClCompile Include="src\Employee.cpp" />
+    <ClCompile Include="src\HoldMethod.cpp" />
+    <ClCompile Include="src\HourlyClassification.cpp" />
+    <ClCompile Include="src\MailMethod.cpp" />
+    <ClCompile Include="src\MonthlySchedule.cpp" />
+    <ClCompile Include="src\NoAffiliation.cpp" />
+    <ClCompile Include="src\Paycheck.cpp" />
+    <ClCompile Include="src\PaydayTransaction.cpp" />
+    <ClCompile Include="src\PaymentClassification.cpp" />
+    <ClCompile Include="src\PaymentMethod.cpp" />
+    <ClCompile Include="src\PaymentSchedule.cpp" />
+    <ClCompile Include="src\PayrollDatabase.cpp" />
+    <ClCompile Include="src\PayrollTest.cpp" />
+    <ClCompile Include="src\SalariedClassification.cpp" />
+    <ClCompile Include="src\SalesReceipt.cpp" />
+    <ClCompile Include="src\SalesReceiptTransaction.cpp" />
+    <ClCompile Include="src\ServiceCharge.cpp" />
+    <ClCompile Include="src\ServiceChargeTransaction.cpp" />
+    <ClCompile Include="src\TimeCard.cpp" />
+    <ClCompile Include="src\TimeCardTransaction.cpp" />
+    <ClCompile Include="src\Transaction.cpp" />
+    <ClCompile Include="src\UnionAffiliation.cpp" />
+    <ClCompile Include="src\WeeklySchedule.cpp" />
+    <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemDefinitionGroup />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.4\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets" Condition="Exists('..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.4\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>X64;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>X64;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)pch.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.4\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1.4\build\native\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.targets'))" />
+  </Target>
+</Project>

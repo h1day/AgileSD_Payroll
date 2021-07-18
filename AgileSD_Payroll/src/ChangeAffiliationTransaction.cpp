@@ -2,8 +2,8 @@
 
 ChangeAffiliationTransaction::~ChangeAffiliationTransaction() = default;
 
-ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empid)
-: ChangeEmployeeTransaction(empid)
+ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empId)
+: ChangeEmployeeTransaction(empId)
 {
 }
 

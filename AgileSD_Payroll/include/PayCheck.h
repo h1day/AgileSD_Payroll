@@ -22,8 +22,8 @@ class PayCheck
 
   Date GetPayPeriodEndDate() const {return itsPayPeriodEndDate;}
   Date GetPayPeriodStartDate() const {return itsPayPeriodStartDate;}
-  void SetField(std::string name, std::string value);
-  std::string GetField(std::string name);
+  void SetField(const std::string& name, std::string value);
+  std::string GetField(const std::string& name);
 
  private:
   Date itsPayPeriodStartDate;

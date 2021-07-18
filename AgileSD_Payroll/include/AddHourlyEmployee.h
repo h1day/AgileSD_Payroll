@@ -6,10 +6,10 @@
 class AddHourlyEmployee : public AddEmployeeTransaction
 {
  public:
-  virtual ~AddHourlyEmployee();
-  AddHourlyEmployee(int empid, string name, string address, double hourlyRate);
-  PaymentClassification* GetClassification() const;
-  PaymentSchedule* GetSchedule() const;
+    ~AddHourlyEmployee() override;
+    AddHourlyEmployee(int empId, string name, string address, double hourlyRate);
+    PaymentClassification* GetClassification() const override;
+    PaymentSchedule* GetSchedule() const override;
 
  private:
   double itsHourlyRate;

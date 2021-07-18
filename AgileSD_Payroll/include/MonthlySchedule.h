@@ -6,9 +6,9 @@
 class MonthlySchedule : public PaymentSchedule
 {
  public:
-  virtual ~MonthlySchedule();
+    ~MonthlySchedule() override;
 
-  virtual bool IsPayDate(const Date&) const;
-  virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
+    bool IsPayDate(const Date&) const override;
+    Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
 };
 #endif

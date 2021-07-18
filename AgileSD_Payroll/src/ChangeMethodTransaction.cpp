@@ -2,8 +2,8 @@
 
 ChangeMethodTransaction::~ChangeMethodTransaction() = default;
 
-ChangeMethodTransaction::ChangeMethodTransaction(int empid)
-: ChangeEmployeeTransaction(empid)
+ChangeMethodTransaction::ChangeMethodTransaction(int empId)
+: ChangeEmployeeTransaction(empId)
 {
 }
 

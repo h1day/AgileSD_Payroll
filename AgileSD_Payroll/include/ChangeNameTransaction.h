@@ -8,9 +8,9 @@ using namespace std;
 class ChangeNameTransaction : public ChangeEmployeeTransaction
 {
  public:
-  virtual ~ChangeNameTransaction();
-  ChangeNameTransaction(int empid, string name);
-  virtual void Change(Employee&);
+    ~ChangeNameTransaction() override;
+  ChangeNameTransaction(int empId, string name);
+    void Change(Employee&) override;
 
  private:
   string itsName;

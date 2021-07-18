@@ -6,8 +6,8 @@
 class ChangeHoldTransaction : public ChangeMethodTransaction
 {
  public:
-  virtual ~ChangeHoldTransaction();
-  ChangeHoldTransaction(int empid);
-  virtual PaymentMethod* GetMethod() const;
+    ~ChangeHoldTransaction() override;
+    explicit ChangeHoldTransaction(int empId);
+    PaymentMethod* GetMethod() const override;
 };
 #endif

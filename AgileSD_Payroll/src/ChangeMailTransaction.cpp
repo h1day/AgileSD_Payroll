@@ -1,11 +1,13 @@
 #include "ChangeMailTransaction.h"
+
+#include <utility>
 #include "MailMethod.h"
 
 ChangeMailTransaction::~ChangeMailTransaction() = default;
 
-ChangeMailTransaction::ChangeMailTransaction(int empid, string address)
-: ChangeMethodTransaction(empid)
-, itsAddress(address)
+ChangeMailTransaction::ChangeMailTransaction(int empId, std::string address)
+: ChangeMethodTransaction(empId)
+, itsAddress(std::move(address))
 {
 }
 

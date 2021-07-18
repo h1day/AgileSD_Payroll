@@ -1,12 +1,14 @@
 #include "ChangeDirectTransaction.h"
+
+#include <utility>
 #include "DirectMethod.h"
 
 ChangeDirectTransaction::~ChangeDirectTransaction() = default;
 
-ChangeDirectTransaction::ChangeDirectTransaction(int empid, string bank, string account)
-  : ChangeMethodTransaction(empid)
-    , itsBank(bank)
-    , itsAccount(account)
+ChangeDirectTransaction::ChangeDirectTransaction(int empId, string bank, string account)
+  : ChangeMethodTransaction(empId)
+    , itsBank(std::move(bank))
+    , itsAccount(std::move(account))
 {
 }
 

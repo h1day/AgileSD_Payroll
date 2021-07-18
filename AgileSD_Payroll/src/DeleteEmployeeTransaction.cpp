@@ -1,15 +1,15 @@
 #include "DeleteEmployeeTransaction.h"
 #include "PayrollDatabase.h"
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 DeleteEmployeeTransaction::~DeleteEmployeeTransaction() = default;
 
-DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empid)
-  : itsEmpid(empid)
+DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empId)
+  : itsEmpid(empId)
 {
 }
 
 void DeleteEmployeeTransaction::Execute()
 {
-  GpayrollDatabase.DeleteEmployee(itsEmpid);
+  g_payrollDatabase.DeleteEmployee(itsEmpid);
 }

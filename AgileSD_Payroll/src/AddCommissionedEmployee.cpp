@@ -1,11 +1,13 @@
 #include "AddCommissionedEmployee.h"
+
+#include <utility>
 #include "CommissionedClassification.h"
 #include "BiweeklySchedule.h"
 
 AddCommissionedEmployee::~AddCommissionedEmployee() = default;
 
-AddCommissionedEmployee::AddCommissionedEmployee(int empid, string name, string address, double salary, double commissionRate)
-  : AddEmployeeTransaction(empid, name, address)
+AddCommissionedEmployee::AddCommissionedEmployee(const int empId, string name, string address, double salary, double commissionRate)
+  : AddEmployeeTransaction(empId, std::move(name), std::move(address))
     , itsSalary(salary)
     , itsCommissionRate(commissionRate)
 {

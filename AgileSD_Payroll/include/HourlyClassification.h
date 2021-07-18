@@ -11,14 +11,14 @@ class TimeCard;
 class HourlyClassification : public PaymentClassification
 {
  public:
-  virtual ~HourlyClassification();
+    ~HourlyClassification() override;
   HourlyClassification(double hourlyRate);
   double GetRate() const {return itsRate;}
 
   void AddTimeCard(TimeCard* tc);
   TimeCard* GetTimeCard(const Date& date);
 
-  virtual double CalculatePay(PayCheck&) const;
+    double CalculatePay(PayCheck&) const override;
 
  private:
   double CalculatePayForTimeCard(TimeCard*) const;

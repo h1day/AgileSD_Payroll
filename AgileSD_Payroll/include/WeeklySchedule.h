@@ -6,8 +6,8 @@
 class WeeklySchedule : public PaymentSchedule
 {
  public:
-  ~WeeklySchedule();
-  virtual bool IsPayDate(const Date&) const;
-  virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
+  ~WeeklySchedule() override;
+  bool IsPayDate(const Date&) const override;
+  Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
 };
 #endif

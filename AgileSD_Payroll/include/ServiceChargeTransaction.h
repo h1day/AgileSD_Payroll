@@ -7,9 +7,9 @@
 class ServiceChargeTransaction : public Transaction
 {
  public:
-  virtual ~ServiceChargeTransaction();
+    ~ServiceChargeTransaction() override;
   ServiceChargeTransaction(int memberId, const Date& date, double charge);
-  virtual void Execute();
+    void Execute() override;
 
  private:
   int itsMemberId;

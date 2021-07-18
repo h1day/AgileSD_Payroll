@@ -6,11 +6,11 @@
 
 #include <list>
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 PaydayTransaction::~PaydayTransaction() = default;
 
-PaydayTransaction::PaydayTransaction(Date payDate)
+PaydayTransaction::PaydayTransaction(const Date& payDate)
   :itsPayDate(payDate)
 {
 }
@@ -18,12 +18,12 @@ PaydayTransaction::PaydayTransaction(Date payDate)
 void PaydayTransaction::Execute()
 {
   list<int> empIds;
-  GpayrollDatabase.GetAllEmployeeIds(empIds);
+  g_payrollDatabase.GetAllEmployeeIds(empIds);
   
   list<int>::iterator i = empIds.begin();
   for (; i != empIds.end(); i++) {
     int empId = *i;
-    if (Employee* e = GpayrollDatabase.GetEmployee(empId)) {
+    if (Employee* e = g_payrollDatabase.GetEmployee(empId)) {
       if (e->IsPayDate(itsPayDate)) {
 	PayCheck* pc = new PayCheck(e->GetPayPeriodStartDate(itsPayDate),
 				    itsPayDate);

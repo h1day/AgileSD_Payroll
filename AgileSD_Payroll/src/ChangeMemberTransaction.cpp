@@ -2,13 +2,13 @@
 #include "UnionAffiliation.h"
 #include "PayrollDatabase.h"
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 ChangeMemberTransaction::~ChangeMemberTransaction() = default;
 
-ChangeMemberTransaction::ChangeMemberTransaction(int empid, int memberid, double dues)
-: ChangeAffiliationTransaction(empid)
-, itsMemberId(memberid)
+ChangeMemberTransaction::ChangeMemberTransaction(int empId, int memberId, double dues)
+: ChangeAffiliationTransaction(empId)
+, itsMemberId(memberId)
 , itsDues(dues)
 {
 }
@@ -20,5 +20,5 @@ Affiliation* ChangeMemberTransaction::GetAffiliation() const
 
 void ChangeMemberTransaction::RecordMembership(Employee* e)
 {
-  GpayrollDatabase.AddUnionMember(itsMemberId, e);
+  g_payrollDatabase.AddUnionMember(itsMemberId, e);
 }

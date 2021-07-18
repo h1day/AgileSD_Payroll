@@ -2,8 +2,8 @@
 
 ChangeClassificationTransaction::~ChangeClassificationTransaction() = default;
 
-ChangeClassificationTransaction::ChangeClassificationTransaction(int empid)
-  : ChangeEmployeeTransaction(empid)
+ChangeClassificationTransaction::ChangeClassificationTransaction(int empId)
+  : ChangeEmployeeTransaction(empId)
 {
 }
 

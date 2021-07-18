@@ -6,10 +6,10 @@
 class ChangeHourlyTransaction : public ChangeClassificationTransaction
 {
  public:
-  virtual ~ChangeHourlyTransaction();
-  ChangeHourlyTransaction(int empid, double hourlyRate);
-  virtual PaymentSchedule* GetSchedule() const;
-  virtual PaymentClassification* GetClassification() const;
+    ~ChangeHourlyTransaction() override;
+  ChangeHourlyTransaction(int empId, double hourlyRate);
+    PaymentSchedule* GetSchedule() const override;
+    PaymentClassification* GetClassification() const override;
 
  private:
   double itsHourlyRate;

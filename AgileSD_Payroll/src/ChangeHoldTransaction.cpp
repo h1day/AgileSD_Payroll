@@ -3,8 +3,8 @@
 
 ChangeHoldTransaction::~ChangeHoldTransaction() = default;
 
-ChangeHoldTransaction::ChangeHoldTransaction(int empid)
-: ChangeMethodTransaction(empid)
+ChangeHoldTransaction::ChangeHoldTransaction(int empId)
+: ChangeMethodTransaction(empId)
 {
 }
 

@@ -1,4 +1,6 @@
 #include "AddEmployeeTransaction.h"
+
+#include <utility>
 #include "HoldMethod.h"
 #include "Employee.h"
 #include "PayrollDatabase.h"
@@ -7,14 +9,14 @@ class PaymentMethod;
 class PaymentSchedule;
 class PaymentClassification;
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 AddEmployeeTransaction::~AddEmployeeTransaction() = default;
 
-AddEmployeeTransaction::AddEmployeeTransaction(int empid, string name, string address)
-  : itsEmpid(empid)
-  , itsName(name)
-  , itsAddress(address)
+AddEmployeeTransaction::AddEmployeeTransaction(int empId, string name, string address)
+  : itsEmpid(empId)
+  , itsName(std::move(name))
+  , itsAddress(std::move(address))
 {
 }
 
@@ -23,9 +25,9 @@ void AddEmployeeTransaction::Execute()
   PaymentClassification* pc = GetClassification();
   PaymentSchedule* ps = GetSchedule();
   PaymentMethod* pm = new HoldMethod();
-  Employee* e = new Employee(itsEmpid, itsName, itsAddress);
+  auto e = new Employee(itsEmpid, itsName, itsAddress);
   e->SetClassification(pc);
   e->SetSchedule(ps);
   e->SetMethod(pm);
-  GpayrollDatabase.AddEmployee(itsEmpid, e);
+  g_payrollDatabase.AddEmployee(itsEmpid, e);
 }

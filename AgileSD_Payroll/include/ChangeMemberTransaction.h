@@ -6,10 +6,10 @@
 class ChangeMemberTransaction : public ChangeAffiliationTransaction
 {
  public:
-  virtual ~ChangeMemberTransaction();
-  ChangeMemberTransaction(int empid, int memberid, double dues);
-  virtual Affiliation* GetAffiliation() const;
-  virtual void RecordMembership(Employee*);
+    ~ChangeMemberTransaction() override;
+  ChangeMemberTransaction(int empId, int memberId, double dues);
+    Affiliation* GetAffiliation() const override;
+    void RecordMembership(Employee*) override;
  private:
   int itsMemberId;
   double itsDues;

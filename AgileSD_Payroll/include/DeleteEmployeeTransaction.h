@@ -6,9 +6,9 @@
 class DeleteEmployeeTransaction : public Transaction
 {
  public:
-  virtual ~DeleteEmployeeTransaction();
-  DeleteEmployeeTransaction(int empid);
-  virtual void Execute();
+    ~DeleteEmployeeTransaction() override;
+  DeleteEmployeeTransaction(int empId);
+    void Execute() override;
  private:
   int itsEmpid;
 };

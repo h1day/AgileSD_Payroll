@@ -4,7 +4,7 @@
 #include "PayrollDatabase.h"
 #include "UnionAffiliation.h"
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 ServiceChargeTransaction::~ServiceChargeTransaction() = default;
 
@@ -17,9 +17,9 @@ ServiceChargeTransaction::ServiceChargeTransaction(int memberId, const Date& dat
 
 void ServiceChargeTransaction::Execute()
 {
-  Employee* e = GpayrollDatabase.GetUnionMember(itsMemberId);
+  Employee* e = g_payrollDatabase.GetUnionMember(itsMemberId);
   Affiliation* af = e->GetAffiliation();
-  if (UnionAffiliation* uaf = dynamic_cast<UnionAffiliation*>(af)) {
+  if (auto uaf = dynamic_cast<UnionAffiliation*>(af)) {
     uaf->AddServiceCharge(itsDate, itsCharge);
   }
 }

@@ -4,20 +4,20 @@
 #include "CommissionedClassification.h"
 #include "SalesReceipt.h"
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 SalesReceiptTransaction::~SalesReceiptTransaction() = default;
 
-SalesReceiptTransaction::SalesReceiptTransaction(const Date& saleDate, double amount, int empid)
-: itsSaleDate(saleDate)
+SalesReceiptTransaction::SalesReceiptTransaction(const Date& saleDate, double amount, int empId)
+: itsEmpId(empId)
+, itsSaleDate(saleDate)
 , itsAmount(amount)
-, itsEmpid(empid)
 {
 }
 
 void SalesReceiptTransaction::Execute()
 {
-  Employee* e = GpayrollDatabase.GetEmployee(itsEmpid);
+  Employee* e = g_payrollDatabase.GetEmployee(itsEmpId);
   if (e){
     PaymentClassification* pc = e->GetClassification();
     if (CommissionedClassification* cc = dynamic_cast<CommissionedClassification*>(pc)) {

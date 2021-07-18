@@ -6,10 +6,10 @@
 class ChangeSalariedTransaction : public ChangeClassificationTransaction
 {
  public:
-  virtual ~ChangeSalariedTransaction();
-  ChangeSalariedTransaction(int empid, double salary);
-  virtual PaymentSchedule* GetSchedule() const;
-  virtual PaymentClassification* GetClassification() const;
+    ~ChangeSalariedTransaction() override;
+  ChangeSalariedTransaction(int empId, double salary);
+    PaymentSchedule* GetSchedule() const override;
+    PaymentClassification* GetClassification() const override;
 
  private:
   double itsSalary;

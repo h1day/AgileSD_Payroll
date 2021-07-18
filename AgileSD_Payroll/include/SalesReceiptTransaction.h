@@ -7,13 +7,13 @@
 class SalesReceiptTransaction : public Transaction
 {
  public:
-  virtual ~SalesReceiptTransaction();
-  SalesReceiptTransaction(const Date& saleDate, double amount, int empid);
+    ~SalesReceiptTransaction() override;
+  SalesReceiptTransaction(const Date& saleDate, double amount, int empId);
 
-  virtual void Execute();
+    void Execute() override;
 
  private:
-  int itsEmpid;
+  int itsEmpId;
   Date itsSaleDate;
   double itsAmount;
 };

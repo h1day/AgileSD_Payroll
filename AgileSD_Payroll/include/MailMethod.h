@@ -7,11 +7,11 @@
 class MailMethod : public PaymentMethod
 {
  public:
-  virtual ~MailMethod();
+    ~MailMethod() override;
   explicit MailMethod(std::string address);
   std::string GetAddress() const {return itsAddress;}
 
-  virtual void Pay(PayCheck&);
+    void Pay(PayCheck&) override;
 
  private:
     std::string itsAddress;

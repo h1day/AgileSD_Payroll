@@ -7,11 +7,11 @@ class PaymentMethod;
 class ChangeMethodTransaction : public ChangeEmployeeTransaction
 {
  public:
-  virtual ~ChangeMethodTransaction();
-  ChangeMethodTransaction(int empid);
+    ~ChangeMethodTransaction() override;
+  ChangeMethodTransaction(int empId);
 
   virtual PaymentMethod* GetMethod() const = 0;
-  virtual void Change(Employee&);
+    void Change(Employee&) override;
 };
 
 #endif

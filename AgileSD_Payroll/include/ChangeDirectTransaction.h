@@ -8,9 +8,9 @@ using namespace std;
 class ChangeDirectTransaction : public ChangeMethodTransaction
 {
  public:
-  virtual ~ChangeDirectTransaction();
-  ChangeDirectTransaction(int empid, string bank, string account);
-  virtual PaymentMethod* GetMethod() const;
+    ~ChangeDirectTransaction() override;
+  ChangeDirectTransaction(int empId, string bank, string account);
+    PaymentMethod* GetMethod() const override;
  private:
   string itsBank;
   string itsAccount;

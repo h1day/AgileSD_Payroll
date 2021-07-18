@@ -5,9 +5,9 @@
 
 class BiweeklySchedule : public PaymentSchedule
 {
- public:
-  ~BiweeklySchedule();
-  virtual bool IsPayDate(const Date&) const;
-  virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
+public:
+	~BiweeklySchedule() override;
+	bool IsPayDate(const Date&) const override;
+	Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
 };
 #endif

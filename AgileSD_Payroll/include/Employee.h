@@ -14,7 +14,7 @@ class Employee
 {
  public:
   virtual ~Employee();
-  Employee(int empid, std::string name, std::string address);
+  Employee(int empId, std::string name, std::string address);
   void SetName(std::string name);
   void SetAddress(std::string address);
   void SetClassification(PaymentClassification*);
@@ -22,20 +22,20 @@ class Employee
   void SetSchedule(PaymentSchedule*);
   void SetAffiliation(Affiliation*);
 
-  int GetEmpid() const {return itsEmpid;}
+  int GetEmpId() const {return itsEmpId;}
   std::string GetName() const {return itsName;}
   std::string GetAddress() const {return itsAddress;}
-  PaymentMethod* GetMethod() {return itsPaymentMethod;}
-  PaymentClassification* GetClassification() {return itsClassification;}
-  PaymentSchedule* GetSchedule() {return itsSchedule;}
-  Affiliation* GetAffiliation() {return itsAffiliation;}
+  PaymentMethod* GetMethod() const {return itsPaymentMethod;}
+  PaymentClassification* GetClassification() const {return itsClassification;}
+  PaymentSchedule* GetSchedule() const {return itsSchedule;}
+  Affiliation* GetAffiliation() const {return itsAffiliation;}
 
   void Payday(PayCheck&) const;
   bool IsPayDate(const Date& payDate) const;
   Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
 
  private:
-  int itsEmpid;
+  int itsEmpId;
   std::string itsName;
   std::string itsAddress;
   PaymentClassification* itsClassification;

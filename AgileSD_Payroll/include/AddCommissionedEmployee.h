@@ -6,10 +6,10 @@
 class AddCommissionedEmployee : public AddEmployeeTransaction
 {
  public:
-  virtual ~AddCommissionedEmployee();
-  AddCommissionedEmployee(int empid, string name, string address, double salary, double commissionRate);
-  PaymentClassification* GetClassification() const;
-  PaymentSchedule* GetSchedule() const;
+    ~AddCommissionedEmployee() override;
+  AddCommissionedEmployee(int empId, string name, string address, double salary, double commissionRate);
+  PaymentClassification* GetClassification() const override;
+  PaymentSchedule* GetSchedule() const override;
 
  private:
   double itsSalary;

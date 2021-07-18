@@ -10,7 +10,7 @@ class SalesReceipt;
 class CommissionedClassification : public PaymentClassification
 {
  public:
-  virtual ~CommissionedClassification();
+    ~CommissionedClassification() override;
   CommissionedClassification(double salary, double commissionRate);
   double GetSalary() const;
   double GetRate() const;
@@ -18,7 +18,7 @@ class CommissionedClassification : public PaymentClassification
   SalesReceipt* GetReceipt(const Date& saleDate);
   void AddReceipt(SalesReceipt*);
 
-  virtual double CalculatePay(PayCheck&) const;
+    double CalculatePay(PayCheck&) const override;
 
  private:
   double itsSalary;

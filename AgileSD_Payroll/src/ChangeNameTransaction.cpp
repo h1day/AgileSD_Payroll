@@ -1,10 +1,12 @@
 #include "ChangeNameTransaction.h"
 
+#include <utility>
+
 ChangeNameTransaction::~ChangeNameTransaction() = default;
 
-ChangeNameTransaction::ChangeNameTransaction(int empid, string name)
-  : ChangeEmployeeTransaction(empid)
-  , itsName(name)
+ChangeNameTransaction::ChangeNameTransaction(int empId, string name)
+  : ChangeEmployeeTransaction(empId)
+  , itsName(std::move(name))
 {
 }
 

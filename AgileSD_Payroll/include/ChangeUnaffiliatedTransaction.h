@@ -6,9 +6,9 @@
 class ChangeUnaffiliatedTransaction : public ChangeAffiliationTransaction
 {
  public:
-  virtual ~ChangeUnaffiliatedTransaction();
+    ~ChangeUnaffiliatedTransaction() override;
   ChangeUnaffiliatedTransaction(int empId);
-  virtual Affiliation* GetAffiliation() const;
-  virtual void RecordMembership(Employee*);
+    Affiliation* GetAffiliation() const override;
+    void RecordMembership(Employee*) override;
 };
 #endif

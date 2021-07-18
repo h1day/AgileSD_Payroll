@@ -4,8 +4,8 @@
 
 ChangeSalariedTransaction::~ChangeSalariedTransaction() = default;
 
-ChangeSalariedTransaction::ChangeSalariedTransaction(int empid, double salary)
-: ChangeClassificationTransaction(empid)
+ChangeSalariedTransaction::ChangeSalariedTransaction(int empId, double salary)
+: ChangeClassificationTransaction(empId)
 , itsSalary(salary)
 {
 }

@@ -3,17 +3,16 @@
 
 #include "ChangeEmployeeTransaction.h"
 #include <string>
-using namespace std;
 
 class ChangeAddressTransaction : public ChangeEmployeeTransaction
 {
  public:
-  virtual ~ChangeAddressTransaction();
-  ChangeAddressTransaction(int empid, string address);
-  virtual void Change(Employee& e);
+    ~ChangeAddressTransaction() override;
+    ChangeAddressTransaction(int empId, std::string address);
+    void Change(Employee& e) override;
 
  private:
-  string itsAddress;
+    std::string itsAddress;
 };
 
 #endif

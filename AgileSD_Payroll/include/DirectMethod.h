@@ -7,12 +7,12 @@
 class DirectMethod : public PaymentMethod
 {
  public:
-	virtual ~DirectMethod();
+    ~DirectMethod() override;
 	DirectMethod(std::string bank, std::string account);
 	std::string GetBank() {return itsBank;}
 	std::string GetAccount() {return itsAccount;}
 
-  virtual void Pay(PayCheck&);
+    void Pay(PayCheck&) override;
 
  private:
 	std::string itsBank;

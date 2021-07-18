@@ -4,8 +4,8 @@
 
 ChangeHourlyTransaction::~ChangeHourlyTransaction() = default;
 
-ChangeHourlyTransaction::ChangeHourlyTransaction(int empid, double hourlyRate)
-  : ChangeClassificationTransaction(empid)
+ChangeHourlyTransaction::ChangeHourlyTransaction(int empId, double hourlyRate)
+  : ChangeClassificationTransaction(empId)
     , itsHourlyRate(hourlyRate)
 {
 }

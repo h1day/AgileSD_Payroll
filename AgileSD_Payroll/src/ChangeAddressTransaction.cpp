@@ -1,10 +1,12 @@
 #include "ChangeAddressTransaction.h"
 
+#include <utility>
+
 ChangeAddressTransaction::~ChangeAddressTransaction() = default;
 
-ChangeAddressTransaction::ChangeAddressTransaction(int empid, string address)
-  : ChangeEmployeeTransaction(empid)
-    , itsAddress(address)
+ChangeAddressTransaction::ChangeAddressTransaction(int empId, std::string address)
+  : ChangeEmployeeTransaction(empId)
+    , itsAddress(std::move(address))
 {
 }
 

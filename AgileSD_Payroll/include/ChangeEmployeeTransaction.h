@@ -8,9 +8,9 @@
 class ChangeEmployeeTransaction : public Transaction
 {
  public:
-  ChangeEmployeeTransaction(int empid);
-  virtual ~ChangeEmployeeTransaction();
-  virtual void Execute();
+  ChangeEmployeeTransaction(int empId);
+  ~ChangeEmployeeTransaction() override;
+  void Execute() override;
   virtual void Change(Employee&) = 0;
   
  protected:

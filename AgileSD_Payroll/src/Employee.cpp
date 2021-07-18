@@ -14,8 +14,8 @@ Employee::~Employee()
   delete itsPaymentMethod;
 }
 
-Employee::Employee(int empid, std::string name, std::string address)
-: itsEmpid(empid)
+Employee::Employee(int empId, std::string name, std::string address)
+: itsEmpId(empId)
 , itsName(std::move(name))
 , itsAddress(std::move(address))
 , itsClassification(0)

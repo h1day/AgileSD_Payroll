@@ -1,11 +1,13 @@
 #include "AddSalariedEmployee.h"
+
+#include <utility>
 #include "SalariedClassification.h"
 #include "MonthlySchedule.h"
 
 AddSalariedEmployee::~AddSalariedEmployee() = default;
 
-AddSalariedEmployee::AddSalariedEmployee(int empid, string name, string address, double salary)
-  : AddEmployeeTransaction(empid, name, address)
+AddSalariedEmployee::AddSalariedEmployee(const int empId, string name, string address, double salary)
+  : AddEmployeeTransaction(empId, std::move(name), std::move(address))
     , itsSalary(salary)
 {
 }

@@ -6,9 +6,9 @@
 class NoAffiliation : public Affiliation
 {
  public:
-  virtual ~NoAffiliation();
+    ~NoAffiliation() override;
   NoAffiliation();
-  virtual double CalculateDeductions(PayCheck&) const;
+    double CalculateDeductions(PayCheck&) const override;
 };
 
 #endif

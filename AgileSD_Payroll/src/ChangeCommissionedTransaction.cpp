@@ -4,8 +4,8 @@
 
 ChangeCommissionedTransaction::~ChangeCommissionedTransaction() = default;
 
-ChangeCommissionedTransaction::ChangeCommissionedTransaction(int empid, double salary, double rate)
-: ChangeClassificationTransaction(empid)
+ChangeCommissionedTransaction::ChangeCommissionedTransaction(int empId, double salary, double rate)
+: ChangeClassificationTransaction(empId)
 , itsSalary(salary)
 , itsRate(rate)
 {

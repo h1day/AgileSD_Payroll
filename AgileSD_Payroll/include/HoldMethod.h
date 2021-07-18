@@ -6,8 +6,8 @@
 class HoldMethod : public PaymentMethod
 {
  public:
-  virtual ~HoldMethod();
+    ~HoldMethod() override;
 
-  virtual void Pay(PayCheck&);
+    void Pay(PayCheck&) override;
 };
 #endif

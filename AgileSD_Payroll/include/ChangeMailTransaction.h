@@ -3,16 +3,16 @@
 
 #include "ChangeMethodTransaction.h"
 #include <string>
-using namespace std;
+
 
 class ChangeMailTransaction : public ChangeMethodTransaction
 {
  public:
-  virtual ~ChangeMailTransaction();
-  ChangeMailTransaction(int empid, string address);
-  virtual PaymentMethod* GetMethod() const;
+    ~ChangeMailTransaction() override;
+  ChangeMailTransaction(int empId, std::string address);
+    PaymentMethod* GetMethod() const override;
  private:
-  string itsAddress;
+    std::string itsAddress;
 };
 
 #endif

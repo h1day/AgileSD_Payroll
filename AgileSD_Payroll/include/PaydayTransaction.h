@@ -11,9 +11,9 @@ class PayCheck;
 class PaydayTransaction : public Transaction
 {
  public:
-  virtual ~PaydayTransaction();
-  PaydayTransaction(Date payDate);
-  virtual void Execute();
+    ~PaydayTransaction() override;
+  PaydayTransaction(const Date& payDate);
+    void Execute() override;
   PayCheck* GetPaycheck(int empId);
   int GetPaycheckCount() const;
 

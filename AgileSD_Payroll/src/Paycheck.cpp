@@ -1,5 +1,7 @@
 #include "PayCheck.h"
 
+#include <utility>
+
 PayCheck::~PayCheck() = default;
 
 PayCheck::PayCheck(const Date& payPeriodStartDate,
@@ -27,12 +29,12 @@ void PayCheck::SetDeductions(double deductions)
   itsDeductions = deductions;
 }
 
-void PayCheck::SetField(std::string name, std::string value)
+void PayCheck::SetField(const std::string& name, std::string value)
 {
-  itsFields[name] = value;
+  itsFields[name] = std::move(value);
 }
 
-std::string PayCheck::GetField(std::string name)
+std::string PayCheck::GetField(const std::string& name)
 {
   return itsFields[name];
 }

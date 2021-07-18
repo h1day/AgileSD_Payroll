@@ -3,7 +3,7 @@
 #include "UnionAffiliation.h"
 #include "PayrollDatabase.h"
 
-extern PayrollDatabase GpayrollDatabase;
+extern PayrollDatabase g_payrollDatabase;
 
 ChangeUnaffiliatedTransaction::~ChangeUnaffiliatedTransaction() = default;
 
@@ -22,6 +22,6 @@ void ChangeUnaffiliatedTransaction::RecordMembership(Employee* e)
   Affiliation* af = e->GetAffiliation();
   if (UnionAffiliation* uf = dynamic_cast<UnionAffiliation*>(af)) {
     int memberId = uf->GetMemberId();
-    GpayrollDatabase.RemoveUnionMember(memberId);
+    g_payrollDatabase.RemoveUnionMember(memberId);
   }
 }

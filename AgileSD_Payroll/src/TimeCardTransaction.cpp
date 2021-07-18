@@ -29,8 +29,8 @@ void TimeCardTransaction::Execute()
             hc->AddTimeCard(new TimeCard(itsDate, itsHours));
         }
         else
-            throw("Tried to add TimeCard to non-hourly employee");
+            throw std::runtime_error("Tried to add TimeCard to non-hourly employee");
     }
     else
-        throw("No such employee.");
+        throw std::runtime_error("No such employee.");
 }

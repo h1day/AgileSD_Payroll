@@ -27,8 +27,8 @@ void SalesReceiptTransaction::Execute()
             cc->AddReceipt(new SalesReceipt(itsSaleDate, itsAmount));
         }
         else
-            throw("Tried to add sales receipt to non-commissioned employee");
+            throw std::runtime_error("Tried to add sales receipt to non-commissioned employee");
     }
     else
-        throw("No such employee.");
+        throw std::runtime_error("No such employee.");
 }

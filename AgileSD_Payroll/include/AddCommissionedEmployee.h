@@ -1,18 +1,15 @@
-#ifndef ADDCOMMISSIONEDEMPLOYEE_H
-#define ADDCOMMISSIONEDEMPLOYEE_H
-
+#pragma once
 #include "AddEmployeeTransaction.h"
 
 class AddCommissionedEmployee : public AddEmployeeTransaction
 {
- public:
+public:
     ~AddCommissionedEmployee() override;
-  AddCommissionedEmployee(int empId, string name, string address, double salary, double commissionRate);
-  PaymentClassification* GetClassification() const override;
-  PaymentSchedule* GetSchedule() const override;
+    AddCommissionedEmployee(int empId, std::string name, std::string address, double salary, double commissionRate);
+    PaymentClassification* GetClassification() const override;
+    PaymentSchedule* GetSchedule() const override;
 
- private:
-  double itsSalary;
-  double itsCommissionRate;
+private:
+    double itsSalary;
+    double itsCommissionRate;
 };
-#endif

@@ -9,64 +9,64 @@
 
 Employee::~Employee()
 {
-  delete itsClassification;
-  delete itsSchedule;
-  delete itsPaymentMethod;
+    delete itsClassification;
+    delete itsSchedule;
+    delete itsPaymentMethod;
 }
 
 Employee::Employee(int empId, std::string name, std::string address)
-: itsEmpId(empId)
-, itsName(std::move(name))
-, itsAddress(std::move(address))
-, itsClassification(0)
-, itsSchedule(0)
-, itsPaymentMethod(0)
-, itsAffiliation(new NoAffiliation())
+    : itsEmpId(empId)
+      , itsName(std::move(name))
+      , itsAddress(std::move(address))
+      , itsClassification(nullptr)
+      , itsSchedule(nullptr)
+      , itsPaymentMethod(nullptr)
+      , itsAffiliation(new NoAffiliation())
 {
 }
 
 void Employee::SetName(std::string name)
 {
-  itsName = std::move(name);
+    itsName = std::move(name);
 }
 
 void Employee::SetAddress(std::string address)
 {
-  itsAddress = std::move(address);
+    itsAddress = std::move(address);
 }
 
 void Employee::SetClassification(PaymentClassification* pc)
 {
-  delete itsClassification;
-  itsClassification = pc;
+    delete itsClassification;
+    itsClassification = pc;
 }
 
 void Employee::SetSchedule(PaymentSchedule* ps)
 {
-  delete itsSchedule;
-  itsSchedule = ps;
+    delete itsSchedule;
+    itsSchedule = ps;
 }
 
 void Employee::SetMethod(PaymentMethod* pm)
 {
-  delete itsPaymentMethod;
-  itsPaymentMethod = pm;
+    delete itsPaymentMethod;
+    itsPaymentMethod = pm;
 }
 
 void Employee::SetAffiliation(Affiliation* af)
 {
-  delete itsAffiliation;
-  itsAffiliation = af;
+    delete itsAffiliation;
+    itsAffiliation = af;
 }
 
 bool Employee::IsPayDate(const Date& payDate) const
 {
-  return itsSchedule->IsPayDate(payDate);
+    return itsSchedule->IsPayDate(payDate);
 }
 
 Date Employee::GetPayPeriodStartDate(const Date& payPeriodEndDate) const
 {
-  return itsSchedule->GetPayPeriodStartDate(payPeriodEndDate);
+    return itsSchedule->GetPayPeriodStartDate(payPeriodEndDate);
 }
 
 void Employee::Payday(PayCheck& pc) const

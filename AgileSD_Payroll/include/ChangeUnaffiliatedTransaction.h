@@ -1,14 +1,11 @@
-#ifndef CHANGEUNAFFILIATEDTRANSACTION_H
-#define CHANGEUNAFFILIATEDTRANSACTION_H
-
+#pragma once
 #include "ChangeAffiliationTransaction.h"
 
 class ChangeUnaffiliatedTransaction : public ChangeAffiliationTransaction
 {
- public:
+public:
     ~ChangeUnaffiliatedTransaction() override;
-  ChangeUnaffiliatedTransaction(int empId);
+    explicit ChangeUnaffiliatedTransaction(int empId);
     Affiliation* GetAffiliation() const override;
     void RecordMembership(Employee*) override;
 };
-#endif

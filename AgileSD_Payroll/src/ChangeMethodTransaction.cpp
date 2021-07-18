@@ -3,11 +3,11 @@
 ChangeMethodTransaction::~ChangeMethodTransaction() = default;
 
 ChangeMethodTransaction::ChangeMethodTransaction(int empId)
-: ChangeEmployeeTransaction(empId)
+    : ChangeEmployeeTransaction(empId)
 {
 }
 
 void ChangeMethodTransaction::Change(Employee& e)
 {
-  e.SetMethod(GetMethod());
+    e.SetMethod(GetMethod());
 }

@@ -1,18 +1,15 @@
-#ifndef SALARIEDCLASSIFICATION_H
-#define SALARIEDCLASSIFICATION_H
-
+#pragma once
 #include "PaymentClassification.h"
 
 class SalariedClassification : public PaymentClassification
 {
- public:
+public:
     ~SalariedClassification() override;
     explicit SalariedClassification(double salary);
     double GetSalary() const;
 
     double CalculatePay(PayCheck&) const override;
 
- private:
+private:
     double itsSalary;
 };
-#endif

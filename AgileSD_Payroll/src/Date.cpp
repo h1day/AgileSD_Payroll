@@ -4,202 +4,206 @@ long Date::secondsPerDay = 60L * 60L * 24L;
 
 Date::Date()
 {
-  time_t now = time(nullptr);
-  //itsTimeStruct = *(localtime(&now));
-  const errno_t err = localtime_s(&itsTimeStruct, &now);
-  if (err) {
-      throw;
-  }
-  itsTimeStruct.tm_sec = 0;
-  itsTimeStruct.tm_min = 0;
-  itsTimeStruct.tm_hour = 12;
-  itsTime = mktime(&itsTimeStruct);
+    time_t now = time(nullptr);
+    const errno_t err = localtime_s(&itsTimeStruct, &now);
+    if (err)
+    {
+        throw;
+    }
+    itsTimeStruct.tm_sec = 0;
+    itsTimeStruct.tm_min = 0;
+    itsTimeStruct.tm_hour = 12;
+    itsTime = mktime(&itsTimeStruct);
 }
 
 Date::Date(int month, int day, int year)
 {
-  memset(&itsTimeStruct, 0, sizeof(itsTimeStruct));
-  itsTimeStruct.tm_mon = month-1;
-  itsTimeStruct.tm_mday = day;
-  itsTimeStruct.tm_year = year-1900;
-  itsTimeStruct.tm_sec = 0;
-  itsTimeStruct.tm_min = 0;
-  itsTimeStruct.tm_hour = 12;
-  itsTime = mktime(&itsTimeStruct);
-  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
-  if(err) {
-      throw;
-  }
+    memset(&itsTimeStruct, 0, sizeof(itsTimeStruct));
+    itsTimeStruct.tm_mon = month - 1;
+    itsTimeStruct.tm_mday = day;
+    itsTimeStruct.tm_year = year - 1900;
+    itsTimeStruct.tm_sec = 0;
+    itsTimeStruct.tm_min = 0;
+    itsTimeStruct.tm_hour = 12;
+    itsTime = mktime(&itsTimeStruct);
+    const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+    if (err)
+    {
+        throw;
+    }
 }
 
 Date::Date(const Date& theDate)
-{	
-  *this = theDate;	
+{
+    *this = theDate;
 }
 
 Date::~Date() = default;
 
-Date& Date::operator= (const Date& theDate)
+Date& Date::operator=(const Date& theDate)
 {
-  itsTime = theDate.itsTime;
-  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
-  if (err) {
-      throw;
-  }
-  return *this;
+    itsTime = theDate.itsTime;
+    const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+    if (err)
+    {
+        throw;
+    }
+    return *this;
 }
 
-int Date::GetMonth() const {return itsTimeStruct.tm_mon + 1;}
-int Date::GetDay() const   {return itsTimeStruct.tm_mday;}
-int Date::GetYear() const  {return itsTimeStruct.tm_year+1900;}
+int Date::GetMonth() const { return itsTimeStruct.tm_mon + 1; }
+int Date::GetDay() const { return itsTimeStruct.tm_mday; }
+int Date::GetYear() const { return itsTimeStruct.tm_year + 1900; }
 
 Date::DayOfWeek Date::GetDayOfWeek() const
 {
-  return static_cast<DayOfWeek>(itsTimeStruct.tm_wday);
+    return static_cast<DayOfWeek>(itsTimeStruct.tm_wday);
 }
 
 std::string Date::GetDayOfWeekName() const
 {
-  std::string retval;
-  switch(GetDayOfWeek())
+    std::string retVal;
+    switch (GetDayOfWeek())
     {
     case DayOfWeek::sunday:
-      retval = "Sunday";
-      break;
+        retVal = "Sunday";
+        break;
     case DayOfWeek::monday:
-      retval = "Monday";
-      break;
+        retVal = "Monday";
+        break;
     case DayOfWeek::tuesday:
-      retval = "Tuesday";
-      break;
+        retVal = "Tuesday";
+        break;
     case DayOfWeek::wednesday:
-      retval = "Wednesday";
-      break;
+        retVal = "Wednesday";
+        break;
     case DayOfWeek::thursday:
-      retval = "Thursday";
-      break;
+        retVal = "Thursday";
+        break;
     case DayOfWeek::friday:
-      retval = "Friday";
-      break;
+        retVal = "Friday";
+        break;
     case DayOfWeek::saturday:
-      retval = "Saturday";
-      break;
+        retVal = "Saturday";
+        break;
     }
-  return retval;
+    return retVal;
 }
 
-std::ostream& operator<< (std::ostream& o, const Date& theDate)
+std::ostream& operator<<(std::ostream& o, const Date& theDate)
 {
-  o << theDate.GetMonth() << '/'
-    << theDate.GetDay() << '/'
-    << theDate.GetYear();
-  return o;
+    o << theDate.GetMonth() << '/'
+        << theDate.GetDay() << '/'
+        << theDate.GetYear();
+    return o;
 }
 
-std::istream& operator>> (std::istream& i, Date& theDate)
+std::istream& operator>>(std::istream& i, Date& theDate)
 {
-  int month, day, year;
-  char slash;
-  i >> month >> slash >> day >> slash >> year;
-  const Date tmp(month, day, year);
-  theDate = tmp;
-  return i;
+    int month, day, year;
+    char slash;
+    i >> month >> slash >> day >> slash >> year;
+    const Date tmp(month, day, year);
+    theDate = tmp;
+    return i;
 }
 
-int Date::operator== (const Date& theDate) const
+int Date::operator==(const Date& theDate) const
 {
-  return itsTime == theDate.itsTime;
+    return itsTime == theDate.itsTime;
 }
 
-int Date::operator!= (const Date& theDate) const
+int Date::operator!=(const Date& theDate) const
 {
-  return itsTime != theDate.itsTime;
+    return itsTime != theDate.itsTime;
 }
 
-int Date::operator< (const Date& theDate) const
+int Date::operator<(const Date& theDate) const
 {
-  return itsTime < theDate.itsTime;
+    return itsTime < theDate.itsTime;
 }
 
-int Date::operator> (const Date& theDate) const
+int Date::operator>(const Date& theDate) const
 {
-  return itsTime > theDate.itsTime;
+    return itsTime > theDate.itsTime;
 }
 
-int Date::operator<= (const Date& theDate) const
+int Date::operator<=(const Date& theDate) const
 {
-  return itsTime <= theDate.itsTime;
+    return itsTime <= theDate.itsTime;
 }
 
-int Date::operator>= (const Date& theDate) const
+int Date::operator>=(const Date& theDate) const
 {
-  return itsTime >= theDate.itsTime;
+    return itsTime >= theDate.itsTime;
 }
 
-Date operator+ (int days, const Date& theDate)
+Date operator+(int days, const Date& theDate)
 {
-  Date retval = theDate;
-  retval += days;
-  return retval;
+    Date retVal = theDate;
+    retVal += days;
+    return retVal;
 }
 
-Date operator+ (const Date& theDate, int days)
+Date operator+(const Date& theDate, int days)
 {
-  return days + theDate;
+    return days + theDate;
 }
 
-Date Date::operator- (int days) const
+Date Date::operator-(int days) const
 {
-  Date retval = *this;
-  retval -= days;
-  return retval;
+    Date retVal = *this;
+    retVal -= days;
+    return retVal;
 }
 
-int Date::operator- (const Date& theDate) const
+int Date::operator-(const Date& theDate) const
 {
-  return static_cast<int>((itsTime - theDate.itsTime) / static_cast<time_t>(secondsPerDay));
+    return static_cast<int>((itsTime - theDate.itsTime) / static_cast<time_t>(secondsPerDay));
 }
 
-Date& Date::operator+= (int days)
+Date& Date::operator+=(int days)
 {
-  itsTime += static_cast<time_t>(days) * secondsPerDay;
-  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
-  if (err) {
-      throw;
-  }
-  return *this;
+    itsTime += static_cast<time_t>(days) * secondsPerDay;
+    const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+    if (err)
+    {
+        throw;
+    }
+    return *this;
 }
 
-Date& Date::operator-= (int days)
+Date& Date::operator-=(int days)
 {
-  itsTime -= static_cast<time_t>(days) * secondsPerDay;
-  const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
-  if (err) {
-      throw;
-  }
-  return *this;
+    itsTime -= static_cast<time_t>(days) * secondsPerDay;
+    const errno_t err = localtime_s(&itsTimeStruct, &itsTime);
+    if (err)
+    {
+        throw;
+    }
+    return *this;
 }
 
-Date& Date::operator++ ()
+Date& Date::operator++()
 {
-  return ((*this) += 1);
+    return ((*this) += 1);
 }
 
-Date Date::operator++ (int)  // postfix
+Date Date::operator++(int) // postfix
 {
-  Date retval = *this;
-  (*this) += 1;
-  return retval;
+    Date retVal = *this;
+    (*this) += 1;
+    return retVal;
 }
 
-Date& Date::operator-- ()
+Date& Date::operator--()
 {
-  return ((*this) -= 1);
+    return ((*this) -= 1);
 }
 
-Date Date::operator-- (int)  // postfix
+Date Date::operator--(int) // postfix
 {
-  Date retval = *this;
-  (*this) -= 1;
-  return retval;
+    Date retVal = *this;
+    (*this) -= 1;
+    return retVal;
 }

@@ -2,34 +2,34 @@
 #include "Employee.h"
 
 // ReSharper disable once CommentTypo
-PayrollDatabase g_payrollDatabase;  // NOLINT(clang-diagnostic-exit-time-destructors)
+PayrollDatabase g_payrollDatabase; // NOLINT(clang-diagnostic-exit-time-destructors)
 
 PayrollDatabase::~PayrollDatabase() = default;
 
 Employee* PayrollDatabase::GetEmployee(int empId)
 {
-  return itsEmployees[empId];
+    return itsEmployees[empId];
 }
 
 void PayrollDatabase::AddEmployee(int empId, Employee* e)
 {
-  itsEmployees[empId] = e;
+    itsEmployees[empId] = e;
 }
 
 void PayrollDatabase::DeleteEmployee(int empId)
 {
-  itsEmployees.erase(empId);
+    itsEmployees.erase(empId);
 }
 
 void PayrollDatabase::AddUnionMember(int memberId, Employee* emp)
 {
-  itsUnionMembers[memberId] = emp->GetEmpId();
+    itsUnionMembers[memberId] = emp->GetEmpId();
 }
 
 void PayrollDatabase::clear()
 {
-  itsEmployees.clear();
-  itsUnionMembers.clear();
+    itsEmployees.clear();
+    itsUnionMembers.clear();
 }
 
 Employee* PayrollDatabase::GetUnionMember(int memberId)
@@ -41,15 +41,14 @@ Employee* PayrollDatabase::GetUnionMember(int memberId)
 
 void PayrollDatabase::RemoveUnionMember(int memberId)
 {
-  itsUnionMembers.erase(memberId);
+    itsUnionMembers.erase(memberId);
 }
 
-void PayrollDatabase::GetAllEmployeeIds(list<int>& empIds)
+void PayrollDatabase::GetAllEmployeeIds(std::list<int>& empIds)
 {
-  empIds.clear();
-  for (auto i = itsEmployees.begin(); i != itsEmployees.end(); ++i) {
-    empIds.push_back((*i).first);
-  }
+    empIds.clear();
+    for (auto i = itsEmployees.begin(); i != itsEmployees.end(); ++i)
+    {
+        empIds.push_back((*i).first);
+    }
 }
-
-

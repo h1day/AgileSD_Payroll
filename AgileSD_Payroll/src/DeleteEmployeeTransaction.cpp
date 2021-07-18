@@ -5,11 +5,11 @@ extern PayrollDatabase g_payrollDatabase;
 DeleteEmployeeTransaction::~DeleteEmployeeTransaction() = default;
 
 DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empId)
-  : itsEmpid(empId)
+    : itsEmpId(empId)
 {
 }
 
 void DeleteEmployeeTransaction::Execute()
 {
-  g_payrollDatabase.DeleteEmployee(itsEmpid);
+    g_payrollDatabase.DeleteEmployee(itsEmpId);
 }

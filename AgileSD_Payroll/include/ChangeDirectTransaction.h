@@ -1,18 +1,14 @@
-#ifndef CHANGEDIRECTTRANSACTION_H
-#define CHANGEDIRECTTRANSACTION_H
-
+#pragma once
 #include "ChangeMethodTransaction.h"
 #include <string>
-using namespace std;
 
 class ChangeDirectTransaction : public ChangeMethodTransaction
 {
- public:
+public:
     ~ChangeDirectTransaction() override;
-  ChangeDirectTransaction(int empId, string bank, string account);
+    ChangeDirectTransaction(int empId, std::string bank, std::string account);
     PaymentMethod* GetMethod() const override;
- private:
-  string itsBank;
-  string itsAccount;
+private:
+    std::string itsBank;
+    std::string itsAccount;
 };
-#endif

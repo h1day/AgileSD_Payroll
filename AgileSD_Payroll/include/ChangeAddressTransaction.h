@@ -1,6 +1,4 @@
-#ifndef CHANGEADDRESSTRANSACTION_H
-#define CHANGEADDRESSTRANSACTION_H
-
+#pragma once
 #include "ChangeEmployeeTransaction.h"
 #include <string>
 
@@ -14,5 +12,3 @@ class ChangeAddressTransaction : public ChangeEmployeeTransaction
  private:
     std::string itsAddress;
 };
-
-#endif

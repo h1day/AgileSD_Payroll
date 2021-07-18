@@ -1,13 +1,10 @@
-#ifndef HOLDMETHOD_H
-#define HOLDMETHOD_H
-
+#pragma once
 #include "PaymentMethod.h"
 
 class HoldMethod : public PaymentMethod
 {
- public:
+public:
     ~HoldMethod() override;
 
     void Pay(PayCheck&) override;
 };
-#endif

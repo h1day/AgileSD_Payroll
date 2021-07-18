@@ -1,14 +1,11 @@
-#ifndef PAYMENTSCHEDULE_H
-#define PAYMENTSCHEDULE_H
-
+#pragma once
 class Date;
 
 class PaymentSchedule
 {
- public:
-  virtual ~PaymentSchedule();
+public:
+    virtual ~PaymentSchedule();
 
-  virtual bool IsPayDate(const Date&) const = 0;
-  virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const = 0;
+    virtual bool IsPayDate(const Date&) const = 0;
+    virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const = 0;
 };
-#endif

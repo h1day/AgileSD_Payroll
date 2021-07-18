@@ -3,14 +3,12 @@
 ChangeClassificationTransaction::~ChangeClassificationTransaction() = default;
 
 ChangeClassificationTransaction::ChangeClassificationTransaction(int empId)
-  : ChangeEmployeeTransaction(empId)
+    : ChangeEmployeeTransaction(empId)
 {
 }
 
 void ChangeClassificationTransaction::Change(Employee& e)
 {
-  e.SetClassification(GetClassification());
-  e.SetSchedule(GetSchedule());
+    e.SetClassification(GetClassification());
+    e.SetSchedule(GetSchedule());
 }
-
-

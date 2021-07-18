@@ -1,17 +1,14 @@
-#ifndef TIMECARD_H
-#define TIMECARD_H
-
+#pragma once
 #include "Date.h"
 
 class TimeCard
 {
- public:
-  virtual ~TimeCard();
-  TimeCard(const Date& date, double hours);
-  Date GetDate() {return itsDate;}
-  double GetHours() {return itsHours;}
- private:
-  Date itsDate;
-  double itsHours;
+public:
+    virtual ~TimeCard();
+    TimeCard(const Date& date, double hours);
+    Date GetDate() const { return itsDate; }
+    double GetHours() const { return itsHours; }
+private:
+    Date itsDate;
+    double itsHours;
 };
-#endif

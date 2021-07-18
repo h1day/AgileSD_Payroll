@@ -6,19 +6,20 @@
 
 AddCommissionedEmployee::~AddCommissionedEmployee() = default;
 
-AddCommissionedEmployee::AddCommissionedEmployee(const int empId, string name, string address, double salary, double commissionRate)
-  : AddEmployeeTransaction(empId, std::move(name), std::move(address))
-    , itsSalary(salary)
-    , itsCommissionRate(commissionRate)
+AddCommissionedEmployee::AddCommissionedEmployee(const int empId, std::string name, std::string address, double salary,
+                                                 double commissionRate)
+    : AddEmployeeTransaction(empId, std::move(name), std::move(address))
+      , itsSalary(salary)
+      , itsCommissionRate(commissionRate)
 {
 }
 
 PaymentClassification* AddCommissionedEmployee::GetClassification() const
 {
-  return new CommissionedClassification(itsSalary, itsCommissionRate);
+    return new CommissionedClassification(itsSalary, itsCommissionRate);
 }
 
 PaymentSchedule* AddCommissionedEmployee::GetSchedule() const
 {
-  return new BiweeklySchedule();
+    return new BiweeklySchedule();
 }

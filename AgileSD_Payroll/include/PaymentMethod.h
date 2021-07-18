@@ -1,13 +1,10 @@
-#ifndef PAYMENTMETHOD_H
-#define PAYMENTMETHOD_H
-
+#pragma once
 class PayCheck;
 
 class PaymentMethod
 {
- public:
-  virtual ~PaymentMethod();
+public:
+    virtual ~PaymentMethod();
 
-  virtual void Pay(PayCheck&) = 0;
+    virtual void Pay(PayCheck&) = 0;
 };
-#endif

@@ -1,18 +1,14 @@
-#ifndef CHANGEMAILTRANSACTION_H
-#define CHANGEMAILTRANSACTION_H
-
+#pragma once
 #include "ChangeMethodTransaction.h"
 #include <string>
 
 
 class ChangeMailTransaction : public ChangeMethodTransaction
 {
- public:
+public:
     ~ChangeMailTransaction() override;
-  ChangeMailTransaction(int empId, std::string address);
+    ChangeMailTransaction(int empId, std::string address);
     PaymentMethod* GetMethod() const override;
- private:
+private:
     std::string itsAddress;
 };
-
-#endif

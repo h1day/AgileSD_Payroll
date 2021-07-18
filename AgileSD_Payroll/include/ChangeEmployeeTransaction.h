@@ -1,23 +1,18 @@
-
-#ifndef CHANGEEMPLOYEETRANSACTION_H
-#define CHANGEEMPLOYEETRANSACTION_H
-
+#pragma once
 #include "Transaction.h"
 #include "Employee.h"
- 
+
 class ChangeEmployeeTransaction : public Transaction
 {
- public:
-  ChangeEmployeeTransaction(int empId);
-  ~ChangeEmployeeTransaction() override;
-  void Execute() override;
-  virtual void Change(Employee&) = 0;
-  
- protected:
-  int GetEmpId() {return itsEmpId;}
+public:
+    explicit ChangeEmployeeTransaction(int empId);
+    ~ChangeEmployeeTransaction() override;
+    void Execute() override;
+    virtual void Change(Employee&) = 0;
 
- private:
-  int itsEmpId;
+protected:
+    int GetEmpId() const { return itsEmpId; }
+
+private:
+    int itsEmpId;
 };
-
-#endif

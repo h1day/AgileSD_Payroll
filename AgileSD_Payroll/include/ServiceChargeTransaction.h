@@ -1,19 +1,16 @@
-#ifndef SERVICECHARGETRANSACTION_H
-#define SERVICECHARGETRANSACTION_H
-
+#pragma once
 #include "Transaction.h"
 #include "Date.h"
 
 class ServiceChargeTransaction : public Transaction
 {
- public:
+public:
     ~ServiceChargeTransaction() override;
-  ServiceChargeTransaction(int memberId, const Date& date, double charge);
+    ServiceChargeTransaction(int memberId, const Date& date, double charge);
     void Execute() override;
 
- private:
-  int itsMemberId;
-  Date itsDate;
-  double itsCharge;
+private:
+    int itsMemberId;
+    Date itsDate;
+    double itsCharge;
 };
-#endif

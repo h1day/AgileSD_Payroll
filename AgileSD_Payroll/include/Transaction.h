@@ -1,11 +1,9 @@
-#ifndef TRANSACTION_H
-#define TRANSACTION_H
+#pragma once
 
 class Transaction
 {
- public:
-  virtual ~Transaction();
-  virtual void Execute() = 0;
+public:
+    virtual ~Transaction();
+    virtual void Execute() = 0;
 };
 
-#endif

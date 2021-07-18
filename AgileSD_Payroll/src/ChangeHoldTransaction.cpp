@@ -4,11 +4,11 @@
 ChangeHoldTransaction::~ChangeHoldTransaction() = default;
 
 ChangeHoldTransaction::ChangeHoldTransaction(int empId)
-: ChangeMethodTransaction(empId)
+    : ChangeMethodTransaction(empId)
 {
 }
 
 PaymentMethod* ChangeHoldTransaction::GetMethod() const
 {
-  return new HoldMethod();
+    return new HoldMethod();
 }

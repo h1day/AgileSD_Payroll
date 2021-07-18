@@ -1,17 +1,14 @@
-#ifndef CHANGEMETHODTRANSACTION_H
-#define CHANGEMETHODTRANSACTION_H
+#pragma once
 #include "ChangeEmployeeTransaction.h"
 
 class PaymentMethod;
 
 class ChangeMethodTransaction : public ChangeEmployeeTransaction
 {
- public:
+public:
     ~ChangeMethodTransaction() override;
-  ChangeMethodTransaction(int empId);
+    explicit ChangeMethodTransaction(int empId);
 
-  virtual PaymentMethod* GetMethod() const = 0;
+    virtual PaymentMethod* GetMethod() const = 0;
     void Change(Employee&) override;
 };
-
-#endif

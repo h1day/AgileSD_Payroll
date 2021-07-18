@@ -1,19 +1,18 @@
-#ifndef CHANGENAMETRANSACTION_H
-#define CHANGENAMETRANSACTION_H
+#ifndef CHANGE_NAME_TRANSACTION_H
+#define CHANGE_NAME_TRANSACTION_H
 
 #include "ChangeEmployeeTransaction.h"
 #include <string>
-using namespace std;
 
 class ChangeNameTransaction : public ChangeEmployeeTransaction
 {
- public:
+public:
     ~ChangeNameTransaction() override;
-  ChangeNameTransaction(int empId, string name);
+    ChangeNameTransaction(int empId, std::string name);
     void Change(Employee&) override;
 
- private:
-  string itsName;
+private:
+    std::string itsName;
 };
 
 #endif

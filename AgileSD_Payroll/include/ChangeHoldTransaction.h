@@ -1,13 +1,10 @@
-#ifndef CHANGEHOLDTRANSACTION_H
-#define CHANGEHOLDTRANSACTION_H
-
+#pragma once
 #include "ChangeMethodTransaction.h"
 
 class ChangeHoldTransaction : public ChangeMethodTransaction
 {
- public:
+public:
     ~ChangeHoldTransaction() override;
     explicit ChangeHoldTransaction(int empId);
     PaymentMethod* GetMethod() const override;
 };
-#endif

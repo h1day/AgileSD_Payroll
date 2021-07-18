@@ -1,17 +1,14 @@
-#ifndef CHANGEMEMBERTRANSACTION_H
-#define CHANGEMEMBERTRANSACTION_H
-
+#pragma once
 #include "ChangeAffiliationTransaction.h"
 
 class ChangeMemberTransaction : public ChangeAffiliationTransaction
 {
- public:
+public:
     ~ChangeMemberTransaction() override;
-  ChangeMemberTransaction(int empId, int memberId, double dues);
+    ChangeMemberTransaction(int empId, int memberId, double dues);
     Affiliation* GetAffiliation() const override;
     void RecordMembership(Employee*) override;
- private:
-  int itsMemberId;
-  double itsDues;
+private:
+    int itsMemberId;
+    double itsDues;
 };
-#endif

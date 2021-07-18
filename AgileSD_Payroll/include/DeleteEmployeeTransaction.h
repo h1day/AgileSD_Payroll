@@ -1,15 +1,12 @@
-#ifndef DELETEEMPLOYEETRANSACTION_H
-#define DELETEEMPLOYEETRANSACTION_H
-
+#pragma once
 #include "Transaction.h"
 
 class DeleteEmployeeTransaction : public Transaction
 {
- public:
+public:
     ~DeleteEmployeeTransaction() override;
-  DeleteEmployeeTransaction(int empId);
+    explicit DeleteEmployeeTransaction(int empId);
     void Execute() override;
- private:
-  int itsEmpid;
+private:
+    int itsEmpId;
 };
-#endif

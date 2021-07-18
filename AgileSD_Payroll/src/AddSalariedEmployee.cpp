@@ -6,18 +6,18 @@
 
 AddSalariedEmployee::~AddSalariedEmployee() = default;
 
-AddSalariedEmployee::AddSalariedEmployee(const int empId, string name, string address, double salary)
-  : AddEmployeeTransaction(empId, std::move(name), std::move(address))
-    , itsSalary(salary)
+AddSalariedEmployee::AddSalariedEmployee(const int empId, std::string name, std::string address, double salary)
+    : AddEmployeeTransaction(empId, std::move(name), std::move(address))
+      , itsSalary(salary)
 {
 }
 
 PaymentClassification* AddSalariedEmployee::GetClassification() const
 {
-  return new SalariedClassification(itsSalary);
+    return new SalariedClassification(itsSalary);
 }
 
 PaymentSchedule* AddSalariedEmployee::GetSchedule() const
 {
-  return new MonthlySchedule();
+    return new MonthlySchedule();
 }

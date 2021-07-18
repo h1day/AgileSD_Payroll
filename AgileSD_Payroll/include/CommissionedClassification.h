@@ -1,6 +1,4 @@
-#ifndef COMMISSIONEDCLASSIFICATION_H
-#define COMMISSIONEDCLASSIFICATION_H
-
+#pragma once
 #include <map>
 
 #include "PaymentClassification.h"
@@ -9,20 +7,19 @@ class SalesReceipt;
 
 class CommissionedClassification : public PaymentClassification
 {
- public:
+public:
     ~CommissionedClassification() override;
-  CommissionedClassification(double salary, double commissionRate);
-  double GetSalary() const;
-  double GetRate() const;
+    CommissionedClassification(double salary, double commissionRate);
+    double GetSalary() const;
+    double GetRate() const;
 
-  SalesReceipt* GetReceipt(const Date& saleDate);
-  void AddReceipt(SalesReceipt*);
+    SalesReceipt* GetReceipt(const Date& saleDate);
+    void AddReceipt(SalesReceipt*);
 
     double CalculatePay(PayCheck&) const override;
 
- private:
-  double itsSalary;
-  double itsCommissionRate;
-  std::map<Date, SalesReceipt*> itsReceipts;
+private:
+    double itsSalary;
+    double itsCommissionRate;
+    std::map<Date, SalesReceipt*> itsReceipts;
 };
-#endif

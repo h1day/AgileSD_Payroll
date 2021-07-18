@@ -5,30 +5,31 @@
 HourlyClassification::~HourlyClassification() = default;
 
 HourlyClassification::HourlyClassification(double hourlyRate)
-  :itsRate(hourlyRate)
+    : itsRate(hourlyRate)
 {
 }
 
 void HourlyClassification::AddTimeCard(TimeCard* tc)
 {
-  itsTimeCards[tc->GetDate()] = tc;
+    itsTimeCards[tc->GetDate()] = tc;
 }
 
 TimeCard* HourlyClassification::GetTimeCard(const Date& date)
 {
-  return itsTimeCards[date];
+    return itsTimeCards[date];
 }
 
 double HourlyClassification::CalculatePay(PayCheck& pc) const
 {
-  double totalPay = 0;
-  Date payPeriodEndDate = pc.GetPayPeriodEndDate();
-  for (auto i = itsTimeCards.begin(); i != itsTimeCards.end(); ++i) {
-    TimeCard * tc = (*i).second;
-    if (Date::IsBetween(tc->GetDate(), pc.GetPayPeriodStartDate(), pc.GetPayPeriodEndDate()))
-      totalPay += CalculatePayForTimeCard(tc);
-  }
-  return totalPay;
+    double totalPay = 0;
+    Date payPeriodEndDate = pc.GetPayPeriodEndDate();
+    for (auto i = itsTimeCards.begin(); i != itsTimeCards.end(); ++i)
+    {
+        TimeCard* tc = (*i).second;
+        if (Date::IsBetween(tc->GetDate(), pc.GetPayPeriodStartDate(), pc.GetPayPeriodEndDate()))
+            totalPay += CalculatePayForTimeCard(tc);
+    }
+    return totalPay;
 }
 
 double HourlyClassification::CalculatePayForTimeCard(TimeCard* tc) const

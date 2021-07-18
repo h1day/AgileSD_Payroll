@@ -1,20 +1,16 @@
-#ifndef MAILMETHOD_H
-#define MAILMETHOD_H
-
+#pragma once
 #include "PaymentMethod.h"
 #include <string>
 
 class MailMethod : public PaymentMethod
 {
- public:
+public:
     ~MailMethod() override;
-  explicit MailMethod(std::string address);
-  std::string GetAddress() const {return itsAddress;}
+    explicit MailMethod(std::string address);
+    std::string GetAddress() const { return itsAddress; }
 
     void Pay(PayCheck&) override;
 
- private:
+private:
     std::string itsAddress;
 };
-
-#endif

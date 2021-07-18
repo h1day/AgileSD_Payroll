@@ -1,13 +1,11 @@
-#ifndef WEEKLYSCHEDULE_H
-#define WEEKLYSCHEDULE_H
+#pragma once
 
 #include "PaymentSchedule.h"
 
 class WeeklySchedule : public PaymentSchedule
 {
- public:
-  ~WeeklySchedule() override;
-  bool IsPayDate(const Date&) const override;
-  Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
+public:
+    ~WeeklySchedule() override;
+    bool IsPayDate(const Date&) const override;
+    Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
 };
-#endif

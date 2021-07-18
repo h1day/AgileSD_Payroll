@@ -1,27 +1,23 @@
-#ifndef UNIONAFFILIATION_H
-#define UNIONAFFILIATION_H
-
+#pragma once
 #include "Affiliation.h"
 #include "Date.h"
-
 #include <map>
 
 class ServiceCharge;
 
 class UnionAffiliation : public Affiliation
 {
- public:
+public:
     ~UnionAffiliation() override;
     UnionAffiliation(int memberId, double dues);
     void AddServiceCharge(const Date& date, double amount);
     ServiceCharge* GetServiceCharge(const Date& date);
-    double GetDues() const {return itsDues;}
-    int GetMemberId() const {return itsMemberId;}
+    double GetDues() const { return itsDues; }
+    int GetMemberId() const { return itsMemberId; }
     double CalculateDeductions(PayCheck&) const override;
 
- private:
+private:
     int itsMemberId;
     double itsDues;
     std::map<Date, ServiceCharge*> itsServiceCharges;
 };
-#endif

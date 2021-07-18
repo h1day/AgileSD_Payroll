@@ -5,17 +5,17 @@
 ChangeSalariedTransaction::~ChangeSalariedTransaction() = default;
 
 ChangeSalariedTransaction::ChangeSalariedTransaction(int empId, double salary)
-: ChangeClassificationTransaction(empId)
-, itsSalary(salary)
+    : ChangeClassificationTransaction(empId)
+      , itsSalary(salary)
 {
 }
 
 PaymentSchedule* ChangeSalariedTransaction::GetSchedule() const
 {
-  return new MonthlySchedule();
+    return new MonthlySchedule();
 }
 
 PaymentClassification* ChangeSalariedTransaction::GetClassification() const
 {
-  return new SalariedClassification(itsSalary);
+    return new SalariedClassification(itsSalary);
 }

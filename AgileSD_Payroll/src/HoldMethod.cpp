@@ -6,5 +6,5 @@ HoldMethod::~HoldMethod() = default;
 
 void HoldMethod::Pay(PayCheck& pc)
 {
-  pc.SetField("Disposition", "Hold");
+    pc.SetField("Disposition", "Hold");
 }

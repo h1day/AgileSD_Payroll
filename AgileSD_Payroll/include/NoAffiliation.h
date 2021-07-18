@@ -1,14 +1,11 @@
-#ifndef NOAFFILIATION_H
-#define NOAFFILIATION_H
-
+#pragma once
 #include "Affiliation.h"
 
 class NoAffiliation : public Affiliation
 {
- public:
+public:
     ~NoAffiliation() override;
-  NoAffiliation();
+    NoAffiliation();
     double CalculateDeductions(PayCheck&) const override;
 };
 
-#endif

@@ -1,15 +1,11 @@
-#ifndef AFFILIATION_H
-#define AFFILIATION_H
-
+#pragma once
 class PayCheck;
 
 class Affiliation
 {
- public:
-  virtual ~Affiliation();
-  Affiliation();
+public:
+    virtual ~Affiliation();
+    Affiliation();
 
-  virtual double CalculateDeductions(PayCheck&) const = 0;
+    virtual double CalculateDeductions(PayCheck&) const = 0;
 };
-
-#endif

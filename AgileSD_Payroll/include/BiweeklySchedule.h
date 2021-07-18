@@ -1,6 +1,4 @@
-#ifndef BIWEEKLYSCHEDULE_H
-#define BIWEEKLYSCHEDULE_H
-
+#pragma once
 #include "PaymentSchedule.h"
 
 class BiweeklySchedule : public PaymentSchedule
@@ -10,4 +8,3 @@ public:
 	bool IsPayDate(const Date&) const override;
 	Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const override;
 };
-#endif

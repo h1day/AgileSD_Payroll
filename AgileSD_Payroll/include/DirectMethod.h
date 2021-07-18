@@ -1,21 +1,18 @@
-#ifndef DIRECTMETHOD_H
-#define DIRECTMETHOD_H
-
+#pragma once
 #include "PaymentMethod.h"
 #include <string>
 
 class DirectMethod : public PaymentMethod
 {
- public:
+public:
     ~DirectMethod() override;
-	DirectMethod(std::string bank, std::string account);
-	std::string GetBank() {return itsBank;}
-	std::string GetAccount() {return itsAccount;}
+    DirectMethod(std::string bank, std::string account);
+    std::string GetBank() const { return itsBank; }
+    std::string GetAccount() const { return itsAccount; }
 
     void Pay(PayCheck&) override;
 
- private:
-	std::string itsBank;
-	std::string itsAccount;
+private:
+    std::string itsBank;
+    std::string itsAccount;
 };
-#endif

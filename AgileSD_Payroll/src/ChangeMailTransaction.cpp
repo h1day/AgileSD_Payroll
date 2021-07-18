@@ -6,12 +6,12 @@
 ChangeMailTransaction::~ChangeMailTransaction() = default;
 
 ChangeMailTransaction::ChangeMailTransaction(int empId, std::string address)
-: ChangeMethodTransaction(empId)
-, itsAddress(std::move(address))
+    : ChangeMethodTransaction(empId)
+      , itsAddress(std::move(address))
 {
 }
 
 PaymentMethod* ChangeMailTransaction::GetMethod() const
 {
-  return new MailMethod(itsAddress);
+    return new MailMethod(itsAddress);
 }

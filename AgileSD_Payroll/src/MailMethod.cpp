@@ -7,11 +7,11 @@
 MailMethod::~MailMethod() = default;
 
 MailMethod::MailMethod(std::string address)
-: itsAddress(std::move(address))
+    : itsAddress(std::move(address))
 {
 }
 
 void MailMethod::Pay(PayCheck& pc)
 {
-  pc.SetField("Disposition", "Mail");
+    pc.SetField("Disposition", "Mail");
 }

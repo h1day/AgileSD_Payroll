@@ -1,18 +1,14 @@
-#ifndef CHANGEHOURLYTRANSACTION_H
-#define CHANGEHOURLYTRANSACTION_H
-
+#pragma once
 #include "ChangeClassificationTransaction.h"
 
 class ChangeHourlyTransaction : public ChangeClassificationTransaction
 {
- public:
+public:
     ~ChangeHourlyTransaction() override;
-  ChangeHourlyTransaction(int empId, double hourlyRate);
+    ChangeHourlyTransaction(int empId, double hourlyRate);
     PaymentSchedule* GetSchedule() const override;
     PaymentClassification* GetClassification() const override;
 
- private:
-  double itsHourlyRate;
+private:
+    double itsHourlyRate;
 };
-
-#endif

@@ -13,21 +13,21 @@ extern PayrollDatabase g_payrollDatabase;
 
 AddEmployeeTransaction::~AddEmployeeTransaction() = default;
 
-AddEmployeeTransaction::AddEmployeeTransaction(int empId, string name, string address)
-  : itsEmpid(empId)
-  , itsName(std::move(name))
-  , itsAddress(std::move(address))
+AddEmployeeTransaction::AddEmployeeTransaction(int empId, std::string name, std::string address)
+    : itsEmpId(empId)
+      , itsName(std::move(name))
+      , itsAddress(std::move(address))
 {
 }
 
 void AddEmployeeTransaction::Execute()
 {
-  PaymentClassification* pc = GetClassification();
-  PaymentSchedule* ps = GetSchedule();
-  PaymentMethod* pm = new HoldMethod();
-  auto e = new Employee(itsEmpid, itsName, itsAddress);
-  e->SetClassification(pc);
-  e->SetSchedule(ps);
-  e->SetMethod(pm);
-  g_payrollDatabase.AddEmployee(itsEmpid, e);
+    PaymentClassification* pc = GetClassification();
+    PaymentSchedule* ps = GetSchedule();
+    PaymentMethod* pm = new HoldMethod();
+    auto e = new Employee(itsEmpId, itsName, itsAddress);
+    e->SetClassification(pc);
+    e->SetSchedule(ps);
+    e->SetMethod(pm);
+    g_payrollDatabase.AddEmployee(itsEmpId, e);
 }

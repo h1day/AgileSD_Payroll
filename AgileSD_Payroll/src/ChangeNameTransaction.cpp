@@ -4,14 +4,13 @@
 
 ChangeNameTransaction::~ChangeNameTransaction() = default;
 
-ChangeNameTransaction::ChangeNameTransaction(int empId, string name)
-  : ChangeEmployeeTransaction(empId)
-  , itsName(std::move(name))
+ChangeNameTransaction::ChangeNameTransaction(int empId, std::string name)
+    : ChangeEmployeeTransaction(empId)
+      , itsName(std::move(name))
 {
 }
 
 void ChangeNameTransaction::Change(Employee& e)
 {
-  e.SetName(itsName);
+    e.SetName(itsName);
 }
-

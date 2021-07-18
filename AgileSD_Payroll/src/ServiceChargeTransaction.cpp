@@ -1,4 +1,6 @@
 #include "ServiceChargeTransaction.h"
+
+#include <utility>
 #include "Employee.h"
 #include "ServiceCharge.h"
 #include "PayrollDatabase.h"
@@ -8,9 +10,9 @@ extern PayrollDatabase g_payrollDatabase;
 
 ServiceChargeTransaction::~ServiceChargeTransaction() = default;
 
-ServiceChargeTransaction::ServiceChargeTransaction(int memberId, const Date& date, double charge)
+ServiceChargeTransaction::ServiceChargeTransaction(int memberId, Date date, double charge)
     : itsMemberId(memberId)
-      , itsDate(date)
+      , itsDate(std::move(date))
       , itsCharge(charge)
 {
 }

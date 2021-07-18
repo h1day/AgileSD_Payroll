@@ -5,7 +5,7 @@ class TimeCard
 {
 public:
     virtual ~TimeCard();
-    TimeCard(const Date& date, double hours);
+    TimeCard(Date date, double hours);
     TimeCard(const TimeCard& other) = default;
     TimeCard(TimeCard&& other) noexcept = default;
     TimeCard& operator=(const TimeCard& other) = default;

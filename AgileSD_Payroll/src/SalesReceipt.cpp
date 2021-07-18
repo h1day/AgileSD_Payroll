@@ -1,7 +1,9 @@
 #include "SalesReceipt.h"
 
-SalesReceipt::SalesReceipt(const Date& saleDate, double amount)
-    : itsSaleDate(saleDate)
+#include <utility>
+
+SalesReceipt::SalesReceipt(Date saleDate, double amount)
+    : itsSaleDate(std::move(saleDate))
       , itsAmount(amount)
 {
 }

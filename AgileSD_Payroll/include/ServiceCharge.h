@@ -5,7 +5,7 @@ class ServiceCharge
 {
 public:
     ~ServiceCharge();
-    ServiceCharge(const Date& date, double amount);
+    ServiceCharge(Date date, double amount);
     ServiceCharge(const ServiceCharge& other) = default;
     ServiceCharge(ServiceCharge&& other) noexcept = default;
     ServiceCharge& operator=(const ServiceCharge& other) = default;

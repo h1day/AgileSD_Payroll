@@ -1,9 +1,11 @@
 #include "ServiceCharge.h"
 
+#include <utility>
+
 ServiceCharge::~ServiceCharge() = default;
 
-ServiceCharge::ServiceCharge(const Date& date, double amount)
-    : itsDate(date)
+ServiceCharge::ServiceCharge(Date date, double amount)
+    : itsDate(std::move(date))
       , itsAmount(amount)
 {
 }

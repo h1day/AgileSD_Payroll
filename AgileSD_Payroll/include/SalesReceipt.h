@@ -5,7 +5,7 @@ class SalesReceipt
 {
 public:
     virtual ~SalesReceipt() = default;
-    SalesReceipt(const Date& saleDate, double amount);
+    SalesReceipt(Date saleDate, double amount);
     SalesReceipt(const SalesReceipt& other) = default;
     SalesReceipt(SalesReceipt&& other) noexcept = default;
     SalesReceipt& operator=(const SalesReceipt& other) = default;

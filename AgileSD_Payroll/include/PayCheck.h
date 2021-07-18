@@ -7,7 +7,7 @@ class PayCheck
 {
 public:
     virtual ~PayCheck() = default;
-    PayCheck(const Date& payPeriodStart, const Date& payPeriodEnd);
+    PayCheck(Date payPeriodStart, Date payPeriodEnd);
     PayCheck(const PayCheck& other) = default;
     PayCheck(PayCheck&& other) noexcept = default;
     PayCheck& operator=(const PayCheck& other) = default;

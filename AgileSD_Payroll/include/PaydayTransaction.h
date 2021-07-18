@@ -9,7 +9,7 @@ class PaydayTransaction : public Transaction
 {
 public:
     ~PaydayTransaction() override;
-    explicit PaydayTransaction(const Date& payDate);
+    explicit PaydayTransaction(Date payDate);
     PaydayTransaction(const PaydayTransaction& other) = default;
     PaydayTransaction(PaydayTransaction&& other) noexcept = default;
     PaydayTransaction& operator=(const PaydayTransaction& other) = default;

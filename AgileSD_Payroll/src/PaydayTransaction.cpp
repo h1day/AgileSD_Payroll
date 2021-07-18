@@ -5,13 +5,14 @@
 #include "Employee.h"
 
 #include <list>
+#include <utility>
 
 extern PayrollDatabase g_payrollDatabase;
 
 PaydayTransaction::~PaydayTransaction() = default;
 
-PaydayTransaction::PaydayTransaction(const Date& payDate)
-    : itsPayDate(payDate)
+PaydayTransaction::PaydayTransaction(Date payDate)
+    : itsPayDate(std::move(payDate))
 {
 }
 

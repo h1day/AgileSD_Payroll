@@ -1,4 +1,6 @@
 #include "TimeCardTransaction.h"
+
+#include <utility>
 #include "Employee.h"
 #include "PayrollDatabase.h"
 #include "HourlyClassification.h"
@@ -9,9 +11,9 @@ extern PayrollDatabase g_payrollDatabase;
 
 TimeCardTransaction::~TimeCardTransaction() = default;
 
-TimeCardTransaction::TimeCardTransaction(const Date& date, double hours, int empId)
+TimeCardTransaction::TimeCardTransaction(Date date, double hours, int empId)
     : itsEmpId(empId)
-      , itsDate(date)
+      , itsDate(std::move(date))
       , itsHours(hours)
 {
 }

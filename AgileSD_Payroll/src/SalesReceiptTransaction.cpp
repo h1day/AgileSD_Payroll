@@ -1,4 +1,6 @@
 #include "SalesReceiptTransaction.h"
+
+#include <utility>
 #include "Employee.h"
 #include "PayrollDatabase.h"
 #include "CommissionedClassification.h"
@@ -7,9 +9,9 @@
 extern PayrollDatabase g_payrollDatabase;
 
 SalesReceiptTransaction::~SalesReceiptTransaction() = default;
-SalesReceiptTransaction::SalesReceiptTransaction(const Date& saleDate, double amount, int empId)
+SalesReceiptTransaction::SalesReceiptTransaction(Date saleDate, double amount, int empId)
     : itsEmpId(empId)
-      , itsSaleDate(saleDate)
+      , itsSaleDate(std::move(saleDate))
       , itsAmount(amount)
 {
 }

@@ -2,10 +2,10 @@
 
 #include <utility>
 
-PayCheck::PayCheck(const Date& payPeriodStartDate,
-                   const Date& payPeriodEndDate)
-    : itsPayPeriodStartDate(payPeriodStartDate)
-      , itsPayPeriodEndDate(payPeriodEndDate)
+PayCheck::PayCheck(Date payPeriodStartDate,
+                   Date payPeriodEndDate)
+    : itsPayPeriodStartDate(std::move(payPeriodStartDate))
+      , itsPayPeriodEndDate(std::move(payPeriodEndDate))
 {
     itsGrossPay = 0;
     itsNetPay = 0;

@@ -4,8 +4,6 @@
 // ReSharper disable once CommentTypo
 PayrollDatabase g_payrollDatabase; // NOLINT(clang-diagnostic-exit-time-destructors)
 
-PayrollDatabase::~PayrollDatabase() = default;
-
 Employee* PayrollDatabase::GetEmployee(int empId)
 {
     return itsEmployees[empId];

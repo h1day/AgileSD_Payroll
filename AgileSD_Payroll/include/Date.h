@@ -22,8 +22,10 @@ public:
     Date();
     Date(int month, int day, int year);
     Date(const Date&);
-    virtual ~Date();
+    virtual ~Date() = default;
     Date& operator=(const Date&);
+    Date(Date&& other) noexcept = default;
+    Date& operator=(Date&& other) noexcept = default;
 
     // Accessors
     int GetMonth() const;

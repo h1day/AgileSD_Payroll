@@ -6,8 +6,12 @@
 class PayCheck
 {
 public:
-    virtual ~PayCheck();
+    virtual ~PayCheck() = default;
     PayCheck(const Date& payPeriodStart, const Date& payPeriodEnd);
+    PayCheck(const PayCheck& other) = default;
+    PayCheck(PayCheck&& other) noexcept = default;
+    PayCheck& operator=(const PayCheck& other) = default;
+    PayCheck& operator=(PayCheck&& other) noexcept = default;
 
     void SetGrossPay(double grossPay);
     void SetDeductions(double deductions);

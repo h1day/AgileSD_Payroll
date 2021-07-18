@@ -10,6 +10,11 @@ class HourlyClassification : public PaymentClassification
 public:
     ~HourlyClassification() override;
     explicit HourlyClassification(double hourlyRate);
+
+    HourlyClassification(const HourlyClassification& other) = default;
+    HourlyClassification(HourlyClassification&& other) noexcept = default;
+    HourlyClassification& operator=(const HourlyClassification& other) = default;
+    HourlyClassification& operator=(HourlyClassification&& other) noexcept = default;
     double GetRate() const { return itsRate; }
 
     void AddTimeCard(TimeCard* tc);

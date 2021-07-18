@@ -38,8 +38,6 @@ Date::Date(const Date& theDate)
     *this = theDate;
 }
 
-Date::~Date() = default;
-
 Date& Date::operator=(const Date& theDate)
 {
     itsTime = theDate.itsTime;

@@ -13,6 +13,11 @@ class Employee
 public:
     virtual ~Employee();
     Employee(int empId, std::string name, std::string address);
+    Employee(const Employee& other) = default;
+    Employee(Employee&& other) noexcept = default;
+    Employee& operator=(const Employee& other) = default;
+    Employee& operator=(Employee&& other) noexcept = default;
+
     void SetName(std::string name);
     void SetAddress(std::string address);
     void SetClassification(PaymentClassification*);

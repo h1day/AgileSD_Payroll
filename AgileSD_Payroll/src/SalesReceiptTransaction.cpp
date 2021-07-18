@@ -7,7 +7,6 @@
 extern PayrollDatabase g_payrollDatabase;
 
 SalesReceiptTransaction::~SalesReceiptTransaction() = default;
-
 SalesReceiptTransaction::SalesReceiptTransaction(const Date& saleDate, double amount, int empId)
     : itsEmpId(empId)
       , itsSaleDate(saleDate)

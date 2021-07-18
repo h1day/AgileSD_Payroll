@@ -2,8 +2,6 @@
 
 #include <utility>
 
-PayCheck::~PayCheck() = default;
-
 PayCheck::PayCheck(const Date& payPeriodStartDate,
                    const Date& payPeriodEndDate)
     : itsPayPeriodStartDate(payPeriodStartDate)

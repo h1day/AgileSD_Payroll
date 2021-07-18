@@ -6,6 +6,10 @@ class ChangeUnaffiliatedTransaction : public ChangeAffiliationTransaction
 public:
     ~ChangeUnaffiliatedTransaction() override;
     explicit ChangeUnaffiliatedTransaction(int empId);
+    ChangeUnaffiliatedTransaction(const ChangeUnaffiliatedTransaction& other) = default;
+    ChangeUnaffiliatedTransaction(ChangeUnaffiliatedTransaction&& other) noexcept = default;
+    ChangeUnaffiliatedTransaction& operator=(const ChangeUnaffiliatedTransaction& other) = default;
+    ChangeUnaffiliatedTransaction& operator=(ChangeUnaffiliatedTransaction&& other) noexcept = default;
     Affiliation* GetAffiliation() const override;
     void RecordMembership(Employee*) override;
 };

@@ -10,6 +10,11 @@ class CommissionedClassification : public PaymentClassification
 public:
     ~CommissionedClassification() override;
     CommissionedClassification(double salary, double commissionRate);
+    CommissionedClassification(const CommissionedClassification& other) = default;
+    CommissionedClassification(CommissionedClassification&& other) noexcept = default;
+    CommissionedClassification& operator=(const CommissionedClassification& other) = default;
+    CommissionedClassification& operator=(CommissionedClassification&& other) noexcept = default;
+
     double GetSalary() const;
     double GetRate() const;
 

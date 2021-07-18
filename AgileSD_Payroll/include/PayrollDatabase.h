@@ -7,7 +7,13 @@ class Employee;
 class PayrollDatabase
 {
 public:
-    virtual ~PayrollDatabase();
+    virtual ~PayrollDatabase() = default;
+    PayrollDatabase() = default;
+    PayrollDatabase(const PayrollDatabase& other) = delete;
+    PayrollDatabase(PayrollDatabase&& other) noexcept = delete;
+    PayrollDatabase& operator=(const PayrollDatabase& other) = delete;
+    PayrollDatabase& operator=(PayrollDatabase&& other) noexcept = delete;
+
     Employee* GetEmployee(int empId);
     void AddEmployee(int empId, Employee*);
     void DeleteEmployee(int empId);

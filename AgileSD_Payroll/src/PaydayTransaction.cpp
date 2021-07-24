@@ -9,7 +9,13 @@
 
 extern PayrollDatabase g_payrollDatabase;
 
-PaydayTransaction::~PaydayTransaction() = default;
+PaydayTransaction::~PaydayTransaction(){
+    for (auto& element : itsPaychecks)
+    {
+        delete element.second;
+    }
+    itsPaychecks.clear();
+}
 
 PaydayTransaction::PaydayTransaction(Date payDate)
     : itsPayDate(std::move(payDate))
@@ -44,5 +50,5 @@ PayCheck* PaydayTransaction::GetPaycheck(int empId)
 
 int PaydayTransaction::GetPaycheckCount() const
 {
-    return itsPaychecks.size();
+    return static_cast<int>(itsPaychecks.size());
 }

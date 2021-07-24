@@ -2,7 +2,14 @@
 #include "TimeCard.h"
 #include "PayCheck.h"
 
-HourlyClassification::~HourlyClassification() = default;
+HourlyClassification::~HourlyClassification()
+{
+    for (auto& tc : itsTimeCards)
+    {
+        delete tc.second;
+    }
+    itsTimeCards.clear();
+}
 
 HourlyClassification::HourlyClassification(double hourlyRate)
     : itsRate(hourlyRate)

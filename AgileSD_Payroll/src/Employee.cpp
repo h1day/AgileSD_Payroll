@@ -1,6 +1,5 @@
 #include "Employee.h"
 
-#include <utility>
 #include "NoAffiliation.h"
 #include "PaymentClassification.h"
 #include "PaymentSchedule.h"
@@ -12,6 +11,7 @@ Employee::~Employee()
     delete itsClassification;
     delete itsSchedule;
     delete itsPaymentMethod;
+    delete itsAffiliation;
 }
 
 Employee::Employee(int empId, std::string name, std::string address)

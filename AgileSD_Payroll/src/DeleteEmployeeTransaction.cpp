@@ -1,4 +1,6 @@
 #include "DeleteEmployeeTransaction.h"
+
+#include "Employee.h"
 #include "PayrollDatabase.h"
 
 extern PayrollDatabase g_payrollDatabase;
@@ -11,5 +13,7 @@ DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empId)
 
 void DeleteEmployeeTransaction::Execute()
 {
+    const auto e = g_payrollDatabase.GetEmployee(itsEmpId);
     g_payrollDatabase.DeleteEmployee(itsEmpId);
+    delete e;
 }

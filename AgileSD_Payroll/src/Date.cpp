@@ -1,4 +1,5 @@
 #include "Date.h"
+#include <iostream>
 
 long Date::secondsPerDay = 60L * 60L * 24L;
 
@@ -88,6 +89,12 @@ std::string Date::GetDayOfWeekName() const
     return retVal;
 }
 
+// char operator<<(const std::ostream& lhs, int rhs)
+// {
+//     char dummy = 0;
+//     return dummy;
+// }
+
 std::ostream& operator<<(std::ostream& o, const Date& theDate)
 {
     o << theDate.GetMonth() << '/'
@@ -95,6 +102,12 @@ std::ostream& operator<<(std::ostream& o, const Date& theDate)
         << theDate.GetYear();
     return o;
 }
+
+// char operator>>(const std::istream& lhs, int rhs)
+// {
+//     char dummy = 0;
+//     return dummy;
+// }
 
 std::istream& operator>>(std::istream& i, Date& theDate)
 {

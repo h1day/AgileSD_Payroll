@@ -1,3 +1,4 @@
+#include "CppUTest/TestHarness.h"
 #include "PayrollDatabase.h"
 #include "AddSalariedEmployee.h"
 #include "Employee.h"
@@ -36,103 +37,112 @@
 
 extern PayrollDatabase g_payrollDatabase;
 
-//#define ASSERT_TRUE(x) ASSERT_TRUE(x)
-//#define EXPECT_EQ(x, y) EXPECT_EQ(x, y) 
 
-class PayrollTest : public testing::Test
+
+TEST_GROUP(PayrollTest)
 {
-protected:
-    void SetUp() override
+    TEST_SETUP()
+    {
+        g_payrollDatabase.clear();
+    }
+    TEST_TEARDOWN()
     {
         g_payrollDatabase.clear();
     }
 
-    // virtual void TearDown() {}
-
-    void ValidatePaycheck(PaydayTransaction& pt,
-                          int empId,
-                          const Date& payDate,
-                          double pay) const;
+    static void ValidatePaycheck(PaydayTransaction & pt,
+                                 int empId,
+                                 const Date & payDate,
+                                 double pay)
+    {
+        PayCheck* pc = pt.GetPaycheck(empId);
+        CHECK_TRUE(pc);
+        CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+        DOUBLES_EQUAL(pay, pc->GetGrossPay(), 0.01);
+        CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+        DOUBLES_EQUAL(0.0, pc->GetDeductions(), 0.01);
+        DOUBLES_EQUAL(pay, pc->GetNetPay(), 0.01);
+    }
 };
 
-TEST_F(PayrollTest, TestAddSalariedEmployee)
+TEST(PayrollTest, TestAddSalariedEmployee)
 {
     const int empId = 1;
     AddSalariedEmployee t(empId, "Bob", "Home", 1000.00);
     t.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
-    ASSERT_TRUE("Bob" == e->GetName());
+    CHECK_TRUE(e);
+    CHECK_TRUE("Bob" == e->GetName());
     PaymentClassification* pc = e->GetClassification();
     const auto sc = dynamic_cast<SalariedClassification*>(pc);
-    ASSERT_TRUE(sc);
-    EXPECT_EQ(1000.00, sc->GetSalary());
+    CHECK_TRUE(sc);
+    DOUBLES_EQUAL(1000.00, sc->GetSalary(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto ms = dynamic_cast<MonthlySchedule*>(ps);
-    ASSERT_TRUE(ms);
+    CHECK_TRUE(ms);
     PaymentMethod* pm = e->GetMethod();
     const auto hm = dynamic_cast<HoldMethod*>(pm);
-    ASSERT_TRUE(hm);
+    CHECK_TRUE(hm);
 }
 
-TEST_F(PayrollTest, TestAddHourlyEmployee)
+TEST(PayrollTest, TestAddHourlyEmployee)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
     t.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
-    ASSERT_TRUE("Bill" == e->GetName());
+    CHECK_TRUE(e);
+    CHECK_TRUE("Bill" == e->GetName());
     PaymentClassification* pc = e->GetClassification();
     const auto hc = dynamic_cast<HourlyClassification*>(pc);
-    ASSERT_TRUE(hc);
-    EXPECT_EQ(15.25, hc->GetRate());
+    CHECK_TRUE(hc);
+    DOUBLES_EQUAL(15.25, hc->GetRate(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto ws = dynamic_cast<WeeklySchedule*>(ps);
-    ASSERT_TRUE(ws);
+    CHECK_TRUE(ws);
     PaymentMethod* pm = e->GetMethod();
     const auto hm = dynamic_cast<HoldMethod*>(pm);
-    ASSERT_TRUE(hm);
+    CHECK_TRUE(hm);
 }
 
-TEST_F(PayrollTest, TestAddCommissionedEmployee)
+TEST(PayrollTest, TestAddCommissionedEmployee)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
     t.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
-    ASSERT_TRUE("Lance" == e->GetName());
+    CHECK_TRUE(e);
+    CHECK_TRUE("Lance" == e->GetName());
     PaymentClassification* pc = e->GetClassification();
     const auto cc = dynamic_cast<CommissionedClassification*>(pc);
-    ASSERT_TRUE(cc);
-    EXPECT_DOUBLE_EQ(2500, cc->GetSalary());
+    CHECK_TRUE(cc);
+    DOUBLES_EQUAL(2500, cc->GetSalary(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto bws = dynamic_cast<BiweeklySchedule*>(ps);
-    ASSERT_TRUE(bws);
+    CHECK_TRUE(bws);
     PaymentMethod* pm = e->GetMethod();
     const auto hm = dynamic_cast<HoldMethod*>(pm);
-    ASSERT_TRUE(hm);
+    CHECK_TRUE(hm);
 }
 
-TEST_F(PayrollTest, TestDeleteEmployee)
+TEST(PayrollTest, TestDeleteEmployee)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
     t.Execute();
     {
         Employee* e = g_payrollDatabase.GetEmployee(empId);
-        ASSERT_TRUE(e);
+        CHECK_TRUE(e);
     }
     DeleteEmployeeTransaction dt(empId);
     dt.Execute();
     {
         Employee* e = g_payrollDatabase.GetEmployee(empId);
-        ASSERT_TRUE(e == nullptr);
+        CHECK_TRUE(e == nullptr);
     }
 }
 
-TEST_F(PayrollTest, TestTimeCardTransaction)
+TEST(PayrollTest, TestTimeCardTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -140,16 +150,16 @@ TEST_F(PayrollTest, TestTimeCardTransaction)
     TimeCardTransaction tct(Date(10, 31, 2001), 8.0, empId);
     tct.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentClassification* pc = e->GetClassification();
     auto hc = dynamic_cast<HourlyClassification*>(pc);
-    ASSERT_TRUE(hc);
+    CHECK_TRUE(hc);
     TimeCard* tc = hc->GetTimeCard(Date(10, 31, 2001));
-    ASSERT_TRUE(tc);
-    EXPECT_EQ(8.0, tc->GetHours());
+    CHECK_TRUE(tc);
+    DOUBLES_EQUAL(8.0, tc->GetHours(), 0.01);
 }
 
-TEST_F(PayrollTest, TestBadTimeCardTransaction)
+TEST(PayrollTest, TestBadTimeCardTransaction)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
@@ -158,14 +168,14 @@ TEST_F(PayrollTest, TestBadTimeCardTransaction)
     try
     {
         tct.Execute();
-        ASSERT_TRUE(false);
+        CHECK_TRUE(false);
     }
     catch (...)
     {
     }
 }
 
-TEST_F(PayrollTest, TestSalesReceiptTransaction)
+TEST(PayrollTest, TestSalesReceiptTransaction)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
@@ -174,16 +184,16 @@ TEST_F(PayrollTest, TestSalesReceiptTransaction)
     SalesReceiptTransaction srt(saleDate, 25000, empId);
     srt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentClassification* pc = e->GetClassification();
     auto cc = dynamic_cast<CommissionedClassification*>(pc);
-    ASSERT_TRUE(cc);
+    CHECK_TRUE(cc);
     SalesReceipt* receipt = cc->GetReceipt(saleDate);
-    ASSERT_TRUE(receipt);
-    EXPECT_DOUBLE_EQ(25000, receipt->GetAmount());
+    CHECK_TRUE(receipt);
+    DOUBLES_EQUAL(25000, receipt->GetAmount(), 0.01);
 }
 
-TEST_F(PayrollTest, TestBadSalesReceiptTransaction)
+TEST(PayrollTest, TestBadSalesReceiptTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -193,21 +203,21 @@ TEST_F(PayrollTest, TestBadSalesReceiptTransaction)
     try
     {
         tct.Execute();
-        ASSERT_TRUE(false);
+        CHECK_TRUE(false);
     }
     catch (...)
     {
     }
 }
 
-TEST_F(PayrollTest, TestAddServiceCharge)
+TEST(PayrollTest, TestAddServiceCharge)
 {
     const int empId = 2;
     const int memberId = 86; // Maxwell Smart
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
     t.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     auto af = new UnionAffiliation(memberId, 12.5);
     e->SetAffiliation(af);
     g_payrollDatabase.AddUnionMember(memberId, e);
@@ -215,11 +225,11 @@ TEST_F(PayrollTest, TestAddServiceCharge)
     ServiceChargeTransaction sct(memberId, serviceChargeDate, 12.95);
     sct.Execute();
     ServiceCharge* sc = af->GetServiceCharge(serviceChargeDate);
-    ASSERT_TRUE(sc);
-    EXPECT_EQ(12.95, sc->GetAmount());
+    CHECK_TRUE(sc);
+    DOUBLES_EQUAL(12.95, sc->GetAmount(), 0.01);
 }
 
-TEST_F(PayrollTest, TestChangeNameTransaction)
+TEST(PayrollTest, TestChangeNameTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -227,11 +237,11 @@ TEST_F(PayrollTest, TestChangeNameTransaction)
     ChangeNameTransaction cnt(empId, "Bob");
     cnt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
-    ASSERT_TRUE("Bob" == e->GetName());
+    CHECK_TRUE(e);
+    CHECK_TRUE("Bob" == e->GetName());
 }
 
-TEST_F(PayrollTest, TestChangeAddressTransaction)
+TEST(PayrollTest, TestChangeAddressTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -239,11 +249,11 @@ TEST_F(PayrollTest, TestChangeAddressTransaction)
     ChangeAddressTransaction cnt(empId, "PO Box 7575");
     cnt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
-    ASSERT_TRUE("PO Box 7575" == e->GetAddress());
+    CHECK_TRUE(e);
+    CHECK_TRUE("PO Box 7575" == e->GetAddress());
 }
 
-TEST_F(PayrollTest, TestChangeHourlyTransaction)
+TEST(PayrollTest, TestChangeHourlyTransaction)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
@@ -251,18 +261,18 @@ TEST_F(PayrollTest, TestChangeHourlyTransaction)
     ChangeHourlyTransaction cht(empId, 27.52);
     cht.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentClassification* pc = e->GetClassification();
-    ASSERT_TRUE(pc);
+    CHECK_TRUE(pc);
     const auto hc = dynamic_cast<HourlyClassification*>(pc);
-    ASSERT_TRUE(hc);
-    EXPECT_EQ(27.52, hc->GetRate());
+    CHECK_TRUE(hc);
+    DOUBLES_EQUAL(27.52, hc->GetRate(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto ws = dynamic_cast<WeeklySchedule*>(ps);
-    ASSERT_TRUE(ws);
+    CHECK_TRUE(ws);
 }
 
-TEST_F(PayrollTest, TestChangeSalariedTransaction)
+TEST(PayrollTest, TestChangeSalariedTransaction)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
@@ -270,18 +280,18 @@ TEST_F(PayrollTest, TestChangeSalariedTransaction)
     ChangeSalariedTransaction cht(empId, 25000);
     cht.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentClassification* pc = e->GetClassification();
-    ASSERT_TRUE(pc);
+    CHECK_TRUE(pc);
     const auto sc = dynamic_cast<SalariedClassification*>(pc);
-    ASSERT_TRUE(sc);
-    EXPECT_DOUBLE_EQ(25000, sc->GetSalary());
+    CHECK_TRUE(sc);
+    DOUBLES_EQUAL(25000, sc->GetSalary(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto ms = dynamic_cast<MonthlySchedule*>(ps);
-    ASSERT_TRUE(ms);
+    CHECK_TRUE(ms);
 }
 
-TEST_F(PayrollTest, TestChangeCommissionedTransaction)
+TEST(PayrollTest, TestChangeCommissionedTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -289,19 +299,19 @@ TEST_F(PayrollTest, TestChangeCommissionedTransaction)
     ChangeCommissionedTransaction cht(empId, 25000, 4.5);
     cht.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentClassification* pc = e->GetClassification();
-    ASSERT_TRUE(pc);
+    CHECK_TRUE(pc);
     const auto cc = dynamic_cast<CommissionedClassification*>(pc);
-    ASSERT_TRUE(cc);
-    EXPECT_DOUBLE_EQ(25000, cc->GetSalary());
-    EXPECT_EQ(4.5, cc->GetRate());
+    CHECK_TRUE(cc);
+    DOUBLES_EQUAL(25000, cc->GetSalary(), 0.01);
+    DOUBLES_EQUAL(4.5, cc->GetRate(), 0.01);
     PaymentSchedule* ps = e->GetSchedule();
     const auto bws = dynamic_cast<BiweeklySchedule*>(ps);
-    ASSERT_TRUE(bws);
+    CHECK_TRUE(bws);
 }
 
-TEST_F(PayrollTest, TestChangeMailTransaction)
+TEST(PayrollTest, TestChangeMailTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -310,15 +320,15 @@ TEST_F(PayrollTest, TestChangeMailTransaction)
     ChangeMailTransaction cmt(empId, "4080 El Cerrito Road");
     cmt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentMethod* pm = e->GetMethod();
-    ASSERT_TRUE(pm);
+    CHECK_TRUE(pm);
     const auto mm = dynamic_cast<MailMethod*>(pm);
-    ASSERT_TRUE(mm);
-    ASSERT_TRUE("4080 El Cerrito Road" == mm->GetAddress());
+    CHECK_TRUE(mm);
+    CHECK_TRUE("4080 El Cerrito Road" == mm->GetAddress());
 }
 
-TEST_F(PayrollTest, TestChangeDirectTransaction)
+TEST(PayrollTest, TestChangeDirectTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -326,16 +336,16 @@ TEST_F(PayrollTest, TestChangeDirectTransaction)
     ChangeDirectTransaction cdt(empId, "FirstNational", "1058209");
     cdt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentMethod* pm = e->GetMethod();
-    ASSERT_TRUE(pm);
+    CHECK_TRUE(pm);
     const auto dm = dynamic_cast<DirectMethod*>(pm);
-    ASSERT_TRUE(dm);
-    ASSERT_TRUE("FirstNational" == dm->GetBank());
-    ASSERT_TRUE("1058209" == dm->GetAccount());
+    CHECK_TRUE(dm);
+    CHECK_TRUE("FirstNational" == dm->GetBank());
+    CHECK_TRUE("1058209" == dm->GetAccount());
 }
 
-TEST_F(PayrollTest, TestChangeHoldTransaction)
+TEST(PayrollTest, TestChangeHoldTransaction)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -345,14 +355,14 @@ TEST_F(PayrollTest, TestChangeHoldTransaction)
     ChangeHoldTransaction cht(empId);
     cht.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     PaymentMethod* pm = e->GetMethod();
-    ASSERT_TRUE(pm);
+    CHECK_TRUE(pm);
     const auto hm = dynamic_cast<HoldMethod*>(pm);
-    ASSERT_TRUE(hm);
+    CHECK_TRUE(hm);
 }
 
-TEST_F(PayrollTest, TestChangeMemberTransaction)
+TEST(PayrollTest, TestChangeMemberTransaction)
 {
     const int empId = 2;
     const int memberId = 7734;
@@ -361,18 +371,18 @@ TEST_F(PayrollTest, TestChangeMemberTransaction)
     ChangeMemberTransaction cmt(empId, memberId, 99.42);
     cmt.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     Affiliation* af = e->GetAffiliation();
-    ASSERT_TRUE(af);
+    CHECK_TRUE(af);
     const auto uf = dynamic_cast<UnionAffiliation*>(af);
-    ASSERT_TRUE(uf);
-    EXPECT_EQ(99.42, uf->GetDues());
+    CHECK_TRUE(uf);
+    DOUBLES_EQUAL(99.42, uf->GetDues(), 0.01);
     Employee* member = g_payrollDatabase.GetUnionMember(memberId);
-    ASSERT_TRUE(member);
-    ASSERT_TRUE(e == member);
+    CHECK_TRUE(member);
+    CHECK_TRUE(e == member);
 }
 
-TEST_F(PayrollTest, TestChangeUnaffiliatedTransaction)
+TEST(PayrollTest, TestChangeUnaffiliatedTransaction)
 {
     const int empId = 2;
     const int memberId = 7734;
@@ -383,16 +393,16 @@ TEST_F(PayrollTest, TestChangeUnaffiliatedTransaction)
     ChangeUnaffiliatedTransaction cut(empId);
     cut.Execute();
     Employee* e = g_payrollDatabase.GetEmployee(empId);
-    ASSERT_TRUE(e);
+    CHECK_TRUE(e);
     Affiliation* af = e->GetAffiliation();
-    ASSERT_TRUE(af);
+    CHECK_TRUE(af);
     const auto nf = dynamic_cast<NoAffiliation*>(af);
-    ASSERT_TRUE(nf);
+    CHECK_TRUE(nf);
     Employee* member = g_payrollDatabase.GetUnionMember(memberId);
-    ASSERT_TRUE(member == nullptr);
+    CHECK_TRUE(member == nullptr);
 }
 
-TEST_F(PayrollTest, TestPaySingleSalariedEmployee)
+TEST(PayrollTest, TestPaySingleSalariedEmployee)
 {
     const int empId = 1;
     AddSalariedEmployee t(empId, "Bob", "Home", 1000.00);
@@ -403,21 +413,7 @@ TEST_F(PayrollTest, TestPaySingleSalariedEmployee)
     ValidatePaycheck(pt, empId, payDate, 1000.00);
 }
 
-void PayrollTest::ValidatePaycheck(PaydayTransaction& pt,
-                                   int empId,
-                                   const Date& payDate,
-                                   double pay) const
-{
-    PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(pay, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(0.0, pc->GetDeductions());
-    EXPECT_EQ(pay, pc->GetNetPay());
-}
-
-TEST_F(PayrollTest, TestPaySingleSalariedEmployeeOnWrongDate)
+TEST(PayrollTest, TestPaySingleSalariedEmployeeOnWrongDate)
 {
     const int empId = 1;
     AddSalariedEmployee t(empId, "Bob", "Home", 1000.00);
@@ -426,10 +422,12 @@ TEST_F(PayrollTest, TestPaySingleSalariedEmployeeOnWrongDate)
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc == nullptr);
+    CHECK_TRUE(pc == nullptr);
+
+
 }
 
-TEST_F(PayrollTest, TestPayMultipleSalariedEmployees)
+TEST(PayrollTest, TestPayMultipleSalariedEmployees)
 {
     AddSalariedEmployee t1(1, "Bob", "Home", 1000.00);
     AddSalariedEmployee t2(2, "Bill", "Home", 2000.00);
@@ -440,13 +438,13 @@ TEST_F(PayrollTest, TestPayMultipleSalariedEmployees)
     Date payDate(11, 30, 2001);
     PaydayTransaction pt(payDate);
     pt.Execute();
-    ASSERT_TRUE(3L == pt.GetPaycheckCount());
+    CHECK_TRUE(3L == pt.GetPaycheckCount());
     ValidatePaycheck(pt, 1, payDate, 1000.00);
     ValidatePaycheck(pt, 2, payDate, 2000.00);
     ValidatePaycheck(pt, 3, payDate, 3000.00);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeNoTimeCards)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeNoTimeCards)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -457,7 +455,7 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeNoTimeCards)
     ValidatePaycheck(pt, empId, payDate, 0.0);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOneTimeCard)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeOneTimeCard)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -471,7 +469,7 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOneTimeCard)
     ValidatePaycheck(pt, empId, payDate, 30.5);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOvertimeOneTimeCard)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeOvertimeOneTimeCard)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -485,7 +483,7 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOvertimeOneTimeCard)
     ValidatePaycheck(pt, empId, payDate, (8 + 1.5) * 15.25);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOnWrongDate)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeOnWrongDate)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -498,10 +496,10 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeOnWrongDate)
     pt.Execute();
 
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc == nullptr);
+    CHECK_TRUE(pc == nullptr);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeTwoTimeCards)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeTwoTimeCards)
 {
     const int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -517,7 +515,7 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeTwoTimeCards)
     ValidatePaycheck(pt, empId, payDate, 7 * 15.25);
 }
 
-TEST_F(PayrollTest, TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods)
+TEST(PayrollTest, TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriods)
 {
     int empId = 2;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
@@ -534,7 +532,7 @@ TEST_F(PayrollTest, TestPaySingleHourlyEmployeeWithTimeCardsSpanningTwoPayPeriod
     ValidatePaycheck(pt, empId, payDate, 2 * 15.25);
 }
 
-TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeNoSalesReceipts)
+TEST(PayrollTest, TestPaySingleCommissionedEmployeeNoSalesReceipts)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, 3.2);
@@ -545,7 +543,7 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeNoSalesReceipts)
     ValidatePaycheck(pt, empId, payDate, 2500.00);
 }
 
-TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeOneSalesReceipt)
+TEST(PayrollTest, TestPaySingleCommissionedEmployeeOneSalesReceipt)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, .032);
@@ -558,7 +556,7 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeOneSalesReceipt)
     ValidatePaycheck(pt, empId, payDate, 2500.00 + .032 * 13000);
 }
 
-TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeTwoSalesReceipts)
+TEST(PayrollTest, TestPaySingleCommissionedEmployeeTwoSalesReceipts)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, .032);
@@ -573,7 +571,7 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeTwoSalesReceipts)
     ValidatePaycheck(pt, empId, payDate, 2500.00 + .032 * 13000 + .032 * 24000);
 }
 
-TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeWrongDate)
+TEST(PayrollTest, TestPaySingleCommissionedEmployeeWrongDate)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, .032);
@@ -587,10 +585,10 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeWrongDate)
     pt.Execute();
 
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc == nullptr);
+    CHECK_TRUE(pc == nullptr);
 }
 
-TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeSpanMultiplePayPeriods)
+TEST(PayrollTest, TestPaySingleCommissionedEmployeeSpanMultiplePayPeriods)
 {
     int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, .032);
@@ -609,7 +607,7 @@ TEST_F(PayrollTest, TestPaySingleCommissionedEmployeeSpanMultiplePayPeriods)
     ValidatePaycheck(pt, empId, payDate, 2500.00 + .032 * 13000);
 }
 
-TEST_F(PayrollTest, TestSalariedUnionMemberDues)
+TEST(PayrollTest, TestSalariedUnionMemberDues)
 {
     const int empId = 1;
     AddSalariedEmployee t(empId, "Bob", "Home", 1000.00);
@@ -618,41 +616,41 @@ TEST_F(PayrollTest, TestSalariedUnionMemberDues)
     ChangeMemberTransaction cmt(empId, memberId, 9.42);
     cmt.Execute();
     const Date payDate(11, 30, 2001);
-    int fridays = 5; // Fridays in Nov, 2001.
+    const int fridays = 5; // Fridays in Nov, 2001.
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(1000.00, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(fridays*9.42, pc->GetDeductions());
-    EXPECT_EQ(1000.0 - (fridays * 9.42), pc->GetNetPay());
+    CHECK_TRUE(pc);
+    CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+    DOUBLES_EQUAL(1000.00, pc->GetGrossPay(), 0.01);
+    CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+    DOUBLES_EQUAL(fridays*9.42, pc->GetDeductions(), 0.01);
+    DOUBLES_EQUAL(1000.0 - (fridays * 9.42), pc->GetNetPay(), 0.01);
 }
 
-TEST_F(PayrollTest, TestHourlyUnionMemberDues)
+TEST(PayrollTest, TestHourlyUnionMemberDues)
 {
-    int empId = 1;
+    const int empId = 1;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.24);
     t.Execute();
-    int memberId = 7734;
+    const int memberId = 7734;
     ChangeMemberTransaction cmt(empId, memberId, 9.42);
     cmt.Execute();
-    Date payDate(11, 9, 2001);
+    const Date payDate(11, 9, 2001);
     TimeCardTransaction tct(payDate, 8.0, empId);
     tct.Execute();
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(8*15.24, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(9.42, pc->GetDeductions());
-    EXPECT_EQ((8*15.24)-9.42, pc->GetNetPay());
+    CHECK_TRUE(pc);
+    CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+    DOUBLES_EQUAL(8*15.24, pc->GetGrossPay(), 0.01);
+    CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+    DOUBLES_EQUAL(9.42, pc->GetDeductions(), 0.01);
+    DOUBLES_EQUAL((8*15.24)-9.42, pc->GetNetPay(), 0.01);
 }
 
-TEST_F(PayrollTest, TestCommissionedUnionMemberDues)
+TEST(PayrollTest, TestCommissionedUnionMemberDues)
 {
     const int empId = 3;
     AddCommissionedEmployee t(empId, "Lance", "Home", 2500, .032);
@@ -664,23 +662,23 @@ TEST_F(PayrollTest, TestCommissionedUnionMemberDues)
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(2500.00, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(2*9.42, pc->GetDeductions());
-    EXPECT_EQ(2500.0 - (2 * 9.42), pc->GetNetPay());
+    CHECK_TRUE(pc);
+    CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+    DOUBLES_EQUAL(2500.00, pc->GetGrossPay(), 0.01);
+    CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+    DOUBLES_EQUAL(2*9.42, pc->GetDeductions(), 0.01);
+    DOUBLES_EQUAL(2500.0 - (2 * 9.42), pc->GetNetPay(), 0.01);
 }
 
-TEST_F(PayrollTest, TestHourlyUnionMemberServiceCharge)
+TEST(PayrollTest, TestHourlyUnionMemberServiceCharge)
 {
-    int empId = 1;
+    const int empId = 1;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.24);
     t.Execute();
-    int memberId = 7734;
+    const int memberId = 7734;
     ChangeMemberTransaction cmt(empId, memberId, 9.42);
     cmt.Execute();
-    Date payDate(11, 9, 2001);
+    const Date payDate(11, 9, 2001);
     ServiceChargeTransaction sct(memberId, payDate, 19.42);
     sct.Execute();
     TimeCardTransaction tct(payDate, 8.0, empId);
@@ -688,15 +686,15 @@ TEST_F(PayrollTest, TestHourlyUnionMemberServiceCharge)
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(8*15.24, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(9.42 + 19.42, pc->GetDeductions());
-    EXPECT_EQ((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
+    CHECK_TRUE(pc);
+    CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+    DOUBLES_EQUAL(8*15.24, pc->GetGrossPay(), 0.01);
+    CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+    DOUBLES_EQUAL(9.42 + 19.42, pc->GetDeductions(), 0.01);
+    DOUBLES_EQUAL((8*15.24)-(9.42 + 19.42), pc->GetNetPay(), 0.01);
 }
 
-TEST_F(PayrollTest, TestServiceChargesSpanningMultiplePayPeriods)
+TEST(PayrollTest, TestServiceChargesSpanningMultiplePayPeriods)
 {
     int empId = 1;
     AddHourlyEmployee t(empId, "Bill", "Home", 15.24);
@@ -718,10 +716,10 @@ TEST_F(PayrollTest, TestServiceChargesSpanningMultiplePayPeriods)
     PaydayTransaction pt(payDate);
     pt.Execute();
     PayCheck* pc = pt.GetPaycheck(empId);
-    ASSERT_TRUE(pc);
-    ASSERT_TRUE(pc->GetPayPeriodEndDate() == payDate);
-    EXPECT_EQ(8*15.24, pc->GetGrossPay());
-    ASSERT_TRUE("Hold" == pc->GetField("Disposition"));
-    EXPECT_EQ(9.42 + 19.42, pc->GetDeductions());
-    EXPECT_EQ((8*15.24)-(9.42 + 19.42), pc->GetNetPay());
+    CHECK_TRUE(pc);
+    CHECK_TRUE(pc->GetPayPeriodEndDate() == payDate);
+    DOUBLES_EQUAL(8*15.24, pc->GetGrossPay(), 0.01);
+    CHECK_TRUE("Hold" == pc->GetField("Disposition"));
+    DOUBLES_EQUAL(9.42 + 19.42, pc->GetDeductions(), 0.01);
+    DOUBLES_EQUAL((8*15.24)-(9.42 + 19.42), pc->GetNetPay(), 0.01);
 }

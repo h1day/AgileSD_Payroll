@@ -26,6 +26,10 @@ void PayrollDatabase::AddUnionMember(int memberId, Employee* emp)
 
 void PayrollDatabase::clear()
 {
+    for (auto& employee : itsEmployees)
+    {
+        delete employee.second;
+    }
     itsEmployees.clear();
     itsUnionMembers.clear();
 }

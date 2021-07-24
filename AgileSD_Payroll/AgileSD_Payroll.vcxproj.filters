@@ -1,303 +1,299 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
+    <Filter Include="src">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="ヘッダー ファイル">
+    <Filter Include="include">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AgileSD_Payroll.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\AddEmployeeTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\AddHourlyEmployee.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\AddSalariedEmployee.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Affiliation.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\BiweeklySchedule.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeAddressTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeAffiliationTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeClassificationTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeCommissionedTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeDirectTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeEmployeeTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeHoldTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeHourlyTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeMailTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeMemberTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeMethodTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeNameTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeSalariedTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ChangeUnaffiliatedTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\CommissionedClassification.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Date.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DeleteEmployeeTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DirectMethod.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Employee.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\HoldMethod.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\HourlyClassification.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\MailMethod.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\MonthlySchedule.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\NoAffiliation.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PayCheck.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PaydayTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PaymentClassification.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PaymentMethod.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PaymentSchedule.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PayrollDatabase.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\PayrollTest.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SalariedClassification.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SalesReceipt.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SalesReceiptTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ServiceCharge.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ServiceChargeTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TimeCard.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\TimeCardTransaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Transaction.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\UnionAffiliation.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\WeeklySchedule.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\AddCommissionedEmployee.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AddEmployeeTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\AddHourlyEmployee.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\AddSalariedEmployee.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Affiliation.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\BiweeklySchedule.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeAddressTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeAffiliationTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeClassificationTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeCommissionedTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeDirectTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeEmployeeTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeHoldTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeHourlyTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeMailTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeMemberTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeMethodTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeNameTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeSalariedTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ChangeUnaffiliatedTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\CommissionedClassification.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Date.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\DeleteEmployeeTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\DirectMethod.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Employee.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\HoldMethod.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\HourlyClassification.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\MailMethod.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\MonthlySchedule.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\NoAffiliation.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PayCheck.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PaydayTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PaymentClassification.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PaymentMethod.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PaymentSchedule.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\PayrollDatabase.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SalariedClassification.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SalesReceipt.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SalesReceiptTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ServiceCharge.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\ServiceChargeTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\TimeCard.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\TimeCardTransaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Transaction.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\UnionAffiliation.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\WeeklySchedule.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\AddCommissionedEmployee.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

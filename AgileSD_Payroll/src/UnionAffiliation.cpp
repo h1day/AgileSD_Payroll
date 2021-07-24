@@ -3,7 +3,13 @@
 #include "Date.h"
 #include "PayCheck.h"
 
-UnionAffiliation::~UnionAffiliation() = default;
+UnionAffiliation::~UnionAffiliation(){
+    for (auto& element : itsServiceCharges)
+    {
+        delete element.second;
+    }
+    itsServiceCharges.clear();
+}
 
 UnionAffiliation::UnionAffiliation(int memberId, double dues)
     : itsMemberId(memberId)

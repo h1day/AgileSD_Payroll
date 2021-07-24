@@ -1,6 +1,7 @@
 #pragma once
+
+class AffiliationVisitor;
 class PayCheck;
-class Employee;
 
 class Affiliation
 {
@@ -13,6 +14,5 @@ public:
     Affiliation& operator=(Affiliation&& other) noexcept = default;
 
     virtual double CalculateDeductions(PayCheck&) const = 0;
-    virtual void EraseMembership() = 0;
-    virtual void RecordMembership(Employee& e) = 0;
+    virtual void Accept(AffiliationVisitor &v) = 0;
 };

@@ -151,6 +151,8 @@
     <ClCompile Include="src\AddEmployeeTransaction.cpp" />
     <ClCompile Include="src\AddHourlyEmployee.cpp" />
     <ClCompile Include="src\AddSalariedEmployee.cpp" />
+    <ClCompile Include="src\AffiliationEraser.cpp" />
+    <ClCompile Include="src\AffiliationRecorder.cpp" />
     <ClCompile Include="src\BiweeklySchedule.cpp" />
     <ClCompile Include="src\ChangeAddressTransaction.cpp" />
     <ClCompile Include="src\ChangeAffiliationTransaction.cpp" />
@@ -200,6 +202,9 @@
     <ClInclude Include="include\AddHourlyEmployee.h" />
     <ClInclude Include="include\AddSalariedEmployee.h" />
     <ClInclude Include="include\Affiliation.h" />
+    <ClInclude Include="include\AffiliationEraser.h" />
+    <ClInclude Include="include\AffiliationRecorder.h" />
+    <ClInclude Include="include\AffiliationVisitor.h" />
     <ClInclude Include="include\BiweeklySchedule.h" />
     <ClInclude Include="include\ChangeAddressTransaction.h" />
     <ClInclude Include="include\ChangeAffiliationTransaction.h" />

@@ -3,7 +3,6 @@
 #include "Date.h"
 #include <map>
 
-class Employee;
 class ServiceCharge;
 
 class UnionAffiliation : public Affiliation
@@ -21,8 +20,7 @@ public:
     double GetDues() const { return itsDues; }
     int GetMemberId() const { return itsMemberId; }
     double CalculateDeductions(PayCheck&) const override;
-    void EraseMembership() override;
-    void RecordMembership(Employee& e) override;
+    void Accept(AffiliationVisitor& v) override;
 
 private:
     int itsMemberId;

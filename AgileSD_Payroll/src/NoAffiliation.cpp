@@ -1,18 +1,12 @@
 #include "NoAffiliation.h"
-
-NoAffiliation::~NoAffiliation() = default;
-
-NoAffiliation::NoAffiliation() = default;
-
-void NoAffiliation::EraseMembership()
-{
-}
-
-void NoAffiliation::RecordMembership(Employee& e)
-{
-}
+#include "AffiliationVisitor.h"
 
 double NoAffiliation::CalculateDeductions(PayCheck&) const
 {
     return 0;
+}
+
+void NoAffiliation::Accept(AffiliationVisitor& v)
+{
+    v.visit(*this);
 }

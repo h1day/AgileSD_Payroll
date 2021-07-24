@@ -152,6 +152,12 @@
     <ClCompile Include="src\AddCommissionedEmployee.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\AffiliationEraser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AffiliationRecorder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AddEmployeeTransaction.h">
@@ -290,6 +296,15 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\AddCommissionedEmployee.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AffiliationEraser.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AffiliationVisitor.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AffiliationRecorder.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

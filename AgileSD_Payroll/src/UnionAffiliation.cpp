@@ -1,10 +1,9 @@
 #include "UnionAffiliation.h"
+
+#include "AffiliationVisitor.h"
 #include "ServiceCharge.h"
 #include "Date.h"
 #include "PayCheck.h"
-#include "PayrollDatabase.h" //todo: bad dependency
-
-extern PayrollDatabase g_payrollDatabase; //todo: bad dependency
 
 UnionAffiliation::~UnionAffiliation(){
     for (auto& element : itsServiceCharges)
@@ -62,13 +61,7 @@ double UnionAffiliation::CalculateDeductions(PayCheck& pc) const
     return totalDues + totalServiceCharge;
 }
 
-void UnionAffiliation::EraseMembership()
+void UnionAffiliation::Accept(AffiliationVisitor& v)
 {
-    const int memberId = this->GetMemberId();
-    g_payrollDatabase.RemoveUnionMember(memberId);
-}
-
-void UnionAffiliation::RecordMembership(Employee& e)
-{
-    g_payrollDatabase.AddUnionMember(itsMemberId, &e);
+    v.visit(*this);
 }

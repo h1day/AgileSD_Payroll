@@ -2,7 +2,13 @@
 #include "SalesReceipt.h"
 #include "PayCheck.h"
 
-CommissionedClassification::~CommissionedClassification() = default;
+CommissionedClassification::~CommissionedClassification(){
+    for (auto& element : itsReceipts)
+    {
+        delete element.second;
+    }
+    itsReceipts.clear();
+}
 
 CommissionedClassification::CommissionedClassification(double salary, double commissionRate)
     : itsSalary(salary)

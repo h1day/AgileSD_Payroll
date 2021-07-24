@@ -30,10 +30,12 @@
 #include "DirectMethod.h"
 #include "ChangeHoldTransaction.h"
 #include "ChangeMemberTransaction.h"
+#include "ChangeToStudyMemberTransaction.h"
 #include "ChangeUnaffiliatedTransaction.h"
 #include "NoAffiliation.h"
 #include "PaydayTransaction.h"
 #include "PayCheck.h"
+#include "StudyAffiliation.h"
 
 extern PayrollDatabase g_payrollDatabase;
 
@@ -401,6 +403,26 @@ TEST(PayrollTest, TestChangeUnaffiliatedTransaction)
     Employee* member = g_payrollDatabase.GetUnionMember(memberId);
     CHECK_TRUE(member == nullptr);
 }
+
+ TEST(PayrollTest, TestChangeToStudyAffiliationTransaction)
+ {
+     const int empId = 2;
+     const int memberId = 7734;
+     AddHourlyEmployee t(empId, "Bill", "Home", 15.25);
+     t.Execute();
+     ChangeToStudyMemberTransaction cst(empId, memberId, 99.42);
+     cst.Execute();
+     Employee* e = g_payrollDatabase.GetEmployee(empId);
+     CHECK_TRUE(e);
+     Affiliation* af = e->GetAffiliation();
+     CHECK_TRUE(af);
+     const auto sf = dynamic_cast<StudyAffiliation*>(af);
+     CHECK_TRUE(sf);
+     DOUBLES_EQUAL(99.42 + 100.0, sf->GetDues(), 0.01);
+     Employee* member = g_payrollDatabase.GetStudyMember(memberId);
+     CHECK_TRUE(member);
+     CHECK_TRUE(e == member);
+ }
 
 TEST(PayrollTest, TestPaySingleSalariedEmployee)
 {

@@ -24,6 +24,11 @@ void PayrollDatabase::AddUnionMember(int memberId, Employee* emp)
     itsUnionMembers[memberId] = emp->GetEmpId();
 }
 
+void PayrollDatabase::AddStudyMember(int memberId, Employee* emp)
+{
+    itsStudyMembers[memberId] = emp->GetEmpId();
+}
+
 void PayrollDatabase::clear()
 {
     for (auto& employee : itsEmployees)
@@ -32,6 +37,7 @@ void PayrollDatabase::clear()
     }
     itsEmployees.clear();
     itsUnionMembers.clear();
+    itsStudyMembers.clear();
 }
 
 Employee* PayrollDatabase::GetUnionMember(int memberId)
@@ -41,9 +47,21 @@ Employee* PayrollDatabase::GetUnionMember(int memberId)
     return e;
 }
 
+Employee* PayrollDatabase::GetStudyMember(int memberId)
+{
+    const int empId = itsStudyMembers[memberId];
+    Employee* e = itsEmployees[empId];
+    return e;
+}
+
 void PayrollDatabase::RemoveUnionMember(int memberId)
 {
     itsUnionMembers.erase(memberId);
+}
+
+void PayrollDatabase::RemoveStudyMember(int memberId)
+{
+    itsStudyMembers.erase(memberId);
 }
 
 void PayrollDatabase::GetAllEmployeeIds(std::list<int>& empIds)

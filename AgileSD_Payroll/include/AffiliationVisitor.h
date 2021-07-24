@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+class StudyAffiliation;
 class UnionAffiliation;
 class NoAffiliation;
 
@@ -15,4 +16,5 @@ public:
 
     virtual void visit(NoAffiliation& af) = 0;
     virtual void visit(UnionAffiliation& af) = 0;
+    virtual void visit(StudyAffiliation& af) = 0;
 };

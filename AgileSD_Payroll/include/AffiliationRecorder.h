@@ -10,6 +10,7 @@ public:
 
     void visit(NoAffiliation& a) override;
     void visit(UnionAffiliation& a) override;
+    void visit(StudyAffiliation& a) override;
 private:
     Employee* itsEmployee;
 };

@@ -167,6 +167,7 @@
     <ClCompile Include="src\ChangeMethodTransaction.cpp" />
     <ClCompile Include="src\ChangeNameTransaction.cpp" />
     <ClCompile Include="src\ChangeSalariedTransaction.cpp" />
+    <ClCompile Include="src\ChangeToStudyMemberTransaction.cpp" />
     <ClCompile Include="src\ChangeUnaffiliatedTransaction.cpp" />
     <ClCompile Include="src\CommissionedClassification.cpp" />
     <ClCompile Include="src\Date.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="src\SalesReceiptTransaction.cpp" />
     <ClCompile Include="src\ServiceCharge.cpp" />
     <ClCompile Include="src\ServiceChargeTransaction.cpp" />
+    <ClCompile Include="src\StudyAffiliation.cpp" />
     <ClCompile Include="src\TimeCard.cpp" />
     <ClCompile Include="src\TimeCardTransaction.cpp" />
     <ClCompile Include="src\Transaction.cpp" />
@@ -219,6 +221,7 @@
     <ClInclude Include="include\ChangeMethodTransaction.h" />
     <ClInclude Include="include\ChangeNameTransaction.h" />
     <ClInclude Include="include\ChangeSalariedTransaction.h" />
+    <ClInclude Include="include\ChangeToStudyMemberTransaction.h" />
     <ClInclude Include="include\ChangeUnaffiliatedTransaction.h" />
     <ClInclude Include="include\CommissionedClassification.h" />
     <ClInclude Include="include\Date.h" />
@@ -241,6 +244,7 @@
     <ClInclude Include="include\SalesReceiptTransaction.h" />
     <ClInclude Include="include\ServiceCharge.h" />
     <ClInclude Include="include\ServiceChargeTransaction.h" />
+    <ClInclude Include="include\StudyAffiliation.h" />
     <ClInclude Include="include\TimeCard.h" />
     <ClInclude Include="include\TimeCardTransaction.h" />
     <ClInclude Include="include\Transaction.h" />

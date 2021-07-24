@@ -158,6 +158,12 @@
     <ClCompile Include="src\AffiliationRecorder.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\StudyAffiliation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChangeToStudyMemberTransaction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AddEmployeeTransaction.h">
@@ -305,6 +311,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\AffiliationRecorder.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StudyAffiliation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChangeToStudyMemberTransaction.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,13 +18,17 @@ public:
     void AddEmployee(int empId, Employee*);
     void DeleteEmployee(int empId);
     void AddUnionMember(int memberId, Employee*);
+    void AddStudyMember(int memberId, Employee*);
     Employee* GetUnionMember(int memberId);
+    Employee* GetStudyMember(int memberId);
     void RemoveUnionMember(int memberId);
+    void RemoveStudyMember(int memberId);
     void clear();
     void GetAllEmployeeIds(std::list<int>&);
 
 private:
     std::map<int, Employee*> itsEmployees;
     std::map<int, int> itsUnionMembers;
+    std::map<int, int> itsStudyMembers;
 };
 

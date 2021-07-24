@@ -23,9 +23,6 @@
     <ClCompile Include="src\AddSalariedEmployee.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Affiliation.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\BiweeklySchedule.cpp">
       <Filter>src</Filter>
     </ClCompile>

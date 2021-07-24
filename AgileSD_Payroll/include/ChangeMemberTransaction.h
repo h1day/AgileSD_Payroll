@@ -11,7 +11,6 @@ public:
     ChangeMemberTransaction& operator=(const ChangeMemberTransaction& other) = default;
     ChangeMemberTransaction& operator=(ChangeMemberTransaction&& other) noexcept = default;
     Affiliation* GetAffiliation() const override;
-    void RecordMembership(Employee*) override;
 private:
     int itsMemberId;
     double itsDues;

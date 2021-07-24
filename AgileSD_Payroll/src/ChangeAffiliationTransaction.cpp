@@ -1,5 +1,7 @@
 #include "ChangeAffiliationTransaction.h"
 
+#include "Affiliation.h"
+
 ChangeAffiliationTransaction::~ChangeAffiliationTransaction() = default;
 
 ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empId)
@@ -9,6 +11,10 @@ ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empId)
 
 void ChangeAffiliationTransaction::Change(Employee& e)
 {
-    RecordMembership(&e);
-    e.SetAffiliation(GetAffiliation());
+    auto* afBefore = e.GetAffiliation();
+    afBefore->EraseMembership();
+
+    auto* afAfter = GetAffiliation();
+    afAfter->RecordMembership(e);
+    e.SetAffiliation(afAfter);
 }

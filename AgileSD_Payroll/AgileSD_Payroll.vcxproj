@@ -151,7 +151,6 @@
     <ClCompile Include="src\AddEmployeeTransaction.cpp" />
     <ClCompile Include="src\AddHourlyEmployee.cpp" />
     <ClCompile Include="src\AddSalariedEmployee.cpp" />
-    <ClCompile Include="src\Affiliation.cpp" />
     <ClCompile Include="src\BiweeklySchedule.cpp" />
     <ClCompile Include="src\ChangeAddressTransaction.cpp" />
     <ClCompile Include="src\ChangeAffiliationTransaction.cpp" />

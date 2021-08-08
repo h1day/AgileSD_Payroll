@@ -20,8 +20,19 @@ pipeline {
     }
 
     stage('archive') {
-      steps {
-        junit 'cpputest_PayrollTest.xml'
+      parallel {
+        stage('archive') {
+          steps {
+            junit 'cpputest_PayrollTest.xml'
+          }
+        }
+
+        stage('') {
+          steps {
+            archiveArtifacts 'x64\\Release\\AgileSD_Payroll.exe'
+          }
+        }
+
       }
     }
 

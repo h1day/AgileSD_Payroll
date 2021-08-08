@@ -14,8 +14,19 @@ pipeline {
     }
 
     stage('test') {
-      steps {
-        bat 'x64\\Release\\AgileSD_Payroll.exe -ojunit'
+      parallel {
+        stage('test') {
+          steps {
+            bat 'x64\\Release\\AgileSD_Payroll.exe -ojunit'
+          }
+        }
+
+        stage('inspectcode') {
+          steps {
+            bat 'jb inspectcode AgileSD_Payroll.sln -o inspectcode.xlm'
+          }
+        }
+
       }
     }
 
@@ -27,7 +38,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('SaveArtifact') {
           steps {
             archiveArtifacts 'x64\\Release\\AgileSD_Payroll.exe'
           }

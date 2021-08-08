@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('archive') {
+      steps {
+        junit 'cpputest_PayrollTest.xml'
+      }
+    }
+
   }
 }

@@ -26,7 +26,7 @@ pipeline {
 
         stage('codeinspection') {
           steps {
-            bat 'jb inspectcode AgileSD_Payroll.sln -o=inspectcode'
+            bat 'jb inspectcode AgileSD_Payroll.sln -o="inspectcode.xml"'
             archiveArtifacts 'inspectcode.xml'
           }
         }

@@ -11,6 +11,7 @@ pipeline {
       steps {
         bat 'msbuild AgileSD_Payroll.sln /p:configuration=release /p:platform=x64'
         archiveArtifacts 'x64\\Release\\AgileSD_Payroll.exe'
+        recordIssues()
       }
     }
 
@@ -26,6 +27,7 @@ pipeline {
         stage('codeinspection') {
           steps {
             bat 'jb inspectcode AgileSD_Payroll.sln -o=inspectcode'
+            archiveArtifacts 'inspectcode.xml'
           }
         }
 

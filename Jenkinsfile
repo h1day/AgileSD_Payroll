@@ -10,6 +10,7 @@ pipeline {
     stage('build') {
       steps {
         bat 'msbuild AgileSD_Payroll.sln /p:configuration=release /p:platform=x64'
+        archiveArtifacts 'x64\\Release\\AgileSD_Payroll.exe'
       }
     }
 
@@ -18,29 +19,13 @@ pipeline {
         stage('test') {
           steps {
             bat 'x64\\Release\\AgileSD_Payroll.exe -ojunit'
-          }
-        }
-
-        stage('inspectcode') {
-          steps {
-            bat 'jb inspectcode AgileSD_Payroll.sln -o inspectcode.xlm'
-          }
-        }
-
-      }
-    }
-
-    stage('archive') {
-      parallel {
-        stage('archive') {
-          steps {
             junit 'cpputest_PayrollTest.xml'
           }
         }
 
-        stage('SaveArtifact') {
+        stage('codeinspection') {
           steps {
-            archiveArtifacts 'x64\\Release\\AgileSD_Payroll.exe'
+            bat 'jb inspectcode AgileSD_Payroll.sln -o=inspectcode'
           }
         }
 
